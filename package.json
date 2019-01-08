@@ -7,6 +7,8 @@
   "author": "Lucas Constantino Silva <lucasconstantinosilva@gmail.com>",
   "main": "next.config.js",
   "scripts": {
+    "dev": "yarn next",
+    "format:package": "sort-package-json",
     "lint": "eslint pages src",
     "now-build": "next build",
     "precommit": "lint-staged",
@@ -34,7 +36,7 @@
   },
   "lint-staged": {
     "package.json": [
-      "sort-package-json",
+      "yarn format:package",
       "git add"
     ]
   }
