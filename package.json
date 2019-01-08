@@ -3,6 +3,7 @@
   "version": "0.1.0",
   "private": true,
   "description": "General-purpose react-driven dashboard for any internal tasks.",
+  "repository": "ssh://git@bitbucket.org/taller-repo/taller-dashboard.git",
   "license": "UNLINCENSED",
   "author": "Lucas Constantino Silva <lucasconstantinosilva@gmail.com>",
   "main": "next.config.js",
