@@ -19,6 +19,7 @@
     "test": "echo 'Not implemented yet'"
   },
   "dependencies": {
+    "antd": "^3.12.1",
     "next": "^8.0.0-canary.2",
     "prop-types": "^15.6.2",
     "react": "^16.7.0",
