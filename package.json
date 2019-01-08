@@ -9,9 +9,9 @@
   "main": "next.config.js",
   "scripts": {
     "dev": "yarn next",
-    "format": "prettier-eslint 'pages/**/*.js' 'src/**/*.js' --write",
+    "format": "prettier-eslint 'pages/**/*.js' --write",
     "format:package": "sort-package-json",
-    "lint": "eslint pages src",
+    "lint": "eslint pages",
     "now-build": "next build",
     "precommit": "lint-staged",
     "prepush": "yarn qa",
@@ -20,6 +20,7 @@
   },
   "dependencies": {
     "next": "^8.0.0-canary.2",
+    "prop-types": "^15.6.2",
     "react": "^16.7.0",
     "react-dom": "^16.7.0"
   },

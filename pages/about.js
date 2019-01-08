@@ -1,4 +1,5 @@
 import { Component } from 'react'
+import { bool } from 'prop-types'
 import Link from 'next/link'
 import Header from '../components/header'
 
@@ -25,6 +26,10 @@ class AboutPage extends Component {
       </main>
     )
   }
+}
+
+AboutPage.propTypes = {
+  isServer: bool.isRequired
 }
 
 export default AboutPage
