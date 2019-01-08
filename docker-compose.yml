@@ -1,0 +1,17 @@
+version: '2'
+
+services:
+  dashboard-dev:
+    image: taller-dashboard
+    build:
+      context: ./docker/
+    ports:
+      - 3000:3000
+    dns:
+      - 8.8.8.8
+    volumes:
+      - $HOME/.ssh:/home/node/.ssh
+      - $HOME/.gitconfig:/home/node/.gitconfig
+      - $HOME/.now:/home/node/.now
+      - $PWD:/home/node/app
+      - $PWD/docker/.bash_history:/home/node/.bash_history
