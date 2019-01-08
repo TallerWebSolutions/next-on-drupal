@@ -1,7 +1,14 @@
 {
+  "name": "dashboard",
+  "version": "0.1.0",
+  "private": true,
+  "description": "General-purpose react-driven dashboard for any internal tasks.",
+  "license": "UNLINCENSED",
+  "author": "Lucas Constantino Silva <lucasconstantinosilva@gmail.com>",
+  "main": "next.config.js",
   "scripts": {
-    "now-build": "next build",
-    "lint": "eslint pages src"
+    "lint": "eslint pages src",
+    "now-build": "next build"
   },
   "dependencies": {
     "next": "^8.0.0-canary.2",
