@@ -1,0 +1,6 @@
+# package manager
+node_modules
+
+# generated files
+.next
+coverage
