@@ -9,7 +9,10 @@
   "scripts": {
     "lint": "eslint pages src",
     "now-build": "next build",
-    "precommit": "lint-staged"
+    "precommit": "lint-staged",
+    "prepush": "yarn qa",
+    "qa": "yarn lint && yarn test",
+    "test": "echo 'Not implemented yet'"
   },
   "dependencies": {
     "next": "^8.0.0-canary.2",
