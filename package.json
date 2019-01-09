@@ -8,7 +8,7 @@
   "author": "Lucas Constantino Silva <lucasconstantinosilva@gmail.com>",
   "main": "next.config.js",
   "scripts": {
-    "dev": "yarn next",
+    "dev": "next",
     "format": "prettier-eslint 'pages/**/*.js' --write",
     "format:package": "sort-package-json",
     "lint": "eslint pages",
