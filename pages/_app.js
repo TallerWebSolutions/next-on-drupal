@@ -5,7 +5,7 @@ import { createGlobalStyle } from 'styled-components'
 // import global antd styles
 import 'antd/dist/antd.min.css'
 
-import { colors } from '@src/styleguide'
+import { colors } from '@styleguide'
 
 const GlobalStyle = createGlobalStyle`
   @import url('https://fonts.googleapis.com/css?family=Alegreya:400,700');
