@@ -19,7 +19,7 @@ export default class MyApp extends App {
 
     return (
       <Container>
-        <Component {...pageProps} />
+        <Component { ...pageProps } />
       </Container>
     )
   }
