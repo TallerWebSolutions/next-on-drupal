@@ -5,7 +5,7 @@
       "module-resolver",
       {
         "root": ["./src"],
-        "alias": { "@src": "./src", "@styleguide": "./src/styleguide" }
+        "alias": { "@source": "./src", "@styleguide": "./src/styleguide" }
       }
     ],
     [
