@@ -4,7 +4,7 @@ import { createHttpLink } from 'apollo-link-http'
 let uri = process.env.GRAPHQL_HOST
 
 if (!uri && process.env.NODE_ENV !== 'production') {
-  const port = process.env.PORT || 3000
+  const port = process.env.PORT || 4000
 
   uri = `http://localhost:${port}/graphql`
 

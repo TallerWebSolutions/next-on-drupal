@@ -1,1 +1,37 @@
-export default () => 'Hello world!'
+import { Query } from 'react-apollo'
+import gql from 'graphql-tag'
+
+import styled from 'styled-components'
+
+const HELLO_QUERY = gql`
+  query {
+    hello
+  }
+`
+
+const DefinitionList = styled.dt`
+  margin: 5em;
+`
+
+export default () => (
+  <Query query={ HELLO_QUERY }>
+    { ({ data, error, loading }) => (
+      <DefinitionList>
+        <dt>loading</dt>
+        <dd>
+          <pre>{ JSON.stringify(loading, null, 2) }</pre>
+        </dd>
+
+        <dt>data</dt>
+        <dd>
+          <pre>{ JSON.stringify(data, null, 2) }</pre>
+        </dd>
+
+        <dt>error</dt>
+        <dd>
+          <pre>{ JSON.stringify(error, null, 2) }</pre>
+        </dd>
+      </DefinitionList>
+    ) }
+  </Query>
+)
