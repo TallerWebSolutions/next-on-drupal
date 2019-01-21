@@ -8,11 +8,12 @@
   "author": "Lucas Constantino Silva <lucasconstantinosilva@gmail.com>",
   "main": "next.config.js",
   "scripts": {
+    "build": "next build",
     "dev": "next",
     "format": "prettier-eslint 'pages/**/*.js' --write",
     "format:package": "sort-package-json",
     "lint": "eslint pages",
-    "now-build": "next build",
+    "now-build": "yarn build",
     "precommit": "lint-staged",
     "prepush": "yarn qa",
     "qa": "yarn lint && yarn test",
