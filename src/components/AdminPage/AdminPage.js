@@ -3,7 +3,8 @@ import { Toggle } from 'react-powerplug'
 import styled from 'styled-components'
 
 import Page from '@source/components/Page'
-import { BrandMark, Layout, Menu, Icon } from '@styleguide'
+import Link from '@source/components/Link'
+import { BrandMark, Layout, Icon } from '@styleguide'
 
 const { Header, Sider, Content } = Layout
 
@@ -42,22 +43,28 @@ const AdminPage = ({ children, title }) => (
             >
               <StyledBrandMark />
 
-              <Menu theme='dark' mode='inline' defaultSelectedKeys={ ['1'] }>
-                <Menu.Item key='1'>
-                  <Icon type='user' />
-                  <span>nav 1</span>
-                </Menu.Item>
+              <ul className='ant-menu ant-menu-dark ant-menu-root ant-menu-inline'>
+                <Link href='/contratacao' activeClass='ant-menu-item-selected'>
+                  <li className='ant-menu-item'>
+                    <Icon type='user-add' />
+                    <span>Contratação</span>
+                  </li>
+                </Link>
 
-                <Menu.Item key='2'>
-                  <Icon type='video-camera' />
-                  <span>nav 2</span>
-                </Menu.Item>
+                <Link href='/desempenho' activeClass='ant-menu-item-selected'>
+                  <li className='ant-menu-item'>
+                    <Icon type='rise' />
+                    <span>Desempenho</span>
+                  </li>
+                </Link>
 
-                <Menu.Item key='3'>
-                  <Icon type='upload' />
-                  <span>nav 3</span>
-                </Menu.Item>
-              </Menu>
+                <Link href='/financeiro' activeClass='ant-menu-item-selected'>
+                  <li className='ant-menu-item'>
+                    <Icon type='wallet' />
+                    <span>Financeiro</span>
+                  </li>
+                </Link>
+              </ul>
             </Sider>
             <Layout>
               <StyledHeader>header</StyledHeader>
