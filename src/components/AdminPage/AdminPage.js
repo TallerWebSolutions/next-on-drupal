@@ -29,6 +29,7 @@ const StyledContent = styled(Content)`
   background: white;
 `
 
+// @TODO: control access to administrative pages in a centralized point?
 const AdminPage = ({ children, title }) => (
   <Toggle initial={ false }>
     { ({ on: collapsed, toggle }) => (

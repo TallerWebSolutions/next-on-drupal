@@ -1,16 +1,17 @@
+import { arrayOf, string, shape } from 'prop-types'
 import { Icon } from '@styleguide'
 import Link from '@source/components/Link'
 
 // @TODO: handle sub-menu items.
-const menu = [
+const mainMenu = [
   { title: 'Contratação', href: '/admin/contratacao', icon: 'user-add' },
   { title: 'Desempenho', href: '/admin/desempenho', icon: 'rise' },
   { title: 'Financeiro', href: '/admin/financeiro', icon: 'wallet' }
 ]
 
-const AdminMenu = () => (
+const AdminMenu = ({ items }) => (
   <ul className='ant-menu ant-menu-dark ant-menu-root ant-menu-inline'>
-    { menu.map(({ title, href, icon }) => (
+    { items.map(({ title, href, icon }) => (
       <Link href={ href } activeClass='ant-menu-item-selected'>
         <li className='ant-menu-item'>
           { icon && <Icon type={ icon } /> }
@@ -20,5 +21,20 @@ const AdminMenu = () => (
     )) }
   </ul>
 )
+
+AdminMenu.propTypes = {
+  items: arrayOf(
+    shape({
+      title: string.isRequired,
+      href: string.isRequired,
+      icon: string
+      // items (sub-items)
+    })
+  )
+}
+
+AdminMenu.defaultProps = {
+  items: mainMenu
+}
 
 export default AdminMenu
