@@ -3,8 +3,8 @@ import { Toggle } from 'react-powerplug'
 import styled from 'styled-components'
 
 import Page from '@source/components/Page'
-import Link from '@source/components/Link'
-import { BrandMark, Layout, Icon } from '@styleguide'
+import AdminMenu from '@source/components/AdminMenu'
+import { BrandMark, Layout } from '@styleguide'
 
 const { Header, Sider, Content } = Layout
 
@@ -42,42 +42,11 @@ const AdminPage = ({ children, title }) => (
               onCollapse={ toggle }
             >
               <StyledBrandMark />
-
-              <ul className='ant-menu ant-menu-dark ant-menu-root ant-menu-inline'>
-                <Link href='/contratacao' activeClass='ant-menu-item-selected'>
-                  <li className='ant-menu-item'>
-                    <Icon type='user-add' />
-                    <span>Contratação</span>
-                  </li>
-                </Link>
-
-                <Link href='/desempenho' activeClass='ant-menu-item-selected'>
-                  <li className='ant-menu-item'>
-                    <Icon type='rise' />
-                    <span>Desempenho</span>
-                  </li>
-                </Link>
-
-                <Link href='/financeiro' activeClass='ant-menu-item-selected'>
-                  <li className='ant-menu-item'>
-                    <Icon type='wallet' />
-                    <span>Financeiro</span>
-                  </li>
-                </Link>
-              </ul>
+              <AdminMenu />
             </Sider>
             <Layout>
               <StyledHeader>header</StyledHeader>
-              <StyledContent
-                style={ {
-                  margin: '24px 16px',
-                  padding: 24,
-                  background: '#fff',
-                  minHeight: 280
-                } }
-              >
-                { children }
-              </StyledContent>
+              <StyledContent>{ children }</StyledContent>
             </Layout>
           </Layout>
         </StyledWrapper>
