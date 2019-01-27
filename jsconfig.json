@@ -4,7 +4,8 @@
     "paths": {
       "*": ["src/*"],
       "@source/*": ["src/*"],
-      "@styleguide/*": ["src/styleguide/*"]
+      "@styleguide/*": ["src/styleguide/*"],
+      "@@*": ["src/modules/*"]
     }
   }
 }

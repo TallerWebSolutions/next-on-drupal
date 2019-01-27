@@ -37,7 +37,8 @@ module.exports = {
         root: ['./src'],
         alias: {
           '@source': './src',
-          '@styleguide': './src/styleguide'
+          '@styleguide': './src/styleguide',
+          '^@@(.+)': './src/modules/\\1'
         },
         resolvePath: resolveComponentPath
       }
