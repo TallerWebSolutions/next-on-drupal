@@ -1,6 +1,8 @@
 import { number } from 'prop-types'
 import { Query } from 'react-apollo'
 import gql from 'graphql-tag'
+import styled from 'styled-components'
+import Gravatar from 'react-gravatar'
 
 import { Table } from '@styleguide'
 import CursorPagination from '@@pipefy/components/CursorPagination'
@@ -38,7 +40,22 @@ const CANDIDATES_QUERY = gql`
   }
 `
 
+const Avatar = styled(Gravatar)`
+  height: 40px;
+  width: 40px;
+  margin: -10px 0 -10px 10px;
+  border-radius: 50%;
+`
+
 const columns = [
+  {
+    title: null,
+    dataIndex: 'candidate.email.value',
+    key: 'name',
+    width: 40,
+    align: 'center',
+    render: email => <Avatar email={ email } />
+  },
   {
     title: 'Nome',
     dataIndex: 'candidate.name',
