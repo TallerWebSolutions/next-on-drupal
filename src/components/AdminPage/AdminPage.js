@@ -29,8 +29,6 @@ const StyledContent = styled(Content)`
 
 const StyledContentBox = styled.div`
   margin: 24px 16px;
-  padding: 24px;
-  background: white;
 `
 
 // @TODO: control access to administrative pages in a centralized point?
