@@ -12,7 +12,7 @@ const mainMenu = [
 const AdminMenu = ({ items }) => (
   <ul className='ant-menu ant-menu-dark ant-menu-root ant-menu-inline'>
     { items.map(({ title, href, icon }) => (
-      <Link href={ href } activeClass='ant-menu-item-selected'>
+      <Link key={ href } href={ href } activeClass='ant-menu-item-selected'>
         <li className='ant-menu-item'>
           { icon && <Icon type={ icon } /> }
           <span>{ title }</span>
