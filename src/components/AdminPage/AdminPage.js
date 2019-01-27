@@ -24,6 +24,10 @@ const StyledHeader = styled(Header)`
 `
 
 const StyledContent = styled(Content)`
+  overflow: auto;
+`
+
+const StyledContentBox = styled.div`
   margin: 24px 16px;
   padding: 24px;
   background: white;
@@ -47,7 +51,9 @@ const AdminPage = ({ children, title }) => (
             </Sider>
             <Layout>
               <StyledHeader>header</StyledHeader>
-              <StyledContent>{ children }</StyledContent>
+              <StyledContent>
+                <StyledContentBox>{ children }</StyledContentBox>
+              </StyledContent>
             </Layout>
           </Layout>
         </StyledWrapper>
