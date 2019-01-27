@@ -26,6 +26,7 @@
     "apollo-link-http": "^1.5.9",
     "classnames": "^2.2.6",
     "graphql": "^14.0.2",
+    "graphql-tag": "^2.10.1",
     "isomorphic-fetch": "^2.2.1",
     "next": "^8.0.0-canary.2",
     "prop-types": "^15.6.2",
