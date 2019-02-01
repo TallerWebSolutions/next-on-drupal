@@ -1,24 +1,22 @@
 import fetch from 'isomorphic-fetch'
 import { createHttpLink } from 'apollo-link-http'
+import config from '@source/config'
 
-let uri = process.env.GRAPHQL_HOST
+const fallback =
+  config('NODE_ENV') !== 'production' ? `http://localhost:4000/graphql` : null
 
-if (!uri && process.env.NODE_ENV !== 'production') {
-  const port = process.env.PORT || 4000
+const GRAPHQL_HOST = config('GRAPHQL_HOST', fallback)
 
-  uri = `http://localhost:${port}/graphql`
-
-  console.warn(
-    `Fallback GRAPHQL_HOST to "${uri}". Please, set it in production`
-  )
-}
-
-if (!uri) {
+if (!GRAPHQL_HOST) {
   throw new Error(
     'You must set GRAPHQL_HOST environment variable prior to using Apollo.'
   )
 }
 
-const link = createHttpLink({ uri, fetch, includeExtensions: true })
+const link = createHttpLink({
+  uri: GRAPHQL_HOST,
+  fetch,
+  includeExtensions: true
+})
 
 export { link }
