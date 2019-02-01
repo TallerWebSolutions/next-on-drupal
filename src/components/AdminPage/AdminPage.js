@@ -35,7 +35,7 @@ const StyledContentBox = styled.div`
 const AdminPage = ({ children, title }) => (
   <Toggle initial={ false }>
     { ({ on: collapsed, toggle }) => (
-      <Page>
+      <Page title={ title }>
         <StyledWrapper>
           <Layout className='ant-layout-has-sider'>
             <Sider
@@ -47,6 +47,7 @@ const AdminPage = ({ children, title }) => (
               <StyledBrandMark />
               <AdminMenu />
             </Sider>
+
             <Layout>
               <StyledHeader>header</StyledHeader>
               <StyledContent>
@@ -66,8 +67,7 @@ AdminPage.propTypes = {
 }
 
 AdminPage.defaultProps = {
-  children: null,
-  title: null
+  children: null
 }
 
 export default AdminPage
