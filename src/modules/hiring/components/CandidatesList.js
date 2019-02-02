@@ -51,7 +51,7 @@ const columns = [
   {
     title: null,
     dataIndex: 'candidate.email.value',
-    key: 'name',
+    key: 'avatar',
     width: 40,
     align: 'center',
     render: email => <Avatar email={ email } />
@@ -68,7 +68,7 @@ const columns = [
   }
 ]
 
-const CandidatesList = ({ perPage }) => (
+const CandidatesList = ({ perPage, ...props }) => (
   <Query query={ CANDIDATES_QUERY } variables={ { first: perPage } }>
     { ({ data, loading, error, refetch }) => {
       if (error) {
@@ -81,6 +81,7 @@ const CandidatesList = ({ perPage }) => (
 
       return (
         <Table
+          { ...props }
           dataSource={ dataSource }
           columns={ columns }
           loading={ loading }
