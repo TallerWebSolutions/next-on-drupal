@@ -9,7 +9,7 @@
   "main": "next.config.js",
   "scripts": {
     "build": "next build",
-    "dev": "next",
+    "dev": "node -r esm server",
     "format": "prettier-eslint 'pages/**/*.js' --write",
     "format:package": "sort-package-json",
     "lint": "eslint pages",
@@ -17,13 +17,26 @@
     "precommit": "lint-staged",
     "prepush": "yarn qa",
     "qa": "yarn lint && yarn test",
+    "start": "NODE_ENV=production node -r esm server",
     "test": "echo 'Not implemented yet'"
+  },
+  "lint-staged": {
+    "*.js": [
+      "prettier-eslint --write",
+      "git add"
+    ],
+    "package.json": [
+      "yarn format:package",
+      "git add"
+    ]
   },
   "dependencies": {
     "apollo-cache-inmemory": "^1.3.12",
     "apollo-client": "^2.4.8",
     "apollo-link-http": "^1.5.9",
     "classnames": "^2.2.6",
+    "esm": "^3.2.16",
+    "express": "^4.16.4",
     "graphql": "^14.0.2",
     "graphql-tag": "^2.10.1",
     "isomorphic-fetch": "^2.2.1",
@@ -53,15 +66,5 @@
     "lint-staged": "^8.1.0",
     "prettier-eslint-cli": "^4.7.1",
     "sort-package-json": "^1.17.1"
-  },
-  "lint-staged": {
-    "package.json": [
-      "yarn format:package",
-      "git add"
-    ],
-    "*.js": [
-      "prettier-eslint --write",
-      "git add"
-    ]
   }
 }
