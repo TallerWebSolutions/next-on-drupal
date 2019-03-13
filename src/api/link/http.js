@@ -2,9 +2,8 @@ import fetch from 'isomorphic-fetch'
 import { createHttpLink } from 'apollo-link-http'
 import config from '@source/config'
 
-const fallback =
-  config('NODE_ENV') !== 'production' ? `http://localhost:4000/graphql` : null
-
+const local = `http://localhost:4000/graphql`
+const fallback = config('NODE_ENV') !== 'production' ? local : null
 const GRAPHQL_HOST = config('GRAPHQL_HOST', fallback)
 
 if (!GRAPHQL_HOST) {

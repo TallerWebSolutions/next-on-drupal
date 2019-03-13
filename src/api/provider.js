@@ -2,6 +2,7 @@ import { Component } from 'react'
 import { object } from 'prop-types'
 import Head from 'next/head'
 import { ApolloProvider, getDataFromTree } from 'react-apollo'
+import config from '@source/config'
 
 import { link } from './link'
 import { initialize } from './client'
@@ -45,7 +46,7 @@ export default App =>
       const props = App.getInitialProps ? await App.getInitialProps(ctx) : {}
 
       // When on the client-side, do not defer initialization.
-      if (process.browser || process.env.APOLLO_SSR_OFF) {
+      if (process.browser || config('APOLLO_SSR_OFF')) {
         return props
       }
 

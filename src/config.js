@@ -1,7 +1,7 @@
 import getConfig from 'next/config'
 
 const { publicRuntimeConfig, serverRuntimeConfig } = getConfig()
-const allConfigs = { ...publicRuntimeConfig, ...serverRuntimeConfig }
+const allConfigs = { ...serverRuntimeConfig, ...publicRuntimeConfig }
 
 /**
  * Singleton factory for loading Next.js defined configs.

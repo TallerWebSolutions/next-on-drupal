@@ -1,5 +1,9 @@
 import { ApolloClient } from 'apollo-client'
 import { InMemoryCache } from 'apollo-cache-inmemory'
+import config from '@source/config'
+
+const ssrMode = !process.browser
+const connectToDevTools = process.browser && config('NODE_ENV') !== 'production'
 
 /**
  * Creates a new ApolloClient instance.
@@ -10,12 +14,14 @@ import { InMemoryCache } from 'apollo-cache-inmemory'
  * @return {ApolloClient}.
  */
 const createClient = ({ link, initialState } = {}) => {
-  const ssrMode = !process.browser
-  const connectToDevTools =
-    process.browser && process.env.NODE_ENV !== 'production'
   const cache = new InMemoryCache().restore(initialState || {})
 
-  return new ApolloClient({ connectToDevTools, ssrMode, link, cache })
+  return new ApolloClient({
+    connectToDevTools,
+    ssrMode,
+    link,
+    cache
+  })
 }
 
 // Client singleton (for client-side only; always renewed on server-side).
