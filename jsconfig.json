@@ -5,7 +5,6 @@
       "*": ["src/*"],
       "@source/*": ["src/*"],
       "@styleguide/*": ["src/styleguide/*"],
-      "@@*": ["src/modules/*"]
     }
   }
 }
