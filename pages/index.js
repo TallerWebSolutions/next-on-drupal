@@ -12,7 +12,7 @@ const SAMPLE_QUERY = gql`
   }
 `
 
-const DefinitionList = styled.dt`
+const DefinitionList = styled.dl`
   margin: 5em;
 `
 
