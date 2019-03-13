@@ -8,7 +8,7 @@ import { Fragment } from 'react'
 import { string, node } from 'prop-types'
 import Head from 'next/head'
 
-const baseTitle = 'TallerDashboard'
+const baseTitle = 'Drupal Next'
 
 const Page = ({ title, children }) => (
   <Fragment>

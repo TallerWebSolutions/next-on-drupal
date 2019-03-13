@@ -1,7 +1,7 @@
 import Document from 'next/document'
 import { ServerStyleSheet } from 'styled-components'
 
-export default class TallerDashboardDocument extends Document {
+export default class DrupalNextDocument extends Document {
   static async getInitialProps ({ renderPage, ...ctx }) {
     const sheet = new ServerStyleSheet()
 

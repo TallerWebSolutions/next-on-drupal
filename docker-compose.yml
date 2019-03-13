@@ -1,8 +1,8 @@
 version: '2'
 
 services:
-  dashboard-dev:
-    image: taller-dashboard
+  drupal-next-dev:
+    image: drupal-next
     build:
       context: ./docker/
     ports:
