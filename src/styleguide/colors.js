@@ -3,10 +3,10 @@
  */
 
 // descriptive
-export const black = '#29292F'
-export const grey = '#40454a'
-export const red = '#e9515d'
-export const ice = '#f3f4f4'
+export const black = 'black'
+export const grey = 'grey'
+export const red = 'red'
+export const ice = '#fefefe'
 
 // semantic
 export const primary = red
