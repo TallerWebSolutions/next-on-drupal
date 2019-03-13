@@ -3,9 +3,12 @@ import gql from 'graphql-tag'
 
 import styled from 'styled-components'
 
-const HELLO_QUERY = gql`
+const SAMPLE_QUERY = gql`
   query {
-    hello
+    route(path: "/") {
+      path
+      routed
+    }
   }
 `
 
@@ -14,7 +17,7 @@ const DefinitionList = styled.dt`
 `
 
 export default () => (
-  <Query query={ HELLO_QUERY }>
+  <Query query={ SAMPLE_QUERY }>
     { ({ data, error, loading }) => (
       <DefinitionList>
         <dt>loading</dt>
