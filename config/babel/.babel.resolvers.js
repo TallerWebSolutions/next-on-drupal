@@ -29,10 +29,10 @@ const resolveComponentPath = (sourcePath, currentFile, opts) => {
 }
 
 const config = {
-  root: ['./src'],
+  root: ['./src/client'],
   alias: {
-    '@source': './src',
-    '@styleguide': './src/styleguide'
+    '@source': './src/client',
+    '@styleguide': './src/client/styleguide'
   },
   resolvePath: resolveComponentPath
 }
