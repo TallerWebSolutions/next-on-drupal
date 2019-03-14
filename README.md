@@ -1,3 +1,3 @@
-# Drupal Next
+# Next on Drupal
 
-Boilerplate for a NextJS based and Drupal backed application.
+Boilerplate for a NextJS based on Drupal backend application.

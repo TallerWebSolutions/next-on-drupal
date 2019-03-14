@@ -1,9 +1,9 @@
 {
-  "name": "drupal-next",
+  "name": "next-on-drupal",
   "version": "0.1.0",
   "private": true,
-  "description": "Boilerplate for a NextJS based and Drupal backed application.",
-  "repository": "ssh://git@bitbucket.org/taller-repo/drupal-next.git",
+  "description": "Boilerplate for a NextJS based on Drupal backend application.",
+  "repository": "ssh://git@bitbucket.org/taller-repo/next-on-drupal.git",
   "license": "UNLINCENSED",
   "author": "Lucas Constantino Silva <lucasconstantinosilva@gmail.com>",
   "main": "next.config.js",

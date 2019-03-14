@@ -1,8 +1,8 @@
 version: '2'
 
 services:
-  drupal-next-dev:
-    image: drupal-next
+  next-on-drupal-dev:
+    image: next-on-drupal
     build:
       context: ./config/docker/
     ports:
