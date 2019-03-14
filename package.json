@@ -13,6 +13,7 @@
     "build:server": "webpack --config webpack.server.js",
     "clean": "rm -Rf ./build && rm -Rf ./node_modules/.cache",
     "dev": "yarn build:server && concurrently \"yarn build:server --watch\" \"DEBUG=next-on-drupal:* nodemon ./build/server.js -w ./build/server.js\"",
+    "dev:server": "yarn build && concurrently \"yarn build:server --watch\" \"NODE_ENV=production DEBUG=next-on-drupal:* nodemon ./build/server.js -w ./build/server.js\"",
     "format": "prettier-eslint 'pages/**/*.js' --write",
     "format:package": "sort-package-json",
     "lint": "eslint pages",
