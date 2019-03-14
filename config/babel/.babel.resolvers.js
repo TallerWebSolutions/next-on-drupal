@@ -28,20 +28,13 @@ const resolveComponentPath = (sourcePath, currentFile, opts) => {
   return defaultPath
 }
 
-module.exports = {
-  presets: ['next/babel'],
-  plugins: [
-    [
-      'module-resolver',
-      {
-        root: ['./src'],
-        alias: {
-          '@source': './src',
-          '@styleguide': './src/styleguide',
-        },
-        resolvePath: resolveComponentPath
-      }
-    ],
-    ['styled-components', { ssr: true, displayName: true, preprocess: false }]
-  ]
+const config = {
+  root: ['./src'],
+  alias: {
+    '@source': './src',
+    '@styleguide': './src/styleguide'
+  },
+  resolvePath: resolveComponentPath
 }
+
+module.exports = () => ({ plugins: [['module-resolver', config]] })
