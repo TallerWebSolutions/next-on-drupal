@@ -1,4 +1,7 @@
 import getConfig from 'next/config'
+import createDebugger from '@shared/debug'
+
+const debug = createDebugger('env')
 
 const { publicRuntimeConfig, serverRuntimeConfig } = getConfig() || {}
 
@@ -17,7 +20,7 @@ const env = (name, fallback) => {
   if (typeof envs[name] !== 'undefined') return envs[name]
 
   // Ensure developer knows of the missing config.
-  console.warn(`Fallback ${name} to "${fallback}".`)
+  debug(`fallback: %s => %s`, name, fallback)
 
   return fallback
 }
