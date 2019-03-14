@@ -1,6 +1,6 @@
 import { ApolloClient } from 'apollo-client'
 import { InMemoryCache } from 'apollo-cache-inmemory'
-import config from '@source/config'
+import config from '@source/env'
 
 const ssrMode = !process.browser
 const connectToDevTools = process.browser && config('NODE_ENV') !== 'production'

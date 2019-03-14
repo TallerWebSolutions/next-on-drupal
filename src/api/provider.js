@@ -2,7 +2,7 @@ import { Component } from 'react'
 import { object } from 'prop-types'
 import Head from 'next/head'
 import { ApolloProvider, getDataFromTree } from 'react-apollo'
-import config from '@source/config'
+import config from '@source/env'
 
 import { link } from './link'
 import { initialize } from './client'
