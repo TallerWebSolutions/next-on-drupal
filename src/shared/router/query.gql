@@ -1,0 +1,23 @@
+# A base query to identity route info.
+
+query ROUTE_QUERY($path: String!) {
+  route(path: $path) {
+    path
+    routed
+    __typename
+
+    ... on InternalUrl {
+      pathAlias
+      pathInternal
+    }
+
+    ... on EntityCanonicalUrl {
+      entity {
+        __typename
+        entityId
+        entityType
+        entityBundle
+      }
+    }
+  }
+}

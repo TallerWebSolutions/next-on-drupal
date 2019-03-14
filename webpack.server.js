@@ -20,6 +20,10 @@ module.exports = {
             presets: ['./config/babel/.babelrc.server.js']
           }
         }
+      },
+      {
+        test: /\.gql$/,
+        use: { loader: 'graphql-tag/loader' }
       }
     ]
   }

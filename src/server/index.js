@@ -2,6 +2,8 @@
 import express from 'express'
 import next from 'next'
 
+import { resolve } from '@shared/router'
+
 const dev = process.env.NODE_ENV !== 'production'
 const app = next({ dev })
 const handle = app.getRequestHandler()
@@ -9,7 +11,14 @@ const handle = app.getRequestHandler()
 const initializeServer = () => {
   const server = express()
 
-  // Fallback route.
+  // Drupal based route resolver.
+  server.get('*', (req, res, next) =>
+    resolve(req).then(({ page, route } = {}) =>
+      page ? app.render(req, res, page, route) : next()
+    )
+  )
+
+  // NextJS fallback route resolver.
   server.get('*', (req, res) => handle(req, res))
 
   server.listen(3000, err => {
