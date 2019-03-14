@@ -1,9 +1,12 @@
 import { shape, string } from 'prop-types'
 import { Query } from 'react-apollo'
+import { withRouter } from 'next/router'
 import gql from 'graphql-tag'
 
 import PublicPage from '@client/components/PublicPage'
 import LoadingPublicPage from '@client/components/LoadingPublicPage'
+import ErrorPage404 from '@client/components/ErrorPage404'
+import ErrorPage500 from '@client/components/ErrorPage500'
 
 const query = gql`
   query NODE_ARTICLE_PAGE($entityId: String!) {
@@ -14,13 +17,16 @@ const query = gql`
 `
 
 const NodeArticlePage = ({
-  url: {
-    query: { entity }
+  router: {
+    query: { entity },
+    ...rest
   }
 }) => (
   <Query query={ query } variables={ entity }>
-    { ({ data: { node }, loading }) => {
+    { ({ data: { node }, loading, error }) => {
       if (loading) return <LoadingPublicPage />
+      if (error) return <ErrorPage500 />
+      if (!node) return <ErrorPage404 />
 
       return (
         <PublicPage title={ `%base | ${node.title}` }>
@@ -32,7 +38,7 @@ const NodeArticlePage = ({
 )
 
 NodeArticlePage.propTypes = {
-  url: shape({
+  router: shape({
     query: shape({
       entity: shape({
         entityId: string.isRequired
@@ -41,4 +47,4 @@ NodeArticlePage.propTypes = {
   }).isRequired
 }
 
-export default NodeArticlePage
+export default withRouter(NodeArticlePage)
