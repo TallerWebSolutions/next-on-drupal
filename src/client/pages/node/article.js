@@ -3,6 +3,7 @@ import { Query } from 'react-apollo'
 import gql from 'graphql-tag'
 
 import PublicPage from '@client/components/PublicPage'
+import LoadingPublicPage from '@client/components/LoadingPublicPage'
 
 const query = gql`
   query NODE_ARTICLE_PAGE($entityId: String!) {
@@ -19,7 +20,7 @@ const NodeArticlePage = ({
 }) => (
   <Query query={ query } variables={ entity }>
     { ({ data: { node }, loading }) => {
-      if (loading) return <div>loading</div>
+      if (loading) return <LoadingPublicPage />
 
       return (
         <PublicPage title={ `%base | ${node.title}` }>
