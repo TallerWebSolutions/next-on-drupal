@@ -1,7 +1,3 @@
-/**
- * Component used for most public accessible pages.
- */
-
 import React from 'react'
 
 import PublicPage from './PublicPage'

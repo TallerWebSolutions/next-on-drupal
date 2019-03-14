@@ -20,8 +20,4 @@ PublicPage.propTypes = {
   title: string
 }
 
-PublicPage.defaultProps = {
-  title: null
-}
-
 export default PublicPage
