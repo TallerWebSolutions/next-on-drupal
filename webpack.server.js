@@ -5,7 +5,7 @@ module.exports = {
   target: 'node',
   optimization: { nodeEnv: false },
   externals: [externals()],
-  entry: path.resolve(__dirname, 'server/index.js'),
+  entry: path.resolve(__dirname, 'src/server/index.js'),
   output: { path: path.resolve(__dirname, 'build'), filename: 'server.js' },
 
   module: {
