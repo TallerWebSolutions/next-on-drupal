@@ -5,7 +5,7 @@ export TZ=America/Sao_Paulo
 export GROUP_ID=$(shell if [ `id -g` == '20' ]; then echo '1000'; else echo `id -g`; fi)
 
 run:
-	touch docker/.bash_history
+	touch ./config/docker/.bash_history
 	docker-compose run --service-ports --rm drupal-next-dev
 
 build:

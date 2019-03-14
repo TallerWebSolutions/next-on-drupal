@@ -4,7 +4,7 @@ services:
   drupal-next-dev:
     image: drupal-next
     build:
-      context: ./docker/
+      context: ./config/docker/
     ports:
       - 3000:3000
     dns:
@@ -14,4 +14,4 @@ services:
       - $HOME/.gitconfig:/home/node/.gitconfig
       - $HOME/.now:/home/node/.now
       - $PWD:/home/node/app
-      - $PWD/docker/.bash_history:/home/node/.bash_history
+      - $PWD/config/docker/.bash_history:/home/node/.bash_history

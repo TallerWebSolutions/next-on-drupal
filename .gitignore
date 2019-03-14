@@ -1,6 +1,6 @@
 # local files
 temp
-docker/.bash_history
+config/docker/.bash_history
 
 # package manager
 node_modules
