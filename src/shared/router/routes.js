@@ -23,7 +23,10 @@ const bundle = pathEq(['entity', 'entityBundle'])
  *
  * @see: https://ramdajs.com/docs/#cond
  */
-const routes = []
+const routes = [
+  [both(type('node'), bundle('page')), use('/node/page')],
+  [both(type('node'), bundle('article')), use('/node/article')]
+]
 
 /**
  * Resolves a given Drupal route to a NextJS page.
