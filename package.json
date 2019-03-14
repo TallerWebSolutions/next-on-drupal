@@ -8,8 +8,11 @@
   "author": "Lucas Constantino Silva <lucasconstantinosilva@gmail.com>",
   "main": "next.config.js",
   "scripts": {
-    "build": "next build",
-    "dev": "node -r esm server",
+    "build": "yarn build:next && yarn build:server",
+    "build:next": "next build",
+    "build:server": "webpack --config webpack.server.js",
+    "clean": "rm -Rf ./build && rm -Rf ./node_modules/.cache",
+    "dev": "yarn build:server && concurrently \"yarn build:server --watch\" \"nodemon ./build/server.js -w ./server\"",
     "format": "prettier-eslint 'pages/**/*.js' --write",
     "format:package": "sort-package-json",
     "lint": "eslint pages",
@@ -17,7 +20,7 @@
     "precommit": "lint-staged",
     "prepush": "yarn qa",
     "qa": "yarn lint && yarn test",
-    "start": "NODE_ENV=production node -r esm server",
+    "start": "NODE_ENV=production node ./build/server.js",
     "test": "echo 'Not implemented yet'"
   },
   "lint-staged": {
@@ -52,8 +55,10 @@
   "devDependencies": {
     "@zeit/next-css": "^1.0.1",
     "babel-eslint": "^10.0.1",
+    "babel-loader": "^8.0.5",
     "babel-plugin-module-resolver": "^3.1.1",
     "babel-plugin-styled-components": "^1.10.0",
+    "concurrently": "^4.1.0",
     "eslint": "^5.12.0",
     "eslint-config-standard": "^12.0.0",
     "eslint-config-standard-react": "^7.0.2",
@@ -64,7 +69,10 @@
     "eslint-plugin-standard": "^4.0.0",
     "husky": "^1.3.1",
     "lint-staged": "^8.1.0",
+    "nodemon": "^1.18.10",
     "prettier-eslint-cli": "^4.7.1",
-    "sort-package-json": "^1.17.1"
+    "sort-package-json": "^1.17.1",
+    "webpack-cli": "^3.2.3",
+    "webpack-node-externals": "^1.7.2"
   }
 }
