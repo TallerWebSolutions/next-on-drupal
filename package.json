@@ -21,6 +21,7 @@
     "prepush": "yarn qa",
     "qa": "yarn lint && yarn test",
     "start": "NODE_ENV=production node ./build/server.js",
+    "start:dev": "node ./build/server.js",
     "test": "echo 'Not implemented yet'"
   },
   "lint-staged": {
