@@ -13,8 +13,8 @@ const initializeServer = () => {
 
   // Drupal based route resolver.
   server.get('*', (req, res, next) =>
-    resolve(req).then(({ page, route } = {}) =>
-      page ? app.render(req, res, page, route) : next()
+    resolve(req).then(match =>
+      match ? app.render(req, res, match.page, match.route) : next()
     )
   )
 
