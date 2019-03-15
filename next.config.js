@@ -1,6 +1,8 @@
 const withCSS = require('@zeit/next-css')
+const webpack = require('./config/webpack/webpack.common')
 
 module.exports = withCSS({
+  webpack,
   target: 'server',
   distDir: 'build/client',
   serverRuntimeConfig: {},

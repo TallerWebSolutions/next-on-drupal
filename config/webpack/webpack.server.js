@@ -1,9 +1,10 @@
 const path = require('path')
 const externals = require('webpack-node-externals')
+const common = require('./webpack.common')
 
 const cwd = process.cwd()
 
-module.exports = {
+const config = {
   target: 'node',
   optimization: { nodeEnv: false },
   externals: [externals()],
@@ -22,11 +23,13 @@ module.exports = {
             presets: [path.resolve(cwd, './config/babel/.babelrc.server.js')]
           }
         }
-      },
-      {
-        test: /\.gql$/,
-        use: { loader: 'graphql-tag/loader' }
       }
     ]
   }
 }
+
+const options = {
+  dev: process.env !== 'production'
+}
+
+module.exports = common(config, options)
