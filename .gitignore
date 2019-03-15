@@ -6,5 +6,7 @@ config/docker/.bash_history
 node_modules
 
 # generated files
+.next
 build
 coverage
+bundles
