@@ -1,0 +1,5 @@
+fragment BlockContentBasicFragment on BlockContentBasic {
+  body {
+    processed
+  }
+}

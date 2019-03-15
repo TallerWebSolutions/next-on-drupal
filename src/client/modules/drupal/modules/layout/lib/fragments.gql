@@ -1,3 +1,5 @@
+#import '@drupal/modules/layout/blocks/BlockContentBasic/fragment.gql'
+
 # composition of block content fragments
 fragment BlockBaseFragment on Entity {
   entityLabel
@@ -10,6 +12,7 @@ fragment BlockBaseFragment on Entity {
 # composition of block content fragments
 fragment BlockContentFragment on BlockContent {
   title
+  ...BlockContentBasicFragment
 }
 
 # composition of all block fragments
