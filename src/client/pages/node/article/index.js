@@ -1,28 +1,17 @@
 import { shape, string } from 'prop-types'
 import { Query } from 'react-apollo'
 import { withRouter } from 'next/router'
-import gql from 'graphql-tag'
 
 import PublicPage from '@client/components/PublicPage'
 import LoadingPublicPage from '@client/components/LoadingPublicPage'
 import ErrorPage404 from '@client/components/ErrorPage404'
 import ErrorPage500 from '@client/components/ErrorPage500'
 
-const query = gql`
-  query NODE_ARTICLE_PAGE($entityId: String!) {
-    node: nodeById(id: $entityId) {
-      title
-      body {
-        value
-      }
-    }
-  }
-`
+import query from './query.gql'
 
 const NodeArticlePage = ({
   router: {
-    query: { entity },
-    ...rest
+    query: { entity }
   }
 }) => (
   <Query query={ query } variables={ entity }>
