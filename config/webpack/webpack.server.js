@@ -20,7 +20,7 @@ const config = {
           loader: 'babel-loader',
           options: {
             babelrc: false,
-            presets: [path.resolve(cwd, './config/babel/.babelrc.server.js')]
+            presets: [path.resolve(cwd, './config/babel/babel.server.js')]
           }
         }
       }
