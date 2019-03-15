@@ -1,5 +1,5 @@
 /**
- * Component used for most public accessible pages.
+ * Base page component for administrative only pages.
  */
 
 import React from 'react'

@@ -1,3 +1,7 @@
+/**
+ * Base page component for error pages.
+ */
+
 import { node } from 'prop-types'
 import React from 'react'
 
