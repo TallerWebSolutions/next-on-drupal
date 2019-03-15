@@ -6,17 +6,20 @@ import config from '@shared/env'
 
 import { link } from './link'
 import { initialize } from './client'
+import { introspectLink } from './lib/introspection'
 
 export default App =>
   class Apollo extends Component {
     static displayName = 'apollo(App)'
 
     static propTypes = {
-      __APOLLO_STATE__: object
+      __APOLLO_STATE__: object,
+      __APOLLO_INTROSPECTION__: object
     }
 
     static defaultProps = {
-      __APOLLO_STATE__: null
+      __APOLLO_STATE__: null,
+      __APOLLO_INTROSPECTION__: null
     }
 
     /**
@@ -45,13 +48,19 @@ export default App =>
     static async getInitialProps (ctx) {
       const props = App.getInitialProps ? await App.getInitialProps(ctx) : {}
 
+      // instrospect link for the fragment-matcher needs.
+      const introspection = await introspectLink(link)
+
+      // inject Apollo introspection on the page's initial properties.
+      props.__APOLLO_INTROSPECTION__ = introspection
+
       // When on the client-side, do not defer initialization.
       if (process.browser || config('APOLLO_SSR_OFF')) {
         return props
       }
 
       // Provide the HTTP response as context for the link during SSR.
-      const apolloClient = initialize({ link })
+      const apolloClient = initialize({ link, introspection })
 
       try {
         // Mount ComposedComponent element tree.
@@ -85,9 +94,12 @@ export default App =>
     constructor (props) {
       super(props)
 
-      const { __APOLLO_STATE__: initialState } = this.props
+      const {
+        __APOLLO_STATE__: initialState,
+        __APOLLO_INTROSPECTION__: introspection
+      } = this.props
 
-      this.apolloClient = initialize({ initialState, link })
+      this.apolloClient = initialize({ link, introspection, initialState })
     }
 
     render () {

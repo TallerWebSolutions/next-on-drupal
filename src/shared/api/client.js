@@ -2,6 +2,8 @@ import { ApolloClient } from 'apollo-client'
 import { InMemoryCache } from 'apollo-cache-inmemory'
 import config from '@shared/env'
 
+import { createFragmentMatcher } from './lib/introspection'
+
 const ssrMode = !process.browser
 const connectToDevTools = process.browser && config('NODE_ENV') !== 'production'
 
@@ -9,12 +11,15 @@ const connectToDevTools = process.browser && config('NODE_ENV') !== 'production'
  * Creates a new ApolloClient instance.
  *
  * @param {ApolloLink} link ApolloLink instance.
+ * @param {Object} introspection Fragment matcher introspection.
  * @param {Object} initialState Hydrating state.
  * @param {Object} cacheOptions Custom cache options.
  * @return {ApolloClient}.
  */
-const createClient = ({ link, initialState } = {}) => {
-  const cache = new InMemoryCache().restore(initialState || {})
+const createClient = ({ link, introspection, initialState } = {}) => {
+  const fragmentMatcher = createFragmentMatcher(introspection)
+  const cacheOptions = { fragmentMatcher }
+  const cache = new InMemoryCache(cacheOptions).restore(initialState || {})
 
   return new ApolloClient({
     connectToDevTools,
