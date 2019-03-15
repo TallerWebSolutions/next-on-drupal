@@ -12,6 +12,9 @@ const query = gql`
   query NODE_ARTICLE_PAGE($entityId: String!) {
     node: nodeById(id: $entityId) {
       title
+      body {
+        value
+      }
     }
   }
 `
@@ -30,7 +33,10 @@ const NodeArticlePage = ({
 
       return (
         <PublicPage title={ `%base | ${node.title}` }>
-          article: { node.title }
+          <h1>{ node.title }</h1>
+          <main>
+            <div dangerouslySetInnerHTML={ { __html: node.body.value } } />
+          </main>
         </PublicPage>
       )
     } }
