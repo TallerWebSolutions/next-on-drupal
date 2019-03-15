@@ -1,5 +1,5 @@
 const withCSS = require('@zeit/next-css')
-const webpack = require('./config/webpack/webpack.common')
+const webpack = require('./config/webpack/webpack.next')
 
 module.exports = withCSS({
   webpack,
