@@ -1,3 +1,22 @@
+const path = require('path')
+const babelResolvers = require('../babel/.babel.resolvers')
+
+/**
+ * Clone babel aliases to have CSS/GraphQL files be able to use them.
+ */
+const copyAliases = (config, options) => {
+  config.resolve = config.resolve || {}
+  config.resolve.alias = config.resolve.alias || {}
+
+  const aliases = babelResolvers().plugins.find(
+    ([plugin]) => plugin === 'module-resolver'
+  )[1].alias
+
+  for (let src in aliases) {
+    config.resolve.alias[src] = path.resolve(aliases[src])
+  }
+}
+
 /**
  * This webpack config transformer is used on both Next and Server builds.
  *
@@ -11,6 +30,8 @@ module.exports = (config, options) => {
     test: /\.gql$/,
     use: { loader: 'graphql-tag/loader' }
   })
+
+  copyAliases(config, options)
 
   return config
 }
