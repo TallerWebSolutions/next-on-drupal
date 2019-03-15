@@ -7,6 +7,8 @@ import LoadingPublicPage from '@client/components/LoadingPublicPage'
 import ErrorPage404 from '@client/components/ErrorPage404'
 import ErrorPage500 from '@client/components/ErrorPage500'
 
+import BlockRegionContainer from '@drupal/modules/layout/containers/BlockRegionContainer'
+
 import query from './query.gql'
 
 const NodeArticlePage = ({
@@ -23,6 +25,7 @@ const NodeArticlePage = ({
       return (
         <PublicPage title={ `%base | ${node.title}` }>
           <h1>{ node.title }</h1>
+          <BlockRegionContainer region='header' />
           <main>
             <div dangerouslySetInnerHTML={ { __html: node.body.value } } />
           </main>
