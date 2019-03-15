@@ -8,6 +8,16 @@ const ssrMode = !process.browser
 const connectToDevTools = process.browser && config('NODE_ENV') !== 'production'
 
 /**
+ * Apollo cache id resolver.
+ */
+export const dataIdFromObject = ({ __typename, ...object }) => {
+  // Drupal possible identificators.
+  for (let key of ['id', 'entityId', 'fid', 'uid', 'nid', 'tid']) {
+    if (object[key]) return `${__typename}:${object[key]}`
+  }
+}
+
+/**
  * Creates a new ApolloClient instance.
  *
  * @param {ApolloLink} link ApolloLink instance.
@@ -18,7 +28,7 @@ const connectToDevTools = process.browser && config('NODE_ENV') !== 'production'
  */
 const createClient = ({ link, introspection, initialState } = {}) => {
   const fragmentMatcher = createFragmentMatcher(introspection)
-  const cacheOptions = { fragmentMatcher }
+  const cacheOptions = { dataIdFromObject, fragmentMatcher }
   const cache = new InMemoryCache(cacheOptions).restore(initialState || {})
 
   return new ApolloClient({
