@@ -10,6 +10,6 @@ module.exports = () => ({
         }
       }
     ],
-    resolve(__dirname, './babel.resolvers.js')
+    resolve(__dirname, './babel.common.js')
   ]
 })

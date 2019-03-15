@@ -1,5 +1,5 @@
 const path = require('path')
-const babelResolvers = require('../babel/babel.resolvers')
+const babelResolvers = require('../babel/babel.common')
 
 /**
  * Clone babel aliases to have CSS/GraphQL files be able to use them.
