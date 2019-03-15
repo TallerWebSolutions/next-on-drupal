@@ -1,0 +1,11 @@
+#import '@drupal/modules/layout/lib/fragments.gql'
+
+query BLOCK_REGION($path: String!, $region: String!) {
+  route(path: $path) {
+    ... on InternalUrl {
+      blocks: blocksByRegion(region: $region) {
+        ...BlockFragment
+      }
+    }
+  }
+}
