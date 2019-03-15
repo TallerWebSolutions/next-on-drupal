@@ -1,0 +1,19 @@
+# composition of block content fragments
+fragment BlockBaseFragment on Entity {
+  entityLabel
+  entityType
+  entityBundle
+  entityId
+  __typename
+}
+
+# composition of block content fragments
+fragment BlockContentFragment on BlockContent {
+  title
+}
+
+# composition of all block fragments
+fragment BlockFragment on Entity {
+  ...BlockBaseFragment
+  ...BlockContentFragment
+}
