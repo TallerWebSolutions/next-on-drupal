@@ -1,0 +1,5 @@
+fragment FieldBody on NodeArticle {
+  body {
+    value
+  }
+}
