@@ -36,8 +36,7 @@ const config = {
     '@server': './src/server',
     '@shared': './src/shared',
     '@styleguide': './src/client/styleguide',
-    '^@@(.+)': './src/client/modules/\\1',
-    '^@drupal/(.+)': './src/client/modules/drupal/modules/\\1'
+    '@drupal': './src/client/modules/drupal'
   },
   resolvePath: resolveComponentPath
 }

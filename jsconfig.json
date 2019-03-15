@@ -8,8 +8,7 @@
       "@server/*": ["src/server/*"],
       "@shared/*": ["src/shared/*"],
       "@styleguide/*": ["src/client/styleguide/*"],
-      "@@*": ["src/client/modules/*"],
-      "@drupal/*": ["src/client/modules/drupal/modules/*"]
+      "@drupal/*": ["src/client/modules/drupal/*"]
     }
   }
 }
