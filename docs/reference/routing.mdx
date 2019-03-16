@@ -1,0 +1,51 @@
+---
+name: Routing
+route: /reference/routing
+---
+
+# Routing
+
+Next.js ships with a [file-system based routing](https://github.com/zeit/next.js/#routing) by default, which means every file on the `./pages` directory is a served route and possible entrypoint for the application (with all the benefits of code-splitting). It also supports for [dynamic routing](https://github.com/zeit/next.js/#custom-server-and-routing) via registering endpoints to the `express` server application and resolving access to these pages to a page know by Next.js (an existing path inside the `./pages` directory).
+
+On top of that, this boilerplate adds Drupal based routing - a way to map any existing Drupal route to a page on Next.js.
+
+> Another small change this boilerplate does is to move the `pages` directory inside `src`, respecting the idea that _any_ code related to the application itself should be under a common source-code directory. This is officially [not supported](https://github.com/zeit/next.js/issues/4789) by Next.js, but we achieve this goal by having a symbolic link pointing from `./pages` to `./src/client/pages`. Everything seems to be working good with this approach - including HMR during development - but if any issue arrise from this technique, we can always fallback and move the `./src/client/pages` directory to the root of the project.
+
+## Static routing
+
+To add new static routes you can simply add `.js` files to the `./src/client/pages` directory. Example:
+
+```js
+// ./src/client/pages/custom.js
+import React from 'react'
+
+const CustomPage = () => <div>My custom page content</div>
+
+export default CustomPage
+```
+
+The code above should be accessible on `http://localhost:3000/custom` when running the development server.
+
+> The full path to the file from the `./src/client/pages` onwards will be accounted on the URL. i.e.: `./src/client/pages/foo/bar/baz.js` would be server under `http://localhost:3000/foo/bar/baz`
+
+## Dynamic routing
+
+To add dynamic routes, such as routes with path parameters, you must have a normal page file unsed the `pages` directory (same as above), but also and path handler on the `./server/index.js` file as follows;
+
+```js
+ const initializeServer = () => {
+   const server = express()
+
++  server.get('/custom/:id', (req, res) => {
++    app.render(req, res, '/custom', req.params)
++  })
++
+   // Drupal based route resolver.
+   server.get('*', (req, res, next) =>
+     resolve(req).then(route =>
+
+```
+
+## Drupal based routing
+
+@TODO
