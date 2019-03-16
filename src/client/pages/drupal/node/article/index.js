@@ -25,16 +25,6 @@ const NodeArticlePage = ({ route: { entity } }) => (
           <main>
             <div dangerouslySetInnerHTML={ { __html: node.body.value } } />
           </main>
-          <div>
-            <Link href='/drupal' as='/node/3888'>
-              <a>node/3888</a>
-            </Link>
-          </div>
-          <div>
-            <Link href='/drupal' as='/node/3889'>
-              <a>node/3889</a>
-            </Link>
-          </div>
         </PublicPage>
       )
     } }
