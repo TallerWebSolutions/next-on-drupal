@@ -6,8 +6,8 @@
 import { makePromise, execute } from 'apollo-link'
 import { link } from '@shared/api/link'
 
-import { isKnownDrupalRoute } from '@drupal/modules/pages/lib/routes'
-import query from './query.gql'
+import { isKnownDrupalRoute } from './routes'
+import query from './route-query.gql'
 
 // prettier-ignore
 const ignored = [

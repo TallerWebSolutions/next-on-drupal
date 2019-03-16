@@ -1,7 +1,7 @@
 import React, { PureComponent } from 'react'
 import { object } from 'prop-types'
 
-import { resolve } from '@shared/router'
+import { resolve } from '@drupal/modules/pages/lib/resolver'
 import DrupalPageResolverContainer from '@drupal/modules/pages/containers/DrupalPageResolverContainer'
 
 class DrupalPage extends PureComponent {
