@@ -1,3 +1,10 @@
+const path = require('path')
+
+const modifyBundlerConfig = config => {
+  config.resolve.alias['~docz'] = path.resolve(__dirname, './docs/docz')
+  return config
+}
+
 export default {
   // theme: 'my-coolest-theme',
   // themeConfig: {
@@ -11,4 +18,5 @@ export default {
   // plugins: [
   //   myCoolPlugin()
   // ]
+  modifyBundlerConfig
 }
