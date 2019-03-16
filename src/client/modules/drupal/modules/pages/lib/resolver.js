@@ -4,7 +4,7 @@
  */
 
 import { makePromise, execute } from 'apollo-link'
-import { link } from '@client/api/link'
+import { link } from '~client/api/link'
 
 import { isKnownDrupalRoute } from './routes'
 import query from './route-query.gql'

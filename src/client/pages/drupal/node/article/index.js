@@ -1,12 +1,12 @@
 import { shape, string } from 'prop-types'
 import { Query } from 'react-apollo'
 
-import PublicPage from '@client/components/PublicPage'
-import LoadingPublicPage from '@client/components/LoadingPublicPage'
-import ErrorPage404 from '@client/components/ErrorPage404'
-import ErrorPage500 from '@client/components/ErrorPage500'
+import PublicPage from '~client/components/PublicPage'
+import LoadingPublicPage from '~client/components/LoadingPublicPage'
+import ErrorPage404 from '~client/components/ErrorPage404'
+import ErrorPage500 from '~client/components/ErrorPage500'
 
-import BlockRegionContainer from '@drupal/modules/layout/containers/BlockRegionContainer'
+import BlockRegionContainer from '~drupal/modules/layout/containers/BlockRegionContainer'
 
 import query from './query.gql'
 

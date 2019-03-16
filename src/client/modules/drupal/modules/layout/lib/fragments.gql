@@ -1,4 +1,4 @@
-#import '@drupal/modules/layout/blocks/BlockContentBasic/fragment.gql'
+#import '~drupal/modules/layout/blocks/BlockContentBasic/fragment.gql'
 
 # composition of block content fragments
 fragment BlockBaseFragment on Entity {

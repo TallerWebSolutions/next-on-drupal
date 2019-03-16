@@ -5,7 +5,7 @@ import { withRouter } from 'next/router'
 import { compose } from 'ramda'
 import parse from 'url-parse'
 
-import BlockRegion from '@drupal/modules/layout/components/BlockRegion'
+import BlockRegion from '~drupal/modules/layout/components/BlockRegion'
 
 import query from './query.gql'
 

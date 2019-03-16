@@ -31,11 +31,11 @@ const resolveComponentPath = (sourcePath, currentFile, opts) => {
 const config = {
   root: ['./src'],
   alias: {
-    '@source': './src',
-    '@client': './src/client',
-    '@server': './src/server',
-    '@styleguide': './src/client/styleguide',
-    '@drupal': './src/client/modules/drupal'
+    '~source': './src',
+    '~client': './src/client',
+    '~server': './src/server',
+    '~styleguide': './src/client/styleguide',
+    '~drupal': './src/client/modules/drupal'
   },
   resolvePath: resolveComponentPath
 }

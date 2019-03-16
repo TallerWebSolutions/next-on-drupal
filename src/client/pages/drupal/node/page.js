@@ -1,4 +1,4 @@
-import PublicPage from '@client/components/PublicPage'
+import PublicPage from '~client/components/PublicPage'
 
 const NodePagePage = () => (
   <PublicPage title='opa'>a node of the bundle page!</PublicPage>

@@ -1,5 +1,5 @@
 import getConfig from 'next/config'
-import createDebugger from '@source/debug'
+import createDebugger from '~source/debug'
 
 const debug = createDebugger('env')
 

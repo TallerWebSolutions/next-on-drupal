@@ -1,7 +1,7 @@
 import React, { Fragment, memo } from 'react'
 import { arrayOf, object } from 'prop-types'
 
-import BlockResolverContainer from '@drupal/modules/layout/containers/BlockResolverContainer'
+import BlockResolverContainer from '~drupal/modules/layout/containers/BlockResolverContainer'
 
 const BlockRegion = ({ blocks }) => (
   <Fragment>

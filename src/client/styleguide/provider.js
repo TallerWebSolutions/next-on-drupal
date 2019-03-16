@@ -1,7 +1,7 @@
 import { Fragment } from 'react'
 import { createGlobalStyle } from 'styled-components'
 
-import { colors } from '@styleguide'
+import { colors } from '~styleguide'
 
 const GlobalStyle = createGlobalStyle`
   @import url('https://fonts.googleapis.com/css?family=Open+Sans:300,400,400i,700');

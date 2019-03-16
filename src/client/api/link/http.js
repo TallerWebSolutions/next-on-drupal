@@ -1,6 +1,6 @@
 import fetch from 'isomorphic-fetch'
 import { createHttpLink } from 'apollo-link-http'
-import config from '@source/env'
+import config from '~source/env'
 
 const local = `http://localhost/graphql`
 const fallback = config('NODE_ENV') !== 'production' ? local : null

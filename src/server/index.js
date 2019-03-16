@@ -2,7 +2,7 @@
 import express from 'express'
 import next from 'next'
 
-import { resolve } from '@drupal/modules/pages/lib/resolver'
+import { resolve } from '~drupal/modules/pages/lib/resolver'
 
 const dev = process.env.NODE_ENV !== 'production'
 const app = next({ dev })

@@ -3,11 +3,11 @@
     "baseUrl": ".",
     "paths": {
       "*": ["src/*"],
-      "@source/*": ["src/*"],
-      "@client/*": ["src/client/*"],
-      "@server/*": ["src/server/*"],
-      "@styleguide/*": ["src/client/styleguide/*"],
-      "@drupal/*": ["src/client/modules/drupal/*"]
+      "~source/*": ["src/*"],
+      "~client/*": ["src/client/*"],
+      "~server/*": ["src/server/*"],
+      "~styleguide/*": ["src/client/styleguide/*"],
+      "~drupal/*": ["src/client/modules/drupal/*"]
     }
   }
 }

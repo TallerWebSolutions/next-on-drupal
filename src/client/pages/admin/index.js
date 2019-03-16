@@ -1,4 +1,4 @@
-import AdminPage from '@client/components/AdminPage'
+import AdminPage from '~client/components/AdminPage'
 
 const Admin = () => <AdminPage>Área administrativa</AdminPage>
 
