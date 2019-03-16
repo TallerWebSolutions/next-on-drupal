@@ -1,6 +1,6 @@
 import { shape, string } from 'prop-types'
 import { Query } from 'react-apollo'
-import { withRouter } from 'next/router'
+import Link from 'next/link'
 
 import PublicPage from '@client/components/PublicPage'
 import LoadingPublicPage from '@client/components/LoadingPublicPage'
@@ -11,11 +11,7 @@ import BlockRegionContainer from '@drupal/modules/layout/containers/BlockRegionC
 
 import query from './query.gql'
 
-const NodeArticlePage = ({
-  router: {
-    query: { entity }
-  }
-}) => (
+const NodeArticlePage = ({ route: { entity } }) => (
   <Query query={ query } variables={ entity }>
     { ({ data: { node }, loading, error }) => {
       if (loading) return <LoadingPublicPage />
@@ -29,6 +25,16 @@ const NodeArticlePage = ({
           <main>
             <div dangerouslySetInnerHTML={ { __html: node.body.value } } />
           </main>
+          <div>
+            <Link href='/drupal' as='/node/3888'>
+              <a>node/3888</a>
+            </Link>
+          </div>
+          <div>
+            <Link href='/drupal' as='/node/3889'>
+              <a>node/3889</a>
+            </Link>
+          </div>
         </PublicPage>
       )
     } }
@@ -36,13 +42,11 @@ const NodeArticlePage = ({
 )
 
 NodeArticlePage.propTypes = {
-  router: shape({
-    query: shape({
-      entity: shape({
-        entityId: string.isRequired
-      }).isRequired
+  route: shape({
+    entity: shape({
+      entityId: string.isRequired
     }).isRequired
   }).isRequired
 }
 
-export default withRouter(NodeArticlePage)
+export default NodeArticlePage

@@ -1,4 +1,4 @@
-#import '@client/pages/node/article/fragment.gql'
+#import './fragment.gql'
 
 query NODE_ARTICLE_PAGE($entityId: String!) {
   node: nodeById(id: $entityId) {
