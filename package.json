@@ -8,6 +8,7 @@
   "author": "Lucas Constantino Silva <lucasconstantinosilva@gmail.com>",
   "main": "next.config.js",
   "scripts": {
+    "analyze": "BUNDLE_ANALYZE=both yarn build:next",
     "build": "yarn build:next && yarn build:server",
     "build:next": "next build",
     "build:server": "webpack --config config/webpack/webpack.server.js",
