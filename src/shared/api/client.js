@@ -2,7 +2,10 @@ import { ApolloClient } from 'apollo-client'
 import { InMemoryCache } from 'apollo-cache-inmemory'
 import config from '@shared/env'
 
-import { createFragmentMatcher } from './lib/introspection'
+import {
+  createFragmentMatcher,
+  saveIntrospectionData
+} from './lib/introspection'
 
 const ssrMode = !process.browser
 const connectToDevTools = process.browser && config('NODE_ENV') !== 'production'
@@ -27,6 +30,9 @@ export const dataIdFromObject = ({ __typename, ...object }) => {
  * @return {ApolloClient}.
  */
 const createClient = ({ link, introspection, initialState } = {}) => {
+  // avoid re-fetching introspection on client-side navigation.
+  saveIntrospectionData(introspection)
+
   const fragmentMatcher = createFragmentMatcher(introspection)
   const cacheOptions = { dataIdFromObject, fragmentMatcher }
   const cache = new InMemoryCache(cacheOptions).restore(initialState || {})

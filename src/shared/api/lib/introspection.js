@@ -43,13 +43,22 @@ const handleConnectionError = err => {
 let introspectionData
 
 /**
+ * Imperative introspection fulfil.
+ */
+export const saveIntrospectionData = data => {
+  introspectionData = data
+  return data
+}
+
+/**
  * Performs an fragment-matcher introspection query on the provided link.
  */
 export const introspectLink = link =>
   introspectionData ||
-  (introspectionData = makePromise(execute(link, { query }))
+  makePromise(execute(link, { query }))
     .then(normalize)
-    .catch(handleConnectionError))
+    .then(saveIntrospectionData)
+    .catch(handleConnectionError)
 
 /**
  * Creates an instropection fragment matcher based on a provided
