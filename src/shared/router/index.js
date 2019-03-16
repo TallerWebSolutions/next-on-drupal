@@ -6,7 +6,7 @@
 import { makePromise, execute } from 'apollo-link'
 import { link } from '@shared/api/link'
 
-import { getPage } from './routes'
+import { isKnownDrupalRoute } from '@drupal/modules/pages/lib/routes'
 import query from './query.gql'
 
 // prettier-ignore
@@ -32,13 +32,6 @@ export const resolve = async location => {
   const { data: { route } } = await makePromise(execute(link, operation))
 
   // abort, if no Drupal route found.
-  if (!route) return null
-
-  // try to resolve the route to a NextJS known page.
-  const page = getPage(route)
-
-  // abort, if no NextJS page found.
-  if (!page) return null
-
-  return { route, page }
+  // about, if is no know Drupal page.
+  return route && isKnownDrupalRoute(route) ? route : null
 }

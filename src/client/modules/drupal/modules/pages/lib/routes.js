@@ -3,7 +3,7 @@
  * -----------------------------
  */
 
-import { T, always as use, cond, pathEq, both } from 'ramda'
+import { anyPass, pathEq, both } from 'ramda'
 
 // Match helpers.
 const type = pathEq(['entity', 'entityType'])
@@ -23,16 +23,16 @@ const bundle = pathEq(['entity', 'entityBundle'])
  *
  * @see: https://ramdajs.com/docs/#cond
  */
-const routes = [
-  [both(type('node'), bundle('page')), use('/node/page')],
-  [both(type('node'), bundle('article')), use('/node/article')]
-]
+export const routes = {
+  'node-article': both(type('node'), bundle('article')),
+  'node-page': both(type('node'), bundle('page'))
+}
 
 /**
- * Resolves a given Drupal route to a NextJS page.
+ * Predicate if route is know to the local routing system.
  *
  * @param {Object} route A GraphQL Url type object.
  *
- * @return {String} the resolved page path, or null.
+ * @return {Boolean}
  */
-export const getPage = cond([...routes, [T, use(null)]])
+export const isKnownDrupalRoute = anyPass(Object.values(routes))
