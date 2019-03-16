@@ -1,9 +1,14 @@
 import React, { PureComponent } from 'react'
+import { object } from 'prop-types'
 
 import { resolve } from '@shared/router'
 import DrupalPageResolverContainer from '@drupal/modules/pages/containers/DrupalPageResolverContainer'
 
 class DrupalPage extends PureComponent {
+  static propTypes = {
+    route: object.isRequired
+  }
+
   static async getInitialProps ({ asPath, query }) {
     const route = query.route || (await resolve(asPath))
     return { route }
