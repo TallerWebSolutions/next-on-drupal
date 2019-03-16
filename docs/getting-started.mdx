@@ -1,0 +1,42 @@
+---
+name: Getting Started
+route: /getting-started
+---
+
+# Getting Started
+
+Before you begin, it is important that you have a Drupal instance running with the GraphQL module installed. If you don't already have Drupal installed, we recommend you consider using [Drupal Enterprise Boilerplate](https://github.com/TallerWebSolutions/drupal-enterprise-boilerplate).
+
+## Clone
+
+There is currently no CLI to scafold the project. The simplest way therefore is to clone this repository and start from there:
+
+```sh
+git clone git@github.com:TallerWebSolutions/next-on-drupal.git next-on-drupal
+cd next-on-drupal
+```
+
+You might as well want to reset the repository before performing changes:
+
+```sh
+rm -Rf .git
+git init
+git add .
+git commit -m 'Initial commit'
+```
+
+## Install
+
+```sh
+yarn
+```
+
+## Run
+
+To start the development server, execute the following:
+
+```sh
+yarn dev
+```
+
+> Notice that the application will try to connect to Drupal's GraphQL on the `http://localhost/graphql` endpoint (the default for the GraphQL Drupal module). This should be fine locally, but for production you'll probably need to override this, which can be done using the environment variable `GRAPHQL_HOST` (.i.e: `GRAPHQL_HOST=http://drupal-host/graphql yarn dev`).
