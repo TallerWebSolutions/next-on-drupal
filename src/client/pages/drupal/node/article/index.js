@@ -1,6 +1,5 @@
 import { shape, string } from 'prop-types'
 import { Query } from 'react-apollo'
-import Link from 'next/link'
 
 import PublicPage from '@client/components/PublicPage'
 import LoadingPublicPage from '@client/components/LoadingPublicPage'
