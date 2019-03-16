@@ -4,7 +4,13 @@ import { compose } from 'ramda'
 import connectGraphQL from '@shared/api/provider'
 import connectGlobalStyles from '@styleguide/provider'
 
+const hoistInitialProps = (...hocs) => Component => {
+  const composed = compose(...hocs)(Component)
+  composed.getInitialProps = Component.getInitialProps
+  return composed
+}
+
 export default compose(
   connectGraphQL,
-  connectGlobalStyles
+  hoistInitialProps(connectGlobalStyles)
 )(App)
