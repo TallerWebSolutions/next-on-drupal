@@ -34,7 +34,6 @@ const config = {
     '@source': './src',
     '@client': './src/client',
     '@server': './src/server',
-    '@shared': './src/shared',
     '@styleguide': './src/client/styleguide',
     '@drupal': './src/client/modules/drupal'
   },
