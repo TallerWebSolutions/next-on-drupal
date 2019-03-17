@@ -1,22 +1,12 @@
 const path = require('path')
+const common = require('./config/webpack/webpack.common')
 
 const modifyBundlerConfig = config => {
   config.resolve.alias['~docz'] = path.resolve(__dirname, './docs/docz')
-  return config
+  return common(config, {})
 }
 
 export default {
-  // theme: 'my-coolest-theme',
-  // themeConfig: {
-  //   colors: {
-  //     primary: 'tomato',
-  //   },
-  // },
-  // modifyBundlerConfig: config => {
-  //   /* do your magic here */
-  // },
-  // plugins: [
-  //   myCoolPlugin()
-  // ]
+  wrapper: 'docs/docz/Provider',
   modifyBundlerConfig
 }
