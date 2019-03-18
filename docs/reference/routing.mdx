@@ -56,11 +56,12 @@ This concept requires that we sometimes send a small request to Drupal to retrie
 
 This process of resolving paths on Drupal occurs in two different situations:
 
-### On the server-side
+### During server-side request handling
 
-Every requested path _not handled by Next.js_ will result in a route query against Drupal.
+Every requested path _not handled by Next.js_ will result in a route query against Drupal. In case we find a route, `/drupal` page component will be used to render the request.
 
 <AnnotatedCode
+  initiallyOpen={false}
   name="~server/index.js"
   code={require('!!raw-loader!~server/index.js')}
 >
@@ -78,53 +79,9 @@ Every requested path _not handled by Next.js_ will result in a route query again
   </Annotation>
 </AnnotatedCode>
 
-To see how the above `resolver` works, have a look at it's annotated source:
+### During client-side navigation
 
-<AnnotatedCode
-  name="~drupal/modules/pages/lib/resolver"
-  initiallyOpen={false}
-  code={require('!!raw-loader!~drupal/modules/pages/lib/resolver')}
->
-  <Annotation line={25} lens={{ before: 5, after: 7 }}>
-    We must ignore some known uninstering paths, such as Next.js development files.
-  </Annotation>
-
-  <Annotation line={32} lens={{ after: 6 }}>
-    The route query is dispatched using a Apollo Link low-level API.
-  </Annotation>
-</AnnotatedCode>
-
-And that's the GraphQL query dispatched to Drupal. You should adjust it as necessary, if there is not enough information to identify a route:
-
-<div>
-  <AnnotatedCode
-    expanded
-    initiallyOpen={false}
-    name="~drupal/modules/pages/lib/route-query.gql"
-    code={require('!!raw-loader!~drupal/modules/pages/lib/route-query.gql')}
-  />
-</div>
-
-Once we have a Drupal route object, we must check if it can be handled by the application. This happens on a file with this specific task:
-
-<AnnotatedCode
-  name="~drupal/modules/pages/lib/routes"
-  code={require('!!raw-loader!~drupal/modules/pages/lib/routes')}
->
-  <Annotation line={26} to={29}>
-    Each property on this object represents a kind of route that can be handled by the application. The key is a unique name, and is not used in any form of logic - we conventionally use the path of the page component. The value is a predicate function, which will be executed with a route object as param, and must return a boolean indicating if this is a known route.
-  </Annotation>
-
-  <Annotation line={38}>
-    A route is a known Drupal route if any of the predicates above are true.
-  </Annotation>
-</AnnotatedCode>
-
-As mentioned above, once we have a route known to the application, we use the `/drupal` page component to render it.
-
-### On client-side navigation
-
-During client-side navigation, we can tell Next.js before-hand that a given link should be redered using the `/drupal` page. For example, we might have links to related articles, in which case we already know they represent Drupal routes:
+We can imperatively tell Next.js before-hand that a given link should be redered using the special `/drupal` page. For example, we might have links to related articles on a given page, in which case we already know that these links represent Drupal routes:
 
 ```js
 import Link from 'next/Link'
@@ -143,9 +100,56 @@ const RelatedArticles = ({ articles = [] }) => (
 )
 ```
 
-The `/drupal` page component then has the responsability of choosing the right page component to render for a given path.
+### Resolving a Drupal route
+
+The special `/drupal` page can decide which other page to use, depending on the route received. i.e.: if it receives a route that represents an _article node_ entity, it might render a `/drupal/node/article` page.
+
+This system is not restricted to entity representing paths, though: we provide the resolver with plenty of the route's metadata (which can even be modified for specifics), and is up to you to decide if and which page fits to render the given route.
+
+You can study the related files in this annotated sources:
 
 <AnnotatedCode
+  name="~drupal/modules/pages/lib/resolver"
+  initiallyOpen={false}
+  code={require('!!raw-loader!~drupal/modules/pages/lib/resolver')}
+>
+  <Annotation line={25} lens={{ before: 5, after: 7 }}>
+    To avoid unecessary Drupal hits, we must ignore some known uninstering paths such as Next.js' development files.
+  </Annotation>
+
+  <Annotation line={32} lens={{ after: 6 }}>
+    The route query is dispatched using an Apollo Link low-level API, mimicking the GraphQL client used throughout the application, but without having to boot an actual Apollo Client.
+  </Annotation>
+</AnnotatedCode>
+
+<AnnotatedCode
+  expanded
+  initiallyOpen={false}
+  name="~drupal/modules/pages/lib/route-query.gql"
+  code={require('!!raw-loader!~drupal/modules/pages/lib/route-query.gql')}
+>
+  <Annotation line={5} to={21}>
+    The route data requested from Drupal lies in a common GraphQL query. It can
+    be altered to fit any route identification needs.
+  </Annotation>
+</AnnotatedCode>
+
+<AnnotatedCode
+  initiallyOpen={false}
+  name="~drupal/modules/pages/lib/routes"
+  code={require('!!raw-loader!~drupal/modules/pages/lib/routes')}
+>
+  <Annotation line={26} to={29}>
+    This is the map of known Drupal routes. Each property on this object represents a kind of route that can be handled by the application. The key is a unique name, and is not used in any form of logic - we conventionally use the path of the page component. The value is a predicate function, which will be executed with a route object as param, and must return a boolean indicating if this is a known route.
+  </Annotation>
+
+  <Annotation line={38}>
+    A route is a known Drupal route if any of the predicates above are true.
+  </Annotation>
+</AnnotatedCode>
+
+<AnnotatedCode
+  initiallyOpen={false}
   name="~client/pages/drupal"
   code={require('!!raw-loader!~client/pages/drupal')}
 >
@@ -153,7 +157,7 @@ The `/drupal` page component then has the responsability of choosing the right p
   <Annotation step="resolve" line={12} to={15}>
     {({ components }) => (
       <div>
-        The component either receives a resolved route object as param
+        The special Drupal page either receives a resolved route object as param
         (server-side) or resolves it during{' '}
         <components.inlineCode>getInitialProps</components.inlineCode>{' '}
         (client-side).
@@ -167,11 +171,8 @@ The `/drupal` page component then has the responsability of choosing the right p
   </Annotation>
 </AnnotatedCode>
 
-### Rendering a Drupal route
-
-The most important component here is `DrupalPageResolverContainer`:
-
 <AnnotatedCode
+  initiallyOpen={false}
   name="~drupal/modules/pages/containers/DrupalPageResolverContainer"
   code={require('!!raw-loader!~drupal/modules/pages/containers/DrupalPageResolverContainer')}
 >
@@ -183,6 +184,7 @@ The most important component here is `DrupalPageResolverContainer`:
 </AnnotatedCode>
 
 <AnnotatedCode
+  initiallyOpen={false}
   name="~drupal/modules/pages/lib/pages"
   code={require('!!raw-loader!~drupal/modules/pages/lib/pages')}
 >
@@ -190,8 +192,8 @@ The most important component here is `DrupalPageResolverContainer`:
   <Annotation step="pages" line={9} to={10} />
   <Annotation step="pages" line={7} to={9}>
     The pages library consist of an array of page components and predicates. It
-    uses the same `./routes` library from before, this time to match a route to
-    it's React component. In case no route matches, we can still render a 404
+    uses the same `./routes` library from before, this time to map a route to
+    it's React page component. In case no route matches, we can still render a 404
     error page.
   </Annotation>
 
