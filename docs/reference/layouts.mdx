@@ -196,3 +196,31 @@ const PageComponent = ({ children }) => (
     render it.
   </Annotation>
 </AnnotatedCode>
+
+## Reusable layouts
+
+On top of the previous components, you can easily build reusable layout-specific components which render block regions among other content. A layout with a sidebar could look as the following:
+
+```js
+import BlockRegionContainer from '~drupal/modules/layout/containers/BlockRegionContainer'
+
+const LayoutWithSidebar = ({ children }) => (
+  <section>
+    <header>
+      <BlockRegionContaienr region="header" />
+    </header>
+
+    <section>
+      <aside>
+        <BlockRegionContaienr region="sidebar" />
+      </aside>
+
+      <main>{children}</main>
+    </section>
+
+    <footer>
+      <BlockRegionContaienr region="footer" />
+    </footer>
+  </section>
+)
+```
