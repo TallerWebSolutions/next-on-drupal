@@ -1,6 +1,6 @@
 import React from 'react'
 import { object } from 'prop-types'
-import debug from '~source/debug'
+import debug from '~source/debugger'
 
 const BlockNotFound = ({ block }) => {
   debug('layout')('unkown block %O', block)
