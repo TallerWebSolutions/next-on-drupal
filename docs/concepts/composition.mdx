@@ -1,0 +1,63 @@
+---
+name: Composition
+route: /concepts/composition
+---
+
+# Composition
+
+## The issue
+
+React has many code organization patterns. Most of them are top-down based, meaning a single prop or context might travel around from hierarchically higher components until the lower level and usually presentational ones. The main problem this brings is highly coupled components, and often components that know stuff they have no context upon.
+
+## The solution
+
+A composition based architecture suggests that components can be composed of smaller, more specific and single-purposed components until we have components that are aware of other parts of the system. This is very similar to the approach of function composition, where every level of a new responsability is encapsulated into it's own piece (function).
+
+## Example
+
+Next.js allows every page to be an isolated entry-point to the application. Besides that being very good for performance reasons (i.e.: smaller and well distributed chunks), this also has the benefit that each page can be completely different than any others. There is no implicit reuse of parts, such as a common header or footer. Everything must be declared and used under the page component it self.
+
+This could have the downside that we end-up repeating code everywhere. To avoid it, though, we can leverage from component composition.
+
+We might have traditional pages with the same header and footer all around (lets call them "institutional pages"), but we might also have landing pages with a more freer design. But some parts of them might be equal everywhere. For instance, both of them might need the same system for metatags injecting - something that does not influence the layout, but is built underneath.
+
+In this kind of situation, the composition-based architecture recommends that we have three base components:
+
+```js
+// components/Page.js
+const Page = ({ children }) => (
+  <Fragment>
+    <Metatags />
+    {children}
+  </Fragment>
+)
+```
+
+```js
+// components/LandingPage.js
+const LandingPage = ({ children }) => <Page>{children}</Page>
+```
+
+```js
+// components/InstitutionalPage.js
+const InstitutionalPage = ({ children }) => (
+  <Page>
+    <Header />
+    {children}
+    <Footer />
+  </Page>
+)
+```
+
+After that, a given page - say, an "About us" page - could be built using the `InstitutionalPage` based component:
+
+```js
+// pages/about.js
+import InstitutionalPage from '~client/components/InstitutionalPage'
+
+const AboutPage = () => (
+  <InstitutionalPage>
+    Here goes a bunch of content describing us.
+  </InstitutionalPage>
+)
+```
