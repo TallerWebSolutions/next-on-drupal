@@ -1,12 +1,6 @@
-const path = require('path')
-const common = require('./config/webpack/webpack.common')
+const modifyBundlerConfig = require('./config/webpack/webpack.docz')
 
-const modifyBundlerConfig = config => {
-  config.resolve.alias['~docz'] = path.resolve(__dirname, './docs/docz')
-  return common(config, {})
-}
-
-export default {
+module.exports = {
   wrapper: 'docs/docz/Provider',
   modifyBundlerConfig
 }
