@@ -102,3 +102,97 @@ Similar to registering the block, we have to add the block's fragment to the lis
     from this new block type.
   </Annotation>
 </AnnotatedCode>
+
+## Presenting blocks
+
+The blocks system can be used in many forms - depending on how the application reaches a block data. This boilerplate ships with a Drupal region based solution to show multiple blocks, one beneath the other. Mode advanced solutions - such as layout buider - can be acchieved following the same principle of separation of concerns.
+
+### `BlockRegionContainer`
+
+#### Usage:
+
+```js
+import BlockRegionContainer from '~drupal/modules/layout/containers/BlockRegionContainer'
+
+const PageComponent = ({ children }) => (
+  <div>
+    <BlockRegionContainer region="header" />
+    {children}
+    <BlockRegionContainer region="footer" />
+  </div>
+)
+```
+
+#### In-depth:
+
+<AnnotatedCode
+  initiallyOpen={false}
+  name="~drupal/modules/layout/containers/BlockRegionContainer/BlockRegionContainer.js"
+  code={require('!!raw-loader!~drupal/modules/layout/containers/BlockRegionContainer/BlockRegionContainer.js')}
+>
+  <Annotation line={13}>
+    The machine name of the Drupal region, as declared in the theme.
+  </Annotation>
+  <Annotation line={14}>
+    The Drupal page path from which to load blocks on this region.
+  </Annotation>
+  <Annotation line={20}>
+    {({ components }) => (
+      <div>
+        In case no <components.inlineCode>path</components.inlineCode> is
+        provided, we fallback to the current page's page.
+      </div>
+    )}
+  </Annotation>
+  <Annotation line={36}>
+    {({ components }) => (
+      <div>
+        Once we have the raw block objects, we delegate to the
+        <components.inlineCode>BlockRegion</components.inlineCode> component for
+        rendering.
+      </div>
+    )}
+  </Annotation>
+</AnnotatedCode>
+
+<AnnotatedCode
+  initiallyOpen={false}
+  name="~drupal/modules/layout/containers/BlockRegionContainer/query.gql"
+  code={require('!!raw-loader!~drupal/modules/layout/containers/BlockRegionContainer/query.gql')}
+>
+  <Annotation line={4}>Query Drupal's route GraphQL field.</Annotation>
+  <Annotation line={7}>
+    Use the fragment that combines all block fragments.
+  </Annotation>
+</AnnotatedCode>
+
+<AnnotatedCode
+  initiallyOpen={false}
+  name="~drupal/modules/layout/components/BlockRegion.js"
+  code={require('!!raw-loader!~drupal/modules/layout/components/BlockRegion.js')}
+>
+  <Annotation line={4} />
+  <Annotation line={8} to={9}>
+    {({ components }) => (
+      <div>
+        Iterate block objects and delegate to the
+        <components.inlineCode>
+          BlockResolverContainer
+        </components.inlineCode> for choosing which components to use when rendering
+        each block.
+      </div>
+    )}
+  </Annotation>
+</AnnotatedCode>
+
+<AnnotatedCode
+  initiallyOpen={false}
+  name="~drupal/modules/layout/containers/BlockResolverContainer.js"
+  code={require('!!raw-loader!~drupal/modules/layout/containers/BlockResolverContainer.js')}
+>
+  <Annotation line={4} />
+  <Annotation line={7} to={9}>
+    Find a match component using the block library and the predicates, and
+    render it.
+  </Annotation>
+</AnnotatedCode>
