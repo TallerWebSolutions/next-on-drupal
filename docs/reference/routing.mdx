@@ -3,6 +3,8 @@ name: Routing
 route: /reference/routing
 ---
 
+import AnnotatedCode, { Annotation } from '~docz/AnnotatedCode'
+
 # Routing
 
 Next.js ships with a [file-system based routing](https://github.com/zeit/next.js/#routing) by default, which means every file on the `./pages` directory is a served route and possible entrypoint for the application (with all the benefits of code-splitting). It also supports for [dynamic routing](https://github.com/zeit/next.js/#custom-server-and-routing) via registering endpoints to the `express` server application and resolving access to these pages to a page know by Next.js (an existing path inside the `./pages` directory).
@@ -48,4 +50,153 @@ To add dynamic routes, such as routes with path parameters, you must have a norm
 
 ## Drupal based routing
 
-@TODO
+Moving to a headless Drupal solution has it's tradeoffs - on of the biggest being dropping Drupal's well stablished [routing system](https://www.drupal.org/docs/8/api/routing-system), and it's related modules, such as pathauto, redirects, token support, and so on. Although we cannot benefit from every aspect of Drupal's routing system, this boilerplates includes quite an important step towards it: the capacity to use Drupal to resolve paths.
+
+This concept requires that we sometimes send a small request to Drupal to retrieve minimum information on a given path to identify if the path is a know route to the application. Not all paths should be understood by the application. In fact, this boilerplate ships only with the most obvious ones: path that represent nodes of type article and page, present in a default Drupal install.
+
+This process of resolving paths on Drupal occurs in two different situations:
+
+### On the server-side
+
+Every requested path _not handled by Next.js_ will result in a route query against Drupal.
+
+<AnnotatedCode
+  name="~server/index.js"
+  code={require('!!raw-loader!~server/index.js')}
+>
+  <Annotation line={5} />
+  <Annotation line={14} to={19}>
+    {({ components }) => (
+      <div>
+        When no Drupal route is found, we let Next.js default handler work (
+        <components.inlineCode>next()</components.inlineCode>), often resulting
+        in 404 pages. When a Drupal route is found, we serve the static page{' '}
+        <components.inlineCode>/drupal</components.inlineCode>, which is then
+        capable of deciding which page component to use for a given Drupal path.
+      </div>
+    )}
+  </Annotation>
+</AnnotatedCode>
+
+To see how the above `resolver` works, have a look at it's annotated source:
+
+<AnnotatedCode
+  name="~drupal/modules/pages/lib/resolver"
+  initiallyOpen={false}
+  code={require('!!raw-loader!~drupal/modules/pages/lib/resolver')}
+>
+  <Annotation line={25} lens={{ before: 5, after: 7 }}>
+    We must ignore some known uninstering paths, such as Next.js development files.
+  </Annotation>
+
+  <Annotation line={32} lens={{ after: 6 }}>
+    The route query is dispatched using a Apollo Link low-level API.
+  </Annotation>
+</AnnotatedCode>
+
+And that's the GraphQL query dispatched to Drupal. You should adjust it as necessary, if there is not enough information to identify a route:
+
+<div>
+  <AnnotatedCode
+    expanded
+    initiallyOpen={false}
+    name="~drupal/modules/pages/lib/route-query.gql"
+    code={require('!!raw-loader!~drupal/modules/pages/lib/route-query.gql')}
+  />
+</div>
+
+Once we have a Drupal route object, we must check if it can be handled by the application. This happens on a file with this specific task:
+
+<AnnotatedCode
+  name="~drupal/modules/pages/lib/routes"
+  code={require('!!raw-loader!~drupal/modules/pages/lib/routes')}
+>
+  <Annotation line={26} to={29}>
+    Each property on this object represents a kind of route that can be handled by the application. The key is a unique name, and is not used in any form of logic - we conventionally use the path of the page component. The value is a predicate function, which will be executed with a route object as param, and must return a boolean indicating if this is a known route.
+  </Annotation>
+
+  <Annotation line={38}>
+    A route is a known Drupal route if any of the predicates above are true.
+  </Annotation>
+</AnnotatedCode>
+
+As mentioned above, once we have a route known to the application, we use the `/drupal` page component to render it.
+
+### On client-side navigation
+
+During client-side navigation, we can tell Next.js before-hand that a given link should be redered using the `/drupal` page. For example, we might have links to related articles, in which case we already know they represent Drupal routes:
+
+```js
+import Link from 'next/Link'
+
+const RelatedArticles = ({ articles = [] }) => (
+  <div>
+    <h3>Related Articles:</h4>
+    <ul>{ articles.map(({ id, title, url }) => (
+      <li key={id}>
+        <Link href='/drupal' as={url}>
+          <a>{title}</a>
+        </Link>
+      </li>
+    )) }</ul>
+  </div>
+)
+```
+
+The `/drupal` page component then has the responsability of choosing the right page component to render for a given path.
+
+<AnnotatedCode
+  name="~client/pages/drupal"
+  code={require('!!raw-loader!~client/pages/drupal')}
+>
+  <Annotation step="resolve" line={4} />
+  <Annotation step="resolve" line={12} to={15}>
+    {({ components }) => (
+      <div>
+        The component either receives a resolved route object as param
+        (server-side) or resolves it during{' '}
+        <components.inlineCode>getInitialProps</components.inlineCode>{' '}
+        (client-side).
+      </div>
+    )}
+  </Annotation>
+
+  <Annotation step="render" line={5} />
+  <Annotation step="render" line={18}>
+    With the route in hand, we delegate to a resolver container - the component that is acctually aware of all Drupal related pages.
+  </Annotation>
+</AnnotatedCode>
+
+### Rendering a Drupal route
+
+The most important component here is `DrupalPageResolverContainer`:
+
+<AnnotatedCode
+  name="~drupal/modules/pages/containers/DrupalPageResolverContainer"
+  code={require('!!raw-loader!~drupal/modules/pages/containers/DrupalPageResolverContainer')}
+>
+  <Annotation line={4} />
+
+  <Annotation line={7} to={9}>
+    It finds out a page component for the given route and renders it.
+  </Annotation>
+</AnnotatedCode>
+
+<AnnotatedCode
+  name="~drupal/modules/pages/lib/pages"
+  code={require('!!raw-loader!~drupal/modules/pages/lib/pages')}
+>
+  <Annotation step="pages" line={7} />
+  <Annotation step="pages" line={9} to={10} />
+  <Annotation step="pages" line={7} to={9}>
+    The pages library consist of an array of page components and predicates. It
+    uses the same `./routes` library from before, this time to match a route to
+    it's React component. In case no route matches, we can still render a 404
+    error page.
+  </Annotation>
+
+  <Annotation step="chunks" line={5} />
+  <Annotation step="chunks" line={9} to={10}>
+    Using Next.js' <a href="https://github.com/zeit/next.js/#dynamic-import">dynamic imports</a> allows us to split each page's code into chunks, for performance benefits.
+  </Annotation>
+</AnnotatedCode>
