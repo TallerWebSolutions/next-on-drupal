@@ -12,8 +12,8 @@ const NodePage = dynamic(() => import('~client/pages/drupal/node/page'))
 // prettier-ignore
 // the pages registry, in order of precendence.
 const pages = [
-  { component: NodePage, is: routes['node-page'] },
-  { component: NodeArticle, is: routes['node-article'] },
+  { component: NodeArticle, is: routes['drupal/node/article'] },
+  { component: NodePage, is: routes['drupal/node/page'] },
   { component: ErrorPage404, is: () => true }
 ]
 

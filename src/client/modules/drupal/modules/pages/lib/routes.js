@@ -24,8 +24,8 @@ const bundle = pathEq(['entity', 'entityBundle'])
  * @see: https://ramdajs.com/docs/#cond
  */
 export const routes = {
-  'node-article': both(type('node'), bundle('article')),
-  'node-page': both(type('node'), bundle('page'))
+  'drupal/node/article': both(type('node'), bundle('article')),
+  'drupal/node/page': both(type('node'), bundle('page'))
 }
 
 /**
