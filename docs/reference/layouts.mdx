@@ -1,0 +1,104 @@
+---
+name: Layouts & Blocks
+route: /reference/layouts
+---
+
+import AnnotatedCode, { Annotation } from '~docz/AnnotatedCode'
+
+# Layouts & Blocks
+
+> Drupal has a whole layout system of it's own. A part of it is the [blocks system](https://www.drupal.org/docs/user_guide/en/blocks-chapter.html). On the context of this documentation, _layout_ will refer to the later.
+
+On Drupal, blocks can be positioned and ordered within _regions_. Although we can't (or shouldn't) try to couple to much of our Next.js application layouting logical to that of Drupal's, we can still levarage from the existing management capabilities of Drupal's block system in an _opt-in_ fashion.
+
+## Prologue
+
+### Drupal theme
+
+To properly use what is shown here, you should first have a [custom theme](https://www.drupal.org/docs/8/theming-drupal-8/defining-a-theme-with-an-infoyml-file). We recommend that you leave the mandatory regions intact on that theme, and [declare regions](https://www.drupal.org/node/2469113) to be used specifically by the application. This way you ensure Drupal's administrative interface will be operational as usual.
+
+### Performance
+
+It's also important to note that this system can end-up performing huge GraphQL queries once there are many blocks in use. If that's the case, we can mitigate a part of this problem by using [persisted queries](https://blog.apollographql.com/persisted-graphql-queries-with-apollo-client-119fd7e6bba5).
+
+### Blocks vs Content Blocks
+
+Drupal has the concept of Blocks - unique pieces of information - and Content Blocks - which are basically fieldable blocks that can have multiple _instances_. Both kinds are supported in this system, but the first is slightly hazier as it is not a content entity, and GraphQL exposes much less information about it. This could be improved manually on the Drupal side, if necessary.
+
+## Creating blocks
+
+Keep in mind that blocks recognition and rendering is not automatic in any way. This means for you to use a Drupal declared block inside Next.js application you must both assign the block to a region on Drupal, but also create a component that can render the representation of that block.
+
+This boilerplate ships with two examples of blocks: one for common blocks (`BlockSiteBranding`); and another for content blocks (`BlockContentBasic`). Both are available in a default Drupal install.
+
+We will first cover the steps to build the first, and then explain the differences for the second.
+
+### 1. Create the block
+
+To create a block, we conventionally create a component under the `blocks` directory of a module:
+
+<AnnotatedCode
+  expanded
+  initiallyOpen={false}
+  name="~drupal/modules/layout/blocks/BlockSiteBranding.js"
+  code={require('!!raw-loader!~drupal/modules/layout/blocks/BlockSiteBranding.js')}
+>
+  <Annotation line={38}>
+    {({ components }) => (
+      <div>
+        The <components.inlineCode>is</components.inlineCode> static property of
+        the block is a mandatory predicate, which will receive a block a param
+        that should return a boolean indicating wheter this component should be
+        used for the provided block.
+      </div>
+    )}
+  </Annotation>
+</AnnotatedCode>
+
+### 2. Register the component
+
+Once the block is created, we have to add it to the blocks registry:
+
+<AnnotatedCode
+  expanded
+  initiallyOpen={false}
+  name="~drupal/modules/layout/lib/blocks.js"
+  code={require('!!raw-loader!~drupal/modules/layout/lib/blocks.js')}
+>
+  <Annotation line={5} />
+  <Annotation line={11} to={15} />
+</AnnotatedCode>
+
+This is all there is to do to build a simple representation of a block. In the case of `BlockContentBasic`, though, we still need to fetch some of the blocks own data to be shown in the UI:
+
+### 3. Create the fragment
+
+We recommend that the fragment file be placed aside the block's component. In this case:
+
+<AnnotatedCode
+  initiallyOpen={false}
+  name="~drupal/modules/layout/blocks/BlockContentBasic/fragment.gql"
+  code={require('!!raw-loader!~drupal/modules/layout/blocks/BlockContentBasic/fragment.gql')}
+>
+  <Annotation line={1} to={6} />
+</AnnotatedCode>
+
+### 4. Register the fragment
+
+Similar to registering the block, we have to add the block's fragment to the list of fragments:
+
+<AnnotatedCode
+  expanded
+  initiallyOpen={false}
+  name="~drupal/modules/layout/lib/fragments.gql"
+  code={require('!!raw-loader!~drupal/modules/layout/lib/fragments.gql')}
+>
+  <Annotation line={1}>
+    We can use the unofficial syntax for GraphQL imports to include the
+    fragment's from the first file.
+  </Annotation>
+  <Annotation line={15}>
+    And here we inform that, any time blocks are queried, we need to bring data
+    from this new block type.
+  </Annotation>
+</AnnotatedCode>
