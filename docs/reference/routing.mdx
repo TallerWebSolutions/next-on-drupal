@@ -109,9 +109,9 @@ This system is not restricted to entity representing paths, though: we provide t
 You can study the related files in this annotated sources:
 
 <AnnotatedCode
-  name="~drupal/modules/pages/lib/resolver"
+  name="~drupal/modules/pages/lib/resolver.js"
   initiallyOpen={false}
-  code={require('!!raw-loader!~drupal/modules/pages/lib/resolver')}
+  code={require('!!raw-loader!~drupal/modules/pages/lib/resolver.js')}
 >
   <Annotation line={25} lens={{ before: 5, after: 7 }}>
     To avoid unecessary Drupal hits, we must ignore some known uninstering paths such as Next.js' development files.
@@ -136,8 +136,8 @@ You can study the related files in this annotated sources:
 
 <AnnotatedCode
   initiallyOpen={false}
-  name="~drupal/modules/pages/lib/routes"
-  code={require('!!raw-loader!~drupal/modules/pages/lib/routes')}
+  name="~drupal/modules/pages/lib/routes.js"
+  code={require('!!raw-loader!~drupal/modules/pages/lib/routes.js')}
 >
   <Annotation line={26} to={29}>
     This is the map of known Drupal routes. Each property on this object represents a kind of route that can be handled by the application. The key is a unique name, and is not used in any form of logic - we conventionally use the path of the page component. The value is a predicate function, which will be executed with a route object as param, and must return a boolean indicating if this is a known route.
@@ -150,8 +150,8 @@ You can study the related files in this annotated sources:
 
 <AnnotatedCode
   initiallyOpen={false}
-  name="~client/pages/drupal"
-  code={require('!!raw-loader!~client/pages/drupal')}
+  name="~client/pages/drupal/index.js"
+  code={require('!!raw-loader!~client/pages/drupal/index.js')}
 >
   <Annotation step="resolve" line={4} />
   <Annotation step="resolve" line={12} to={15}>
@@ -173,8 +173,8 @@ You can study the related files in this annotated sources:
 
 <AnnotatedCode
   initiallyOpen={false}
-  name="~drupal/modules/pages/containers/DrupalPageResolverContainer"
-  code={require('!!raw-loader!~drupal/modules/pages/containers/DrupalPageResolverContainer')}
+  name="~drupal/modules/pages/containers/DrupalPageResolverContainer.js"
+  code={require('!!raw-loader!~drupal/modules/pages/containers/DrupalPageResolverContainer.js')}
 >
   <Annotation line={4} />
 
@@ -185,8 +185,8 @@ You can study the related files in this annotated sources:
 
 <AnnotatedCode
   initiallyOpen={false}
-  name="~drupal/modules/pages/lib/pages"
-  code={require('!!raw-loader!~drupal/modules/pages/lib/pages')}
+  name="~drupal/modules/pages/lib/pages.js"
+  code={require('!!raw-loader!~drupal/modules/pages/lib/pages.js')}
 >
   <Annotation step="pages" line={7} />
   <Annotation step="pages" line={9} to={10} />
