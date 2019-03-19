@@ -1,5 +1,5 @@
 import React, { memo, Children, PureComponent, Fragment } from 'react'
-import { bool, string, node, object, any } from 'prop-types'
+import { arrayOf, bool, string, node, object, any } from 'prop-types'
 import styled, { css } from 'styled-components'
 import classnames from 'classnames'
 // import { string as toStyleString } from 'to-style'
@@ -170,13 +170,13 @@ class AnnotatedCode extends PureComponent {
     expanded: bool,
     children: node,
     name: string,
-    initialStep: any
+    steps: arrayOf(any)
   }
 
   static defaultProps = {
     initiallyOpen: true,
     expanded: false,
-    initialStep: null
+    steps: []
   }
 
   constructor (props) {
@@ -185,7 +185,7 @@ class AnnotatedCode extends PureComponent {
     this.state = {
       expanded: !!props.expanded,
       open: this.props.initiallyOpen,
-      step: this.props.initialStep
+      step: this.props.steps[0] || null
     }
   }
 
@@ -201,14 +201,13 @@ class AnnotatedCode extends PureComponent {
   setStep = step => this.setState({ step })
 
   render () {
-    const { name, code, children, components } = this.props
+    const { steps, name, code, children, components } = this.props
     const { expanded, open } = this.state
 
     let currentStep = this.state.step
     let hasAnnotations = false
 
     const marks = {}
-    const steps = []
     const lines = code.split('\n')
 
     // fulfil with collapsed.
@@ -216,13 +215,15 @@ class AnnotatedCode extends PureComponent {
       marks[i] = { type: expanded ? 'shown' : 'collapsed' }
     }
 
-    Children.forEach(children, ({ props: { step } }) => {
-      // register step
-      if (steps.indexOf(step) === -1) steps.push(step)
-    })
+    if (!steps.length) {
+      Children.forEach(children, ({ props: { step } }) => {
+        // register step
+        if (step && steps.indexOf(step) === -1) steps.push(step)
+      })
+    }
 
     // assign current step when none defined.
-    if (steps.length > 1 && steps.indexOf(currentStep) === -1) {
+    if (steps.indexOf(currentStep) === -1) {
       currentStep = steps[0]
     }
 
@@ -233,7 +234,7 @@ class AnnotatedCode extends PureComponent {
       } = content
 
       // ignore step.
-      if (step !== currentStep) return
+      if (steps.length && step !== currentStep) return
 
       // enforce
       hasAnnotations = !!children
