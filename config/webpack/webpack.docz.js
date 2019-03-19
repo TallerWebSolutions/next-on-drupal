@@ -1,5 +1,6 @@
 const path = require('path')
 const CreateFileWebpack = require('create-file-webpack')
+const MiniHtmlWebpackPlugin = require('mini-html-webpack-plugin')
 const slug = require('limax')
 const common = require('./webpack.common')
 const { name } = require('../../package')
@@ -16,6 +17,10 @@ module.exports = config => {
       content: slug(name) + '.surge.sh'
     })
   )
+
+  config.plugins.find(
+    plugin => plugin instanceof MiniHtmlWebpackPlugin
+  ).options.filename = '200.html'
 
   return common(config, {})
 }
