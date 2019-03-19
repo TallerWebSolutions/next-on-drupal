@@ -17,7 +17,7 @@
     "dev:next": "node ./build/server.js",
     "dev:server": "yarn build && concurrently \"yarn build:server --watch\" \"NODE_ENV=production DEBUG=next-on-drupal:* nodemon ./build/server.js -w ./build/server.js\"",
     "docs:build": "docz build",
-    "docs:deploy": "yarn docs:build && surge .docz/dist/",
+    "docs:deploy": "yarn docs:build && surge build/docs",
     "docs:dev": "docz dev",
     "format": "prettier-eslint 'src/**/*.js' --write",
     "format:package": "sort-package-json",

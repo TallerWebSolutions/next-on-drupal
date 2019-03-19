@@ -12,5 +12,6 @@ module.exports = {
     'Layouts & Blocks'
   ],
   wrapper: 'docs/docz/Provider',
+  dest: 'build/docs',
   modifyBundlerConfig
 }
