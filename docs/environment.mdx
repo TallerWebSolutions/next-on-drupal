@@ -1,0 +1,43 @@
+---
+name: Environment & Commands
+route: /environment
+---
+
+import { Link } from 'docz'
+
+# Env & Commands
+
+## Docker
+
+This boilerplate ships with a Docker container ready for development purposes. It should probably not be used in production, but we strongly recommend that you use this machine, as it will have equal versions on every development machine.
+
+Have a look at the `Makefile` for the container-related commands. To get everything up-and-running, the basic command is:
+
+```sh
+make run
+```
+
+## Scripts and Commands
+
+Besides the basic scripts shown in the [Getting Started](/getting-started), there are a bunch of task-specific or context-specific commands you can use as fit:
+
+| Command          | Description                                                                          | Options  |
+| ---------------- | ------------------------------------------------------------------------------------ | -------- |
+| `analyze`        | Webpack bundle analyzer                                                              |          |
+| `build`          | Build both client & server codes                                                     |          |
+| `build:next`     | Build only the client code (Next.js pages)                                           |          |
+| `build:server`   | Build only the server code (express)                                                 |          |
+| `clean`          | Clean any building generated files                                                   |          |
+| `dev`            | Starts development of both client & server with proper watchers                      |          |
+| `dev:next`       | Starts development of only the client (must have server built)                       |          |
+| `dev:server`     | Starts development of only the server (must have client built)                       |          |
+| `docs:build`     | Build the docs                                                                       | `--help` |
+| `docs:deploy`    | Deploy the docs, using surge (see `./config/webpack/webpack.docz` for CNAME configs) |          |
+| `docs:dev`       | Starts development of the docs                                                       | `--help` |
+| `format`         | Format source code using prettier                                                    | `--help` |
+| `format:package` | Format the `package.json`                                                            |          |
+| `lint`           | Verifies code style complience                                                       | `--help` |
+| `qa`             | Run quality assurance scripts                                                        |          |
+| `start`          | Start the application on production (must have server & client built)                |          |
+| `test`           | Run unit tests                                                                       | `--help` |
+| `test:e2e`       | Run E2E tests (cypress)                                                              | `--help` |
