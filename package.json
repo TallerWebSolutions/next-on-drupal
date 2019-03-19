@@ -27,6 +27,8 @@
     "prepush": "yarn qa",
     "qa": "yarn lint && yarn test",
     "start": "NODE_ENV=production node ./build/server.js",
+    "storybook": "start-storybook -p 6006 -c ./config/storybook/",
+    "storybook:build": "build-storybook",
     "test": "echo 'Not implemented yet'"
   },
   "lint-staged": {
@@ -59,6 +61,11 @@
     "url-parse": "^1.4.4"
   },
   "devDependencies": {
+    "@babel/core": "^7.3.4",
+    "@storybook/addon-actions": "^5.0.3",
+    "@storybook/addon-links": "^5.0.3",
+    "@storybook/addons": "^5.0.3",
+    "@storybook/react": "^5.0.3",
     "@zeit/next-bundle-analyzer": "^0.1.2",
     "babel-eslint": "^10.0.1",
     "babel-loader": "^8.0.5",

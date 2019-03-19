@@ -11,3 +11,4 @@ build
 coverage
 bundles
 .docz
+storybook-static
