@@ -4,7 +4,7 @@
  * Useful to unifying general meta-data/layout setup.
  */
 
-import { Fragment } from 'react'
+import React, { Fragment } from 'react'
 import { string, node } from 'prop-types'
 import Head from 'next/head'
 

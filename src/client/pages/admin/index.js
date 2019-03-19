@@ -1,3 +1,4 @@
+import React from 'react'
 import AdminPage from '~client/components/AdminPage'
 
 const Admin = () => <AdminPage>Área administrativa</AdminPage>

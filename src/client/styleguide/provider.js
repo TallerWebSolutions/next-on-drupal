@@ -1,4 +1,4 @@
-import { Fragment } from 'react'
+import React, { Fragment } from 'react'
 import { createGlobalStyle } from 'styled-components'
 
 import { colors } from '~styleguide'

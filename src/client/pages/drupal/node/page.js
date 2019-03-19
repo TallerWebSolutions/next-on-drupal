@@ -1,3 +1,4 @@
+import React from 'react'
 import PublicPage from '~client/components/PublicPage'
 
 const NodePagePage = () => (
