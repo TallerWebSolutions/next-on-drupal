@@ -38,6 +38,8 @@ On [the documentation](https://next-on-drupal.surge.sh) you find explanation on 
     - [x] Layout & Blocks
     - [x] Composition pattern
     - [x] Project structure
+    - [ ] Troubleshooting
+      - [ ] `Unexpected < in JSON` (access? memory?)
 
 - **Code/project quality**
 
