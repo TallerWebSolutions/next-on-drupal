@@ -1,0 +1,199 @@
+---
+name: App Structure
+route: /structure
+---
+
+import AnnotatedCode, { Annotation } from '~docz/AnnotatedCode'
+
+# App Structure
+
+<AnnotatedCode
+  expanded
+  steps={['source', 'client', 'server', 'config', 'docs']}
+  name="files"
+  code={`
+├── config
+│   ├── babel
+│   │   ├── babel.common.js
+│   │   ├── babel.next.js
+│   │   └── babel.server.js
+│   ├── docker
+│   │   └── Dockerfile
+│   └── webpack
+│       ├── webpack.common.js
+│       ├── webpack.docz.js
+│       ├── webpack.next.js
+│       └── webpack.server.js
+├── docs
+│   ├── concepts
+│   │   └── composition.mdx
+│   ├── docz
+│   │   ├── AnnotatedCode.js
+│   │   └── Provider.js
+│   ├── reference
+│   │   ├── layouts.mdx
+│   │   └── routing.mdx
+│   ├── getting-started.mdx
+│   ├── intro.mdx
+│   └── structure.mdx
+├── pages -> src/client/pages/
+├── src
+│   ├── client
+│   │   ├── api
+│   │   │   ├── lib
+│   │   │   │   ├── fragment-matcher-query.gql
+│   │   │   │   └── introspection.js
+│   │   │   ├── link
+│   │   │   │   ├── http.js
+│   │   │   │   └── index.js
+│   │   │   ├── client.js
+│   │   │   └── provider.js
+│   │   ├── components
+│   │   │   ├── AdminPage.js
+│   │   │   ├── ErrorPage404.js
+│   │   │   ├── ErrorPage500.js
+│   │   │   ├── ErrorPage.js
+│   │   │   ├── LoadingPublicPage.js
+│   │   │   ├── Page.js
+│   │   │   └── PublicPage.js
+│   │   ├── modules
+│   │   │   └── drupal
+│   │   │       └── modules
+│   │   │           ├── layout
+│   │   │           │   ├── blocks
+│   │   │           │   │   ├── BlockContentBasic
+│   │   │           │   │   │   ├── BlockContentBasic.js
+│   │   │           │   │   │   └── fragment.gql
+│   │   │           │   │   ├── BlockNotFound.js
+│   │   │           │   │   └── BlockSiteBranding.js
+│   │   │           │   ├── components
+│   │   │           │   │   └── BlockRegion.js
+│   │   │           │   ├── containers
+│   │   │           │   │   ├── BlockRegionContainer
+│   │   │           │   │   │   ├── BlockRegionContainer.js
+│   │   │           │   │   │   └── query.gql
+│   │   │           │   │   └── BlockResolverContainer.js
+│   │   │           │   ├── lib
+│   │   │           │   │   ├── blocks.js
+│   │   │           │   │   ├── fragments.gql
+│   │   │           │   │   └── util.js
+│   │   │           │   └── README.md
+│   │   │           └── pages
+│   │   │               ├── containers
+│   │   │               │   └── DrupalPageResolverContainer.js
+│   │   │               ├── lib
+│   │   │               │   ├── pages.js
+│   │   │               │   ├── resolver.js
+│   │   │               │   ├── route-query.gql
+│   │   │               │   └── routes.js
+│   │   │               └── README.md
+│   │   ├── pages
+│   │   │   ├── admin
+│   │   │   │   └── index.js
+│   │   │   ├── drupal
+│   │   │   │   ├── node
+│   │   │   │   │   ├── article
+│   │   │   │   │   │   ├── fragment.gql
+│   │   │   │   │   │   ├── index.js
+│   │   │   │   │   │   └── query.gql
+│   │   │   │   │   └── page.js
+│   │   │   │   └── index.js
+│   │   │   ├── \_app.js
+│   │   │   ├── \_document.js
+│   │   │   └── index.js
+│   │   └── styleguide
+│   │       ├── components
+│   │       │   └── Logo.js
+│   │       ├── colors.js
+│   │       ├── index.js
+│   │       └── provider.js
+│   ├── server
+│   │   └── index.js
+│   ├── debugger.js
+│   └── env.js
+├── docker-compose.yml
+├── doczrc.js
+├── jsconfig.json
+├── Makefile
+├── next.config.js
+├── now.json
+├── package.json
+├── README.md
+├── yarn-error.log
+└── yarn.lock
+`}
+>
+  <Annotation step="source" line={27} to={100}>
+    The src directory should hold all application code, be it server-side or
+    client-side.
+  </Annotation>
+  <Annotation step="client" line={30} to={37}>
+    The api directory holds GraphQL client setup. Any new link (such as
+    persisted-queries or authentication) should probably be added here.
+  </Annotation>
+  <Annotation step="client" line={38} to={45}>
+    Components directory is dedicated to project-wide components. Base layouting
+    and global things can be placed here, but take care not to have it bloated.
+  </Annotation>
+  <Annotation step="client" line={47} to={76}>
+    {({ components }) => (
+      <div>
+        Modules directory is where most of the business logic should be placed.
+        The initial <components.inlineCode>drupal</components.inlineCode> is an
+        example of how to structure modules, but basically they should be
+        fractal, and follow the same structure as the client-source root.
+      </div>
+    )}
+  </Annotation>
+  <Annotation step="client" line={78} to={90}>
+    {({ components }) => (
+      <div>
+        Usually, Next.js projects hold the special{' '}
+        <components.inlineCode>pages</components.inlineCode> directory on the
+        root level. We slightly modify it here: we keep a symbolic link from the
+        root to <components.inlineCode>src/client/pages</components.inlineCode>,
+        so that all source code can be found within the same base directory.
+      </div>
+    )}
+  </Annotation>
+  <Annotation step="client" line={92} to={96}>
+    {({ components }) => (
+      <div>
+        A major part of developing interfaces is done on UI components, and most
+        UI components are business agnostics; buttons; lists; tables; headings;
+        etc. Think of the{' '}
+        <components.inlineCode>styleguide</components.inlineCode> as an special
+        module with the purpose of building a concise set of single-purposed UI
+        components, reused as if it was a third-party module througout the
+        application. In fact, you can even import directly to the styleguide
+        using the <components.inlineCode>~styleguide</components.inlineCode>{' '}
+        alias, anywhere in the code. Try to export every single asset from the
+        styleguide directly from it's root, so that we can isolate the knowledge
+        about the styleguide structure from the other modules.
+      </div>
+    )}
+  </Annotation>
+  <Annotation step="server" line={97} to={98}>
+    Server-side specific code should reside here. At the beggining it might
+    contain a very small amount of code, but often projects grow to have many
+    express handlers for a variety of purposes. Consider having these handlers
+    organized it own files, simplifying maintaince.
+  </Annotation>
+  <Annotation step="config" line={2}>
+    Project configuration files organized by kind and purpose.
+  </Annotation>
+  <Annotation step="config" line={4} to={6}>
+    Babel configs often get confusing in Next.js project, most notably because
+    there are multiple sub-applications: Next.js itself; the server; the tests;
+    the docs; etc. We facilitate things by keeping everything Babel related in
+    the same place, making reuse of configuration a breeze.
+  </Annotation>
+  <Annotation step="config" line={10} to={13}>
+    Webpack configs follow the same pattern as Babel's.
+  </Annotation>
+  <Annotation step="docs" line={14} to={25}>
+    Docs hold all files docz related. At first, it holds this very own
+    documentation. You might keep and extend it, or simply replace it. As you
+    wish.
+  </Annotation>
+</AnnotatedCode>
