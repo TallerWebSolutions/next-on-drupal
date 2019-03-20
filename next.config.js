@@ -1,6 +1,5 @@
-const compose = require('next-compose')
+const withPlugins = require('next-compose-plugins')
 const withBundleAnalyzer = require('@zeit/next-bundle-analyzer')
-
 const webpack = require('./config/webpack/webpack.next')
 
 // webpack bundle analyzer.
@@ -26,7 +25,7 @@ const analyzer = [
 // core NextJS config.
 const core = {
   webpack,
-  target: 'server',
+  target: process.env.DEPLOYING ? 'serverless' : 'server',
   distDir: 'build/client',
   serverRuntimeConfig: {},
   // available to both client and server-side.
@@ -35,4 +34,4 @@ const core = {
   }
 }
 
-module.exports = compose([analyzer, core])
+module.exports = withPlugins([analyzer, core])

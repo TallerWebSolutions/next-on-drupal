@@ -1,5 +1,5 @@
 {
   "version": 2,
   "name": "next-on-drupal",
-  "builds": [{ "src": "package.json", "use": "@now/next" }]
+  "builds": [{ "src": "next.config.js", "use": "@now/next" }]
 }
