@@ -25,7 +25,7 @@ const analyzer = [
 // core NextJS config.
 const core = {
   webpack,
-  target: process.env.DEPLOYING ? 'serverless' : 'server',
+  target: 'server',
   distDir: 'build/client',
   serverRuntimeConfig: {},
   // available to both client and server-side.
