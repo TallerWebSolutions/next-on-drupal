@@ -48,8 +48,14 @@ export default App =>
     static async getInitialProps (ctx) {
       const props = App.getInitialProps ? await App.getInitialProps(ctx) : {}
 
-      // instrospect link for the fragment-matcher needs.
-      const introspection = await introspectLink(link)
+      let introspection = null
+
+      try {
+        // instrospect link for the fragment-matcher needs.
+        introspection = await introspectLink(link)
+      } catch (error) {
+        console.error('GraphQL introspection error:', error.message)
+      }
 
       // inject Apollo introspection on the page's initial properties.
       props.__APOLLO_INTROSPECTION__ = introspection
@@ -75,7 +81,7 @@ export default App =>
         await getDataFromTree(tree)
       } catch (error) {
         // eslint-disable-next-line no-console
-        console.error('SSR Apollo data loading error:', error)
+        console.error('SSR Apollo data loading error:', error.message)
         // Prevent Apollo Client GraphQL errors from crashing SSR.
         // Handle them in components via the data.error prop:
         // http://dev.apollodata.com/react/api-queries.html#graphql-query-data-error

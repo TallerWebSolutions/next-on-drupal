@@ -32,7 +32,7 @@ const normalize = pipe(
 const handleConnectionError = err => {
   if (err.name === 'FetchError' && err.code === 'ECONNREFUSED') {
     throw new Error(
-      'Could not connect to GraphQL API. During development, make sure you are running it locally. See "https://bitbucket.org/naturacode/naturacf-api" for instructions.'
+      'Could not connect to GraphQL API. During development, make sure you are running it locally.'
     )
   }
 

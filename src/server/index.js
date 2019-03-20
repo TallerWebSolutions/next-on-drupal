@@ -1,6 +1,8 @@
 /* eslint-disable no-console */
 import express from 'express'
 import next from 'next'
+// eslint-disable-next-line node/no-deprecated-api
+import { parse } from 'url'
 
 import { resolve } from '~drupal/modules/pages/lib/resolver'
 
@@ -12,11 +14,24 @@ const initializeServer = () => {
   const server = express()
 
   // Drupal based route resolver.
-  server.get('*', (req, res, next) =>
-    resolve(req).then(route =>
-      route ? app.render(req, res, '/drupal', { route }) : next()
-    )
-  )
+  server.get('*', async (req, res, next) => {
+    const isNextRoute = app.router.match(req, res, parse(req.url, true))
+
+    if (!isNextRoute) {
+      try {
+        const route = await resolve(req)
+
+        if (route) return app.render(req, res, '/drupal', { route })
+      } catch (error) {
+        console.error(
+          `Error resolving path ${req.path} using Drupal: `,
+          error.message
+        )
+      }
+    }
+
+    next()
+  })
 
   // NextJS fallback route resolver.
   server.get('*', (req, res) => handle(req, res))
