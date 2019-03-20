@@ -23,7 +23,9 @@ const NodeArticlePage = ({ route: { entity } }) => (
           <h1>{ node.title }</h1>
           <BlockRegionContainer region='header' />
           <main>
-            <div dangerouslySetInnerHTML={ { __html: node.body.value } } />
+            <div
+              dangerouslySetInnerHTML={ { __html: node.body && node.body.value } }
+            />
           </main>
         </PublicPage>
       )

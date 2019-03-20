@@ -19,21 +19,21 @@ const BlockRegionContainer = ({
     query={ query }
     variables={ { region, path: path || parse(asPath, true).pathname } }
   >
-    { ({ data: { route }, loading, error }) => {
+    { ({ data, loading, error }) => {
       if (loading) return <div>loading...</div>
 
       // let errors be handled above.
       if (error) throw error
 
       // ensure we alert when used on a non-layouted route.
-      if (!route || !route.blocks) {
+      if (!data || !data.route || !data.route.blocks) {
         throw new Error(
           'BlockRegionContainer can only be used on layouted routes.'
         )
       }
 
-      return !route.blocks.length ? null : (
-        <BlockRegion { ...props } blocks={ route.blocks } />
+      return !data.route.blocks.length ? null : (
+        <BlockRegion { ...props } blocks={ data.route.blocks } />
       )
     } }
   </Query>
