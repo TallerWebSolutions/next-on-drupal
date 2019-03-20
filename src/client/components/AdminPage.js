@@ -19,8 +19,4 @@ AdminPage.propTypes = {
   title: string
 }
 
-AdminPage.defaultProps = {
-  title: null
-}
-
 export default AdminPage
