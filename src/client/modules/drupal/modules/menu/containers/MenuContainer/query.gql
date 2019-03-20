@@ -1,0 +1,56 @@
+query MENU(
+  $name: String!
+  $depth1: Boolean!
+  $depth2: Boolean!
+  $depth3: Boolean!
+  $depth4: Boolean!
+  $depth5: Boolean!
+  $depth6: Boolean!
+  $depth7: Boolean!
+  $depth8: Boolean!
+  $depth9: Boolean!
+  $depth10: Boolean!
+) {
+  menu: menuByName(name: $name) {
+    name
+    links @include(if: $depth1) {
+      ...MenuLink
+      links @include(if: $depth2) {
+        ...MenuLink
+        links @include(if: $depth3) {
+          ...MenuLink
+          links @include(if: $depth4) {
+            ...MenuLink
+            links @include(if: $depth5) {
+              ...MenuLink
+              links @include(if: $depth6) {
+                ...MenuLink
+                links @include(if: $depth7) {
+                  ...MenuLink
+                  links @include(if: $depth8) {
+                    ...MenuLink
+                    links @include(if: $depth9) {
+                      ...MenuLink
+                      links @include(if: $depth10) {
+                        ...MenuLink
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}
+
+fragment MenuLink on MenuLink {
+  label
+  expanded
+
+  url {
+    path
+  }
+}
