@@ -2,7 +2,7 @@
 import express from 'express'
 import next from 'next'
 // eslint-disable-next-line node/no-deprecated-api
-import { parse } from 'url'
+// import { parse } from 'url'
 
 import { resolve } from '~drupal/modules/pages/lib/resolver'
 
@@ -15,7 +15,9 @@ const initializeServer = () => {
 
   // Drupal based route resolver.
   server.get('*', async (req, res, next) => {
-    const isNextRoute = app.router.match(req, res, parse(req.url, true))
+    // @TODO: static routing should have precedence over Drupal's.
+    // const isNextRoute = app.router.match(req, res, parse(req.url, true))
+    const isNextRoute = false
 
     if (!isNextRoute) {
       try {
