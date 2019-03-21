@@ -13,6 +13,7 @@ module.exports = {
     'Menus'
   ],
   wrapper: 'docs/docz/Provider',
-  dest: 'build/docs',
+  src: './docs',
+  dest: './build/docs',
   modifyBundlerConfig
 }

@@ -1,14 +1,13 @@
+import React from 'react'
 import { node } from 'prop-types'
-import { ThemeConfig } from 'docz'
+import { useConfig } from 'docz'
 import { ThemeProvider } from 'styled-components'
 
-const Provider = ({ children }) => (
-  <ThemeConfig>
-    { ({ themeConfig }) => (
-      <ThemeProvider theme={ themeConfig }>{ children }</ThemeProvider>
-    ) }
-  </ThemeConfig>
-)
+const Provider = ({ children }) => {
+  const { themeConfig } = useConfig()
+
+  return <ThemeProvider theme={ themeConfig }>{ children }</ThemeProvider>
+}
 
 Provider.propTypes = {
   children: node.isRequired
