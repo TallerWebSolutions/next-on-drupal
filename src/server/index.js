@@ -6,7 +6,9 @@ import next from 'next'
 
 import { resolve } from '~drupal/modules/pages/lib/resolver'
 
-const dev = process.env.NODE_ENV !== 'production'
+const { NODE_ENV, PORT = 3000 } = process.env
+
+const dev = NODE_ENV !== 'production'
 const app = next({ dev })
 const handle = app.getRequestHandler()
 
@@ -38,12 +40,12 @@ const initializeServer = () => {
   // NextJS fallback route resolver.
   server.get('*', (req, res) => handle(req, res))
 
-  server.listen(3000, err => {
+  server.listen(PORT, err => {
     if (err) {
       throw err
     }
     // eslint-disable-next-line no-console
-    console.log('> Ready on http://localhost:3000')
+    console.log(`> Ready on http://localhost:${PORT}`)
   })
 }
 
