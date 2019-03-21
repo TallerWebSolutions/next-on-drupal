@@ -45,10 +45,7 @@ let introspectionData
 /**
  * Imperative introspection fulfil.
  */
-export const saveIntrospectionData = data => {
-  introspectionData = data
-  return data
-}
+export const saveIntrospectionData = data => (introspectionData = data)
 
 /**
  * Performs an fragment-matcher introspection query on the provided link.
