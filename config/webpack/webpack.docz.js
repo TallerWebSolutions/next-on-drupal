@@ -18,9 +18,13 @@ module.exports = config => {
     })
   )
 
-  config.plugins.find(
-    plugin => plugin instanceof MiniHtmlWebpackPlugin
-  ).options.filename = '200.html'
+  // when deployng to surge.sh, we modify the output HTML file name so that
+  // any request on surge is handled using this file.
+  if (process.env.DEPLOYING) {
+    config.plugins.find(
+      plugin => plugin instanceof MiniHtmlWebpackPlugin
+    ).options.filename = '200.html'
+  }
 
   return common(config, {})
 }
