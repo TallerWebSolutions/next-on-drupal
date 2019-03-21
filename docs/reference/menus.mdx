@@ -1,0 +1,65 @@
+---
+name: Menus
+route: /reference/menus
+---
+
+import AnnotatedCode, { Annotation } from '~docz/AnnotatedCode'
+
+# Menus
+
+Drupal has a fully-featured menu administration system which, among other things:
+
+1. Allows for the existence of multiple menus;
+1. Allows any number of links in a menu;
+1. Allows for both internal and external links;
+1. Allows for links to have child links in any depth;
+1. Allows to define which items should be extended;
+
+This system is very user-friendly, and though some times a static set of links should be enough for most institutional sites, together with [Drupal based routing](./routing) the dynamic menu system included in _Next on Drupal_ presents a powerful way to control navigation from the administrative UI of Drupal into the React application.
+
+## Usage
+
+Drupal's GraphQL module already exposes menu information. We levarage that on the `MenuContainer` component to bring this information into the React app.
+
+`MenuContainer` has an interface of props similar to that of `react-apollo`, using render-props to deliver data into presentation components.
+
+Example:
+
+<AnnotatedCode
+  expanded
+  initiallyOpen={false}
+  name="MenuContainer example usage"
+  code={require('!!raw-loader!~docz/samples/MenuContainer.1.js')}
+>
+  <Annotation line={5}>
+    You must inform what menu to load links from (using the machine-name)
+  </Annotation>
+  <Annotation line={11}>
+    You can map the items of a menu to show links
+  </Annotation>
+  <Annotation line={13} to={15}>
+    {({ components }) => (
+      <div>
+        Links can either be internal (
+        <components.inlineCode>routed</components.inlineCode>) or external. In
+        case it is internal, we should delegate to the{' '}
+        <components.inlineCode>/drupal</components.inlineCode> page for the
+        dynamic routing to take place.
+      </div>
+    )}
+  </Annotation>
+</AnnotatedCode>
+
+> Drupal allows for infinity hierarchy on menus. Each link can have it's own `links` property containing it's child links. You can control the depth of links the `MenuContainer` is supposed to bring using the `depth` property, which defaults to `1`.
+
+### Links data
+
+Drupal allows for extending what data a menu link has. Many modules do that for a variety of reasons; from link styling to attribute controls. To adapt `MenuContainer` to request for aditional information on a link, you can modify the `MenuLink` fragment on the GraphQL query used:
+
+<AnnotatedCode
+  initiallyOpen={false}
+  name="~drupal/modules/menu/containers/MenuContainer/query.gql"
+  code={require('!!raw-loader!~drupal/modules/menu/containers/MenuContainer/query.gql')}
+>
+  <Annotation line={49} to={57} />
+</AnnotatedCode>
