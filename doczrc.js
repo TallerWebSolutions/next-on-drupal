@@ -9,7 +9,8 @@ module.exports = {
     'Structure',
     'Composition',
     'Routing',
-    'Layouts & Blocks'
+    'Layouts & Blocks',
+    'Menus'
   ],
   wrapper: 'docs/docz/Provider',
   dest: 'build/docs',
