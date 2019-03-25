@@ -2771,6 +2771,14 @@ apollo-link-http@^1.5.14:
     apollo-link-http-common "^0.2.13"
     tslib "^1.9.3"
 
+apollo-link-schema@^1.2.2:
+  version "1.2.2"
+  resolved "https://registry.yarnpkg.com/apollo-link-schema/-/apollo-link-schema-1.2.2.tgz#9938340c8044f6f5de4c6957f2dab75ed361b35a"
+  integrity sha512-tOXhs3w15qSM9I/kqijiB+9kzJndbszhF+uXmiJ88P6H0ptncrr/9+3EYlnuYoqdEtiVWNj61K83E+7jc8xcYQ==
+  dependencies:
+    apollo-link "^1.2.11"
+    tslib "^1.9.3"
+
 apollo-link@^1.0.0, apollo-link@^1.2.9:
   version "1.2.9"
   resolved "https://registry.yarnpkg.com/apollo-link/-/apollo-link-1.2.9.tgz#40a8f0b90716ce3fd6beb27b7eae1108b92e0054"
@@ -2781,7 +2789,7 @@ apollo-link@^1.0.0, apollo-link@^1.2.9:
     tslib "^1.9.3"
     zen-observable-ts "^0.8.16"
 
-apollo-link@^1.2.11:
+apollo-link@^1.2.11, apollo-link@^1.2.3:
   version "1.2.11"
   resolved "https://registry.yarnpkg.com/apollo-link/-/apollo-link-1.2.11.tgz#493293b747ad3237114ccd22e9f559e5e24a194d"
   integrity sha512-PQvRCg13VduLy3X/0L79M6uOpTh5iHdxnxYuo8yL7sJlWybKRJwsv4IcRBJpMFbChOOaHY7Og9wgPo6DLKDKDA==
@@ -2791,7 +2799,7 @@ apollo-link@^1.2.11:
     tslib "^1.9.3"
     zen-observable-ts "^0.8.18"
 
-apollo-utilities@1.2.1, apollo-utilities@^1.2.1:
+apollo-utilities@1.2.1, apollo-utilities@^1.0.1, apollo-utilities@^1.2.1:
   version "1.2.1"
   resolved "https://registry.yarnpkg.com/apollo-utilities/-/apollo-utilities-1.2.1.tgz#1c3a1ebf5607d7c8efe7636daaf58e7463b41b3c"
   integrity sha512-Zv8Udp9XTSFiN8oyXOjf6PMHepD4yxxReLsl6dPUy5Ths7jti3nmlBzZUOxuTWRwZn0MoclqL7RQ5UEJN8MAxg==
@@ -5153,6 +5161,11 @@ depd@~1.1.1, depd@~1.1.2:
   resolved "https://registry.yarnpkg.com/depd/-/depd-1.1.2.tgz#9bcd52e14c097763e749b274c4346ed2e560b5a9"
   integrity sha1-m81S4UwJd2PnSbJ0xDRu0uVgtak=
 
+deprecated-decorator@^0.1.6:
+  version "0.1.6"
+  resolved "https://registry.yarnpkg.com/deprecated-decorator/-/deprecated-decorator-0.1.6.tgz#00966317b7a12fe92f3cc831f7583af329b86c37"
+  integrity sha1-AJZjF7ehL+kvPMgx91g68ym4bDc=
+
 des.js@^1.0.0:
   version "1.0.0"
   resolved "https://registry.yarnpkg.com/des.js/-/des.js-1.0.0.tgz#c074d2e2aa6a8a9a07dbd61f9a15c2cd83ec8ecc"
@@ -6827,6 +6840,16 @@ get-caller-file@^2.0.1:
   resolved "https://registry.yarnpkg.com/get-caller-file/-/get-caller-file-2.0.5.tgz#4f94412a82db32f36e3b0b9741f8a97feb031f7e"
   integrity sha512-DyFP3BM/3YHTQOCUL/w0OZHR0lpKeGrxotcHWcqNEdnltqFwXVfhEBQ94eIo34AfQpo0rGki4cyIiftY06h2Fg==
 
+get-graphql-schema@^2.1.2:
+  version "2.1.2"
+  resolved "https://registry.yarnpkg.com/get-graphql-schema/-/get-graphql-schema-2.1.2.tgz#ffa418534224a75cd7afc8f87b70109ca9ec3fe9"
+  integrity sha512-1z5Hw91VrE3GrpCZE6lE8Dy+jz4kXWesLS7rCSjwOxf5BOcIedAZeTUJRIeIzmmR+PA9CKOkPTYFRJbdgUtrxA==
+  dependencies:
+    chalk "^2.4.1"
+    graphql "^14.0.2"
+    minimist "^1.2.0"
+    node-fetch "^2.2.0"
+
 get-own-enumerable-property-symbols@^3.0.0:
   version "3.0.0"
   resolved "https://registry.yarnpkg.com/get-own-enumerable-property-symbols/-/get-own-enumerable-property-symbols-3.0.0.tgz#b877b49a5c16aefac3655f2ed2ea5b684df8d203"
@@ -7057,6 +7080,17 @@ graphql-tag@^2.10.1:
   version "2.10.1"
   resolved "https://registry.yarnpkg.com/graphql-tag/-/graphql-tag-2.10.1.tgz#10aa41f1cd8fae5373eaf11f1f67260a3cad5e02"
   integrity sha512-jApXqWBzNXQ8jYa/HLkZJaVw9jgwNqZkywa2zfFn16Iv1Zb7ELNHkJaXHR7Quvd5SIGsy6Ny7SUKATgnu05uEg==
+
+graphql-tools@^4.0.4:
+  version "4.0.4"
+  resolved "https://registry.yarnpkg.com/graphql-tools/-/graphql-tools-4.0.4.tgz#ca08a63454221fdde825fe45fbd315eb2a6d566b"
+  integrity sha512-chF12etTIGVVGy3fCTJ1ivJX2KB7OSG4c6UOJQuqOHCmBQwTyNgCDuejZKvpYxNZiEx7bwIjrodDgDe9RIkjlw==
+  dependencies:
+    apollo-link "^1.2.3"
+    apollo-utilities "^1.0.1"
+    deprecated-decorator "^0.1.6"
+    iterall "^1.1.3"
+    uuid "^3.1.0"
 
 graphql@^14.0.2:
   version "14.1.1"
@@ -8268,7 +8302,7 @@ istanbul-reports@^2.1.1:
   dependencies:
     handlebars "^4.1.0"
 
-iterall@^1.2.2:
+iterall@^1.1.3, iterall@^1.2.2:
   version "1.2.2"
   resolved "https://registry.yarnpkg.com/iterall/-/iterall-1.2.2.tgz#92d70deb8028e0c39ff3164fdbf4d8b088130cd7"
   integrity sha512-yynBb1g+RFUPY64fTrFv7nsjRrENBQJaX2UL+2Szc9REFrSNm1rpSXHGzhmAy7a9uv3vlvgBlXnf9RqmPH1/DA==
