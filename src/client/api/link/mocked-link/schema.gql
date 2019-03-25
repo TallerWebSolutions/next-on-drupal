@@ -1,0 +1,2164 @@
+scalar Any
+
+scalar Binary
+
+"""The 'Custom block' entity type."""
+interface BlockContent {
+  entityLabel: String
+  entityUuid: String
+  entityType: String
+  entityTranslation(language: LanguageId!): Entity
+  entityLanguage: Language
+  entityBundle: String
+  entityTranslations: [Entity]
+  entityChanged(format: String = null): String
+  entityQueryExclusive(filter: EntityQueryFilterInput = null, sort: [EntityQuerySortInput] = null, offset: Int = 0, limit: Int = 10, revisions: EntityQueryRevisionMode = DEFAULT, bundles: EntityQueryBundleMode = SAME): EntityQueryResult!
+  entityId: String
+  entityUrl: Url
+  entityCreated(format: String = null): String
+  entityAccess(operation: String!): Boolean
+  entityPublished: Boolean
+  entityRevisions(filter: EntityQueryFilterInput = null, sort: [EntityQuerySortInput] = null, offset: Int = 0, limit: Int = 10): EntityQueryResult!
+
+  """The custom block ID."""
+  id: Int
+
+  """The custom block UUID."""
+  uuid: String
+
+  """The revision ID."""
+  revisionId: Int
+
+  """The custom block language code."""
+  langcode: FieldBlockContentLangcode
+
+  """The block type."""
+  type: FieldBlockContentType
+
+  """The time that the current revision was created."""
+  revisionCreated: Timestamp
+
+  """The user ID of the author of the current revision."""
+  revisionUser: FieldBlockContentRevisionUser
+
+  """The log entry explaining the changes in this revision."""
+  revisionLog: String
+  status: Boolean
+
+  """A brief description of your block."""
+  info: String
+
+  """The time that the custom block was last edited."""
+  changed: Timestamp
+
+  """A boolean indicating whether this block is reusable."""
+  reusable: Boolean
+
+  """A flag indicating whether this is the default translation."""
+  defaultLangcode: Boolean
+
+  """
+  A flag indicating whether this was a default revision when it was saved.
+  """
+  revisionDefault: Boolean
+
+  """
+  Indicates if the last edit of a translation belongs to current revision.
+  """
+  revisionTranslationAffected: Boolean
+
+  """Renders 'Custom block' entities in the given view mode."""
+  entityRendered(mode: BlockContentDisplayModeId = null): String
+
+  """Query reference: The block type."""
+  queryType(filter: EntityQueryFilterInput = null, sort: [EntityQuerySortInput] = null, offset: Int = 0, limit: Int = 10, revisions: EntityQueryRevisionMode = DEFAULT): EntityQueryResult!
+
+  """Query reference: The user ID of the author of the current revision."""
+  queryRevisionUser(filter: EntityQueryFilterInput = null, sort: [EntityQuerySortInput] = null, offset: Int = 0, limit: Int = 10, revisions: EntityQueryRevisionMode = DEFAULT): EntityQueryResult!
+}
+
+"""The 'Basic block' bundle of the 'Custom block' entity type."""
+type BlockContentBasic implements BlockContent & Entity & EntityPublishable & EntityRevisionable {
+  """The custom block ID."""
+  id: Int
+
+  """The custom block UUID."""
+  uuid: String
+
+  """The revision ID."""
+  revisionId: Int
+
+  """The custom block language code."""
+  langcode: FieldBlockContentLangcode
+
+  """The block type."""
+  type: FieldBlockContentType
+
+  """The time that the current revision was created."""
+  revisionCreated: Timestamp
+
+  """The user ID of the author of the current revision."""
+  revisionUser: FieldBlockContentRevisionUser
+
+  """The log entry explaining the changes in this revision."""
+  revisionLog: String
+  status: Boolean
+
+  """A brief description of your block."""
+  info: String
+
+  """The time that the custom block was last edited."""
+  changed: Timestamp
+
+  """A boolean indicating whether this block is reusable."""
+  reusable: Boolean
+
+  """A flag indicating whether this is the default translation."""
+  defaultLangcode: Boolean
+
+  """
+  A flag indicating whether this was a default revision when it was saved.
+  """
+  revisionDefault: Boolean
+
+  """
+  Indicates if the last edit of a translation belongs to current revision.
+  """
+  revisionTranslationAffected: Boolean
+
+  """Renders 'Custom block' entities in the given view mode."""
+  entityRendered(mode: BlockContentDisplayModeId = null): String
+
+  """Query reference: The block type."""
+  queryType(filter: EntityQueryFilterInput = null, sort: [EntityQuerySortInput] = null, offset: Int = 0, limit: Int = 10, revisions: EntityQueryRevisionMode = DEFAULT): EntityQueryResult!
+
+  """Query reference: The user ID of the author of the current revision."""
+  queryRevisionUser(filter: EntityQueryFilterInput = null, sort: [EntityQuerySortInput] = null, offset: Int = 0, limit: Int = 10, revisions: EntityQueryRevisionMode = DEFAULT): EntityQueryResult!
+  entityLabel: String
+  entityUuid: String
+  entityType: String
+  entityTranslation(language: LanguageId!): Entity
+  entityLanguage: Language
+  entityBundle: String
+  entityTranslations: [Entity]
+  entityChanged(format: String = null): String
+  entityQueryExclusive(filter: EntityQueryFilterInput = null, sort: [EntityQuerySortInput] = null, offset: Int = 0, limit: Int = 10, revisions: EntityQueryRevisionMode = DEFAULT, bundles: EntityQueryBundleMode = SAME): EntityQueryResult!
+  entityId: String
+  entityUrl: Url
+  entityCreated(format: String = null): String
+  entityAccess(operation: String!): Boolean
+  entityPublished: Boolean
+  entityRevisions(filter: EntityQueryFilterInput = null, sort: [EntityQuerySortInput] = null, offset: Int = 0, limit: Int = 10): EntityQueryResult!
+  body: FieldBlockContentBody
+}
+
+"""The available display modes for 'Custom block' entities."""
+enum BlockContentDisplayModeId {
+  """The 'Full' display mode for 'Custom block' entities."""
+  FULL
+}
+
+"""The 'Comment' entity type."""
+interface Comment {
+  entityLabel: String
+  entityUuid: String
+  entityType: String
+  entityTranslation(language: LanguageId!): Entity
+  entityLanguage: Language
+  entityBundle: String
+  entityTranslations: [Entity]
+  entityChanged(format: String = null): String
+  entityQueryExclusive(filter: EntityQueryFilterInput = null, sort: [EntityQuerySortInput] = null, offset: Int = 0, limit: Int = 10, revisions: EntityQueryRevisionMode = DEFAULT, bundles: EntityQueryBundleMode = SAME): EntityQueryResult!
+  entityId: String
+  entityUrl: Url
+  entityCreated(format: String = null): String
+  entityAccess(operation: String!): Boolean
+  entityPublished: Boolean
+  entityRevisions(filter: EntityQueryFilterInput = null, sort: [EntityQuerySortInput] = null, offset: Int = 0, limit: Int = 10): EntityQueryResult!
+  entityOwner: User
+
+  """The comment ID."""
+  cid: Int
+
+  """The comment UUID."""
+  uuid: String
+
+  """The comment language code."""
+  langcode: FieldCommentLangcode
+
+  """The comment type."""
+  commentType: FieldCommentCommentType
+  status: Boolean
+
+  """The parent comment ID if this is a reply to a comment."""
+  pid: FieldCommentPid
+  subject: String
+
+  """The user ID of the comment author."""
+  uid: FieldCommentUid
+
+  """The comment author's name."""
+  name: String
+
+  """The comment author's email address."""
+  mail: String
+
+  """The comment author's home page address."""
+  homepage: String
+
+  """The comment author's hostname."""
+  hostname: String
+
+  """The time that the comment was created."""
+  created: Timestamp
+
+  """The time that the comment was last edited."""
+  changed: Timestamp
+
+  """
+  The alphadecimal representation of the comment's place in a thread, consisting
+  of a base 36 string prefixed by an integer indicating its length.
+  """
+  thread: String
+
+  """The field name through which this comment was added."""
+  fieldName: String
+
+  """A flag indicating whether this is the default translation."""
+  defaultLangcode: Boolean
+
+  """Renders 'Comment' entities in the given view mode."""
+  entityRendered(mode: CommentDisplayModeId = null): String
+
+  """
+  Reverse reference: The parent comment ID if this is a reply to a comment.
+  """
+  reversePidComment(filter: EntityQueryFilterInput = null, sort: [EntityQuerySortInput] = null, offset: Int = 0, limit: Int = 10, revisions: EntityQueryRevisionMode = DEFAULT): EntityQueryResult!
+
+  """Query reference: The comment type."""
+  queryCommentType(filter: EntityQueryFilterInput = null, sort: [EntityQuerySortInput] = null, offset: Int = 0, limit: Int = 10, revisions: EntityQueryRevisionMode = DEFAULT): EntityQueryResult!
+
+  """
+  Query reference: The parent comment ID if this is a reply to a comment.
+  """
+  queryPid(filter: EntityQueryFilterInput = null, sort: [EntityQuerySortInput] = null, offset: Int = 0, limit: Int = 10, revisions: EntityQueryRevisionMode = DEFAULT): EntityQueryResult!
+
+  """
+  Query reference: The ID of the entity of which this comment is a reply.
+  """
+  queryEntityId(filter: EntityQueryFilterInput = null, sort: [EntityQuerySortInput] = null, offset: Int = 0, limit: Int = 10, revisions: EntityQueryRevisionMode = DEFAULT): EntityQueryResult!
+
+  """Query reference: The user ID of the comment author."""
+  queryUid(filter: EntityQueryFilterInput = null, sort: [EntityQuerySortInput] = null, offset: Int = 0, limit: Int = 10, revisions: EntityQueryRevisionMode = DEFAULT): EntityQueryResult!
+
+  """The ID of the entity of which this comment is a reply."""
+  entityIdOfComment: FieldCommentEntityId
+
+  """The entity type to which this comment is attached."""
+  entityTypeOfComment: String
+}
+
+"""The 'Default comments' bundle of the 'Comment' entity type."""
+type CommentComment implements Comment & Entity & EntityPublishable & EntityRevisionable & EntityOwnable {
+  """The comment ID."""
+  cid: Int
+
+  """The comment UUID."""
+  uuid: String
+
+  """The comment language code."""
+  langcode: FieldCommentLangcode
+
+  """The comment type."""
+  commentType: FieldCommentCommentType
+  status: Boolean
+
+  """The parent comment ID if this is a reply to a comment."""
+  pid: FieldCommentPid
+  subject: String
+
+  """The user ID of the comment author."""
+  uid: FieldCommentUid
+
+  """The comment author's name."""
+  name: String
+
+  """The comment author's email address."""
+  mail: String
+
+  """The comment author's home page address."""
+  homepage: String
+
+  """The comment author's hostname."""
+  hostname: String
+
+  """The time that the comment was created."""
+  created: Timestamp
+
+  """The time that the comment was last edited."""
+  changed: Timestamp
+
+  """
+  The alphadecimal representation of the comment's place in a thread, consisting
+  of a base 36 string prefixed by an integer indicating its length.
+  """
+  thread: String
+
+  """The field name through which this comment was added."""
+  fieldName: String
+
+  """A flag indicating whether this is the default translation."""
+  defaultLangcode: Boolean
+
+  """Renders 'Comment' entities in the given view mode."""
+  entityRendered(mode: CommentDisplayModeId = null): String
+
+  """
+  Reverse reference: The parent comment ID if this is a reply to a comment.
+  """
+  reversePidComment(filter: EntityQueryFilterInput = null, sort: [EntityQuerySortInput] = null, offset: Int = 0, limit: Int = 10, revisions: EntityQueryRevisionMode = DEFAULT): EntityQueryResult!
+
+  """Query reference: The comment type."""
+  queryCommentType(filter: EntityQueryFilterInput = null, sort: [EntityQuerySortInput] = null, offset: Int = 0, limit: Int = 10, revisions: EntityQueryRevisionMode = DEFAULT): EntityQueryResult!
+
+  """
+  Query reference: The parent comment ID if this is a reply to a comment.
+  """
+  queryPid(filter: EntityQueryFilterInput = null, sort: [EntityQuerySortInput] = null, offset: Int = 0, limit: Int = 10, revisions: EntityQueryRevisionMode = DEFAULT): EntityQueryResult!
+
+  """
+  Query reference: The ID of the entity of which this comment is a reply.
+  """
+  queryEntityId(filter: EntityQueryFilterInput = null, sort: [EntityQuerySortInput] = null, offset: Int = 0, limit: Int = 10, revisions: EntityQueryRevisionMode = DEFAULT): EntityQueryResult!
+
+  """Query reference: The user ID of the comment author."""
+  queryUid(filter: EntityQueryFilterInput = null, sort: [EntityQuerySortInput] = null, offset: Int = 0, limit: Int = 10, revisions: EntityQueryRevisionMode = DEFAULT): EntityQueryResult!
+
+  """The ID of the entity of which this comment is a reply."""
+  entityIdOfComment: FieldCommentEntityId
+
+  """The entity type to which this comment is attached."""
+  entityTypeOfComment: String
+  entityLabel: String
+  entityUuid: String
+  entityType: String
+  entityTranslation(language: LanguageId!): Entity
+  entityLanguage: Language
+  entityBundle: String
+  entityTranslations: [Entity]
+  entityChanged(format: String = null): String
+  entityQueryExclusive(filter: EntityQueryFilterInput = null, sort: [EntityQuerySortInput] = null, offset: Int = 0, limit: Int = 10, revisions: EntityQueryRevisionMode = DEFAULT, bundles: EntityQueryBundleMode = SAME): EntityQueryResult!
+  entityId: String
+  entityUrl: Url
+  entityCreated(format: String = null): String
+  entityAccess(operation: String!): Boolean
+  entityPublished: Boolean
+  entityRevisions(filter: EntityQueryFilterInput = null, sort: [EntityQuerySortInput] = null, offset: Int = 0, limit: Int = 10): EntityQueryResult!
+  entityOwner: User
+  commentBody: FieldCommentCommentBody
+}
+
+"""The available display modes for 'Comment' entities."""
+enum CommentDisplayModeId {
+  """The 'Full comment' display mode for 'Comment' entities."""
+  FULL
+}
+
+type ConstraintViolation {
+  code: String
+  path: String
+  message: String
+}
+
+"""The 'Contact message' entity type."""
+interface ContactMessage {
+  entityLabel: String
+  entityUuid: String
+  entityType: String
+  entityTranslation(language: LanguageId!): Entity
+  entityLanguage: Language
+  entityBundle: String
+  entityTranslations: [Entity]
+  entityChanged(format: String = null): String
+  entityQueryExclusive(filter: EntityQueryFilterInput = null, sort: [EntityQuerySortInput] = null, offset: Int = 0, limit: Int = 10, revisions: EntityQueryRevisionMode = DEFAULT, bundles: EntityQueryBundleMode = SAME): EntityQueryResult!
+  entityId: String
+  entityUrl: Url
+  entityCreated(format: String = null): String
+  entityAccess(operation: String!): Boolean
+  entityRevisions(filter: EntityQueryFilterInput = null, sort: [EntityQuerySortInput] = null, offset: Int = 0, limit: Int = 10): EntityQueryResult!
+
+  """The message UUID."""
+  uuid: String
+
+  """The message language code."""
+  langcode: FieldContactMessageLangcode
+
+  """The ID of the associated form."""
+  contactForm: FieldContactMessageContactForm
+
+  """The name of the person that is sending the contact message."""
+  name: String
+
+  """The email of the person that is sending the contact message."""
+  mail: String
+  subject: String
+  message: String
+
+  """Whether to send a copy of the message to the sender."""
+  copy: Boolean
+
+  """The ID of the recipient user for personal contact messages."""
+  recipient: FieldContactMessageRecipient
+
+  """Renders 'Contact message' entities in the given view mode."""
+  entityRendered: String
+
+  """Query reference: The ID of the associated form."""
+  queryContactForm(filter: EntityQueryFilterInput = null, sort: [EntityQuerySortInput] = null, offset: Int = 0, limit: Int = 10, revisions: EntityQueryRevisionMode = DEFAULT): EntityQueryResult!
+
+  """
+  Query reference: The ID of the recipient user for personal contact messages.
+  """
+  queryRecipient(filter: EntityQueryFilterInput = null, sort: [EntityQuerySortInput] = null, offset: Int = 0, limit: Int = 10, revisions: EntityQueryRevisionMode = DEFAULT): EntityQueryResult!
+}
+
+"""The 'Website feedback' bundle of the 'Contact message' entity type."""
+type ContactMessageFeedback implements ContactMessage & Entity & EntityRevisionable {
+  """The message UUID."""
+  uuid: String
+
+  """The message language code."""
+  langcode: FieldContactMessageLangcode
+
+  """The ID of the associated form."""
+  contactForm: FieldContactMessageContactForm
+
+  """The name of the person that is sending the contact message."""
+  name: String
+
+  """The email of the person that is sending the contact message."""
+  mail: String
+  subject: String
+  message: String
+
+  """Whether to send a copy of the message to the sender."""
+  copy: Boolean
+
+  """The ID of the recipient user for personal contact messages."""
+  recipient: FieldContactMessageRecipient
+
+  """Renders 'Contact message' entities in the given view mode."""
+  entityRendered: String
+
+  """Query reference: The ID of the associated form."""
+  queryContactForm(filter: EntityQueryFilterInput = null, sort: [EntityQuerySortInput] = null, offset: Int = 0, limit: Int = 10, revisions: EntityQueryRevisionMode = DEFAULT): EntityQueryResult!
+
+  """
+  Query reference: The ID of the recipient user for personal contact messages.
+  """
+  queryRecipient(filter: EntityQueryFilterInput = null, sort: [EntityQuerySortInput] = null, offset: Int = 0, limit: Int = 10, revisions: EntityQueryRevisionMode = DEFAULT): EntityQueryResult!
+  entityLabel: String
+  entityUuid: String
+  entityType: String
+  entityTranslation(language: LanguageId!): Entity
+  entityLanguage: Language
+  entityBundle: String
+  entityTranslations: [Entity]
+  entityChanged(format: String = null): String
+  entityQueryExclusive(filter: EntityQueryFilterInput = null, sort: [EntityQuerySortInput] = null, offset: Int = 0, limit: Int = 10, revisions: EntityQueryRevisionMode = DEFAULT, bundles: EntityQueryBundleMode = SAME): EntityQueryResult!
+  entityId: String
+  entityUrl: Url
+  entityCreated(format: String = null): String
+  entityAccess(operation: String!): Boolean
+  entityRevisions(filter: EntityQueryFilterInput = null, sort: [EntityQuerySortInput] = null, offset: Int = 0, limit: Int = 10): EntityQueryResult!
+}
+
+"""
+The 'Personal contact form' bundle of the 'Contact message' entity type.
+"""
+type ContactMessagePersonal implements ContactMessage & Entity & EntityRevisionable {
+  """The message UUID."""
+  uuid: String
+
+  """The message language code."""
+  langcode: FieldContactMessageLangcode
+
+  """The ID of the associated form."""
+  contactForm: FieldContactMessageContactForm
+
+  """The name of the person that is sending the contact message."""
+  name: String
+
+  """The email of the person that is sending the contact message."""
+  mail: String
+  subject: String
+  message: String
+
+  """Whether to send a copy of the message to the sender."""
+  copy: Boolean
+
+  """The ID of the recipient user for personal contact messages."""
+  recipient: FieldContactMessageRecipient
+
+  """Renders 'Contact message' entities in the given view mode."""
+  entityRendered: String
+
+  """Query reference: The ID of the associated form."""
+  queryContactForm(filter: EntityQueryFilterInput = null, sort: [EntityQuerySortInput] = null, offset: Int = 0, limit: Int = 10, revisions: EntityQueryRevisionMode = DEFAULT): EntityQueryResult!
+
+  """
+  Query reference: The ID of the recipient user for personal contact messages.
+  """
+  queryRecipient(filter: EntityQueryFilterInput = null, sort: [EntityQuerySortInput] = null, offset: Int = 0, limit: Int = 10, revisions: EntityQueryRevisionMode = DEFAULT): EntityQueryResult!
+  entityLabel: String
+  entityUuid: String
+  entityType: String
+  entityTranslation(language: LanguageId!): Entity
+  entityLanguage: Language
+  entityBundle: String
+  entityTranslations: [Entity]
+  entityChanged(format: String = null): String
+  entityQueryExclusive(filter: EntityQueryFilterInput = null, sort: [EntityQuerySortInput] = null, offset: Int = 0, limit: Int = 10, revisions: EntityQueryRevisionMode = DEFAULT, bundles: EntityQueryBundleMode = SAME): EntityQueryResult!
+  entityId: String
+  entityUrl: Url
+  entityCreated(format: String = null): String
+  entityAccess(operation: String!): Boolean
+  entityRevisions(filter: EntityQueryFilterInput = null, sort: [EntityQuerySortInput] = null, offset: Int = 0, limit: Int = 10): EntityQueryResult!
+}
+
+scalar Date
+
+scalar DateTime
+
+scalar DatetimeIso8601
+
+scalar DateTimeTz
+
+type DefaultInternalUrl implements InternalUrl & Url {
+  breadcrumb: [Link]
+  blocksByRegion(region: String!): [Entity]
+  languageSwitchLinks(language: LanguageId = null): [LanguageSwitchLink]
+
+  """The url's path alias if any."""
+  pathAlias: String
+
+  """The route's internal path."""
+  pathInternal: String
+  request: InternalResponse
+  languageInterfaceContext: Language
+  languageContentContext: Language
+  nodeContext: Node
+  currentUserContext: User
+
+  """The translated url object."""
+  translate(language: LanguageId!): Url
+
+  """Boolean indicating whether this is a routed (internal) path."""
+  routed: Boolean
+
+  """The processed url path."""
+  path: String
+}
+
+"""Common entity interface containing generic entity properties."""
+interface Entity {
+  entityLabel: String
+  entityUuid: String
+  entityType: String
+  entityTranslation(language: LanguageId!): Entity
+  entityLanguage: Language
+  entityBundle: String
+  entityTranslations: [Entity]
+  entityChanged(format: String = null): String
+  entityQueryExclusive(filter: EntityQueryFilterInput = null, sort: [EntityQuerySortInput] = null, offset: Int = 0, limit: Int = 10, revisions: EntityQueryRevisionMode = DEFAULT, bundles: EntityQueryBundleMode = SAME): EntityQueryResult!
+  entityId: String
+  entityUrl: Url
+  entityCreated(format: String = null): String
+  entityAccess(operation: String!): Boolean
+}
+
+"""The canonical entity url."""
+type EntityCanonicalUrl implements InternalUrl & Url {
+  breadcrumb: [Link]
+  blocksByRegion(region: String!): [Entity]
+  languageSwitchLinks(language: LanguageId = null): [LanguageSwitchLink]
+
+  """The url's path alias if any."""
+  pathAlias: String
+
+  """The route's internal path."""
+  pathInternal: String
+  request: InternalResponse
+  languageInterfaceContext: Language
+  languageContentContext: Language
+  nodeContext: Node
+  currentUserContext: User
+
+  """The translated url object."""
+  translate(language: LanguageId!): Url
+
+  """Boolean indicating whether this is a routed (internal) path."""
+  routed: Boolean
+
+  """The processed url path."""
+  path: String
+
+  """The entity belonging to the current url."""
+  entity: Entity
+}
+
+type EntityCrudOutput {
+  entity: Entity
+  violations: [ConstraintViolation]
+  errors: [String]
+}
+
+"""Common interface for entities that are describable."""
+interface EntityDescribable {
+  entityLabel: String
+  entityUuid: String
+  entityType: String
+  entityTranslation(language: LanguageId!): Entity
+  entityLanguage: Language
+  entityBundle: String
+  entityTranslations: [Entity]
+  entityChanged(format: String = null): String
+  entityQueryExclusive(filter: EntityQueryFilterInput = null, sort: [EntityQuerySortInput] = null, offset: Int = 0, limit: Int = 10, revisions: EntityQueryRevisionMode = DEFAULT, bundles: EntityQueryBundleMode = SAME): EntityQueryResult!
+  entityId: String
+  entityUrl: Url
+  entityCreated(format: String = null): String
+  entityAccess(operation: String!): Boolean
+  entityDescription: String
+}
+
+"""Common interface for entities that have a owner."""
+interface EntityOwnable {
+  entityLabel: String
+  entityUuid: String
+  entityType: String
+  entityTranslation(language: LanguageId!): Entity
+  entityLanguage: Language
+  entityBundle: String
+  entityTranslations: [Entity]
+  entityChanged(format: String = null): String
+  entityQueryExclusive(filter: EntityQueryFilterInput = null, sort: [EntityQuerySortInput] = null, offset: Int = 0, limit: Int = 10, revisions: EntityQueryRevisionMode = DEFAULT, bundles: EntityQueryBundleMode = SAME): EntityQueryResult!
+  entityId: String
+  entityUrl: Url
+  entityCreated(format: String = null): String
+  entityAccess(operation: String!): Boolean
+  entityOwner: User
+}
+
+"""Common interface for entities that are publishable."""
+interface EntityPublishable {
+  entityLabel: String
+  entityUuid: String
+  entityType: String
+  entityTranslation(language: LanguageId!): Entity
+  entityLanguage: Language
+  entityBundle: String
+  entityTranslations: [Entity]
+  entityChanged(format: String = null): String
+  entityQueryExclusive(filter: EntityQueryFilterInput = null, sort: [EntityQuerySortInput] = null, offset: Int = 0, limit: Int = 10, revisions: EntityQueryRevisionMode = DEFAULT, bundles: EntityQueryBundleMode = SAME): EntityQueryResult!
+  entityId: String
+  entityUrl: Url
+  entityCreated(format: String = null): String
+  entityAccess(operation: String!): Boolean
+  entityPublished: Boolean
+}
+
+enum EntityQueryBundleMode {
+  """
+  Loads only entities that share the same bundle with the parent entity.
+  """
+  SAME
+
+  """Loads entities across all bundles."""
+  ALL
+}
+
+input EntityQueryFilterConditionInput {
+  field: String!
+  value: [String]
+  operator: QueryOperator
+  language: LanguageId
+  enabled: Boolean
+}
+
+input EntityQueryFilterInput {
+  conditions: [EntityQueryFilterConditionInput]
+  groups: [EntityQueryFilterInput]
+  conjunction: QueryConjunction
+}
+
+"""
+Wrapper type for entity query results containing the list of loaded entities and
+the full entity count for pagination purposes.
+"""
+type EntityQueryResult {
+  count: Int
+  entities(language: LanguageId = null): [Entity]
+}
+
+enum EntityQueryRevisionMode {
+  """Loads the current (default) revisions."""
+  DEFAULT
+
+  """Loads all revisions."""
+  ALL
+
+  """Loads latest revision."""
+  LATEST
+}
+
+input EntityQuerySortInput {
+  field: String!
+  direction: SortOrder
+}
+
+"""Common interface for entities that are revisionable."""
+interface EntityRevisionable {
+  entityLabel: String
+  entityUuid: String
+  entityType: String
+  entityTranslation(language: LanguageId!): Entity
+  entityLanguage: Language
+  entityBundle: String
+  entityTranslations: [Entity]
+  entityChanged(format: String = null): String
+  entityQueryExclusive(filter: EntityQueryFilterInput = null, sort: [EntityQuerySortInput] = null, offset: Int = 0, limit: Int = 10, revisions: EntityQueryRevisionMode = DEFAULT, bundles: EntityQueryBundleMode = SAME): EntityQueryResult!
+  entityId: String
+  entityUrl: Url
+  entityCreated(format: String = null): String
+  entityAccess(operation: String!): Boolean
+  entityRevisions(filter: EntityQueryFilterInput = null, sort: [EntityQuerySortInput] = null, offset: Int = 0, limit: Int = 10): EntityQueryResult!
+}
+
+type ExternalResponse {
+  code: Int
+  content: String
+  header(key: String = null): String
+}
+
+type ExternalUrl implements Url {
+  """The translated url object."""
+  translate(language: LanguageId!): Url
+
+  """Boolean indicating whether this is a routed (internal) path."""
+  routed: Boolean
+
+  """The processed url path."""
+  path: String
+  request: ExternalResponse
+}
+
+type FieldBlockContentBody {
+  value: String
+  format: String
+
+  """The text with the text format applied."""
+  processed: String
+  summary: String
+
+  """The summary text with the text format applied."""
+  summaryProcessed: String
+}
+
+"""The custom block language code."""
+type FieldBlockContentLangcode {
+  value: String
+
+  """The referenced language"""
+  language: Language
+}
+
+"""The user ID of the author of the current revision."""
+type FieldBlockContentRevisionUser {
+  targetId: Int
+
+  """The referenced entity"""
+  entity: User
+}
+
+"""The block type."""
+type FieldBlockContentType {
+  targetId: String
+
+  """The referenced entity"""
+  entity: Entity
+}
+
+type FieldCommentCommentBody {
+  value: String
+  format: String
+
+  """The text with the text format applied."""
+  processed: String
+}
+
+"""The comment type."""
+type FieldCommentCommentType {
+  targetId: String
+
+  """The referenced entity"""
+  entity: Entity
+}
+
+"""The ID of the entity of which this comment is a reply."""
+type FieldCommentEntityId {
+  targetId: Int
+
+  """The referenced entity"""
+  entity: Node
+}
+
+"""The comment language code."""
+type FieldCommentLangcode {
+  value: String
+
+  """The referenced language"""
+  language: Language
+}
+
+"""The parent comment ID if this is a reply to a comment."""
+type FieldCommentPid {
+  targetId: Int
+
+  """The referenced entity"""
+  entity: Comment
+}
+
+"""The user ID of the comment author."""
+type FieldCommentUid {
+  targetId: Int
+
+  """The referenced entity"""
+  entity: User
+}
+
+"""The ID of the associated form."""
+type FieldContactMessageContactForm {
+  targetId: String
+
+  """The referenced entity"""
+  entity: Entity
+}
+
+"""The message language code."""
+type FieldContactMessageLangcode {
+  value: String
+
+  """The referenced language"""
+  language: Language
+}
+
+"""The ID of the recipient user for personal contact messages."""
+type FieldContactMessageRecipient {
+  targetId: Int
+
+  """The referenced entity"""
+  entity: User
+}
+
+"""The file language code."""
+type FieldFileLangcode {
+  value: String
+
+  """The referenced language"""
+  language: Language
+}
+
+"""The user ID of the file."""
+type FieldFileUid {
+  targetId: Int
+
+  """The referenced entity"""
+  entity: User
+}
+
+"""The URI to access the file (either local or remote)."""
+type FieldFileUri {
+  value: String
+  url: String
+}
+
+"""The menu link language code."""
+type FieldMenuLinkContentLangcode {
+  value: String
+
+  """The referenced language"""
+  language: Language
+}
+
+"""The location this menu link points to."""
+type FieldMenuLinkContentLink {
+  uri: String
+  title: String
+  options: Map
+  attribute(key: String!): String
+  url: Url
+}
+
+type FieldNodeBody {
+  value: String
+  format: String
+
+  """The text with the text format applied."""
+  processed: String
+  summary: String
+
+  """The summary text with the text format applied."""
+  summaryProcessed: String
+}
+
+type FieldNodeComment {
+  status: Int
+  cid: Int
+
+  """The time that the last comment was created."""
+  lastCommentTimestamp: Int
+
+  """The name of the user posting the last comment."""
+  lastCommentName: String
+  lastCommentUid: Int
+
+  """The number of comments."""
+  commentCount: Int
+}
+
+type FieldNodeFieldImage {
+  targetId: Int
+
+  """The referenced entity"""
+  entity: File
+
+  """Alternative image text, for the image's 'alt' attribute."""
+  alt: String
+
+  """Image title text, for the image's 'title' attribute."""
+  title: String
+  width: Int
+  height: Int
+  derivative(style: ImageStyleId!): ImageResource
+  url: String
+}
+
+type FieldNodeFieldTags {
+  targetId: Int
+
+  """The referenced entity"""
+  entity: TaxonomyTerm
+}
+
+type FieldNodeLangcode {
+  value: String
+
+  """The referenced language"""
+  language: Language
+}
+
+"""The user ID of the author of the current revision."""
+type FieldNodeRevisionUid {
+  targetId: Int
+
+  """The referenced entity"""
+  entity: User
+}
+
+type FieldNodeType {
+  targetId: String
+
+  """The referenced entity"""
+  entity: Entity
+}
+
+"""The username of the content author."""
+type FieldNodeUid {
+  targetId: Int
+
+  """The referenced entity"""
+  entity: User
+}
+
+"""The language code of the shortcut."""
+type FieldShortcutLangcode {
+  value: String
+
+  """The referenced language"""
+  language: Language
+}
+
+"""The location this shortcut points to."""
+type FieldShortcutLink {
+  uri: String
+  title: String
+  options: Map
+  attribute(key: String!): String
+  url: Url
+}
+
+"""The bundle of the shortcut."""
+type FieldShortcutShortcutSet {
+  targetId: String
+
+  """The referenced entity"""
+  entity: Entity
+}
+
+type FieldTaxonomyTermDescription {
+  value: String
+  format: String
+
+  """The text with the text format applied."""
+  processed: String
+}
+
+"""The term language code."""
+type FieldTaxonomyTermLangcode {
+  value: String
+
+  """The referenced language"""
+  language: Language
+}
+
+"""The parents of this term."""
+type FieldTaxonomyTermParent {
+  targetId: Int
+
+  """The referenced entity"""
+  entity: TaxonomyTerm
+}
+
+"""The vocabulary to which the term is assigned."""
+type FieldTaxonomyTermVid {
+  targetId: String
+
+  """The referenced entity"""
+  entity: Entity
+}
+
+"""The user language code."""
+type FieldUserLangcode {
+  value: String
+
+  """The referenced language"""
+  language: Language
+}
+
+"""The password of this user (hashed)."""
+type FieldUserPass {
+  value: String
+  existing: String
+  preHashed: Boolean
+}
+
+"""The user's preferred language code for viewing administration pages."""
+type FieldUserPreferredAdminLangcode {
+  value: String
+
+  """The referenced language"""
+  language: Language
+}
+
+"""
+The user's preferred language code for receiving emails and viewing the site.
+"""
+type FieldUserPreferredLangcode {
+  value: String
+
+  """The referenced language"""
+  language: Language
+}
+
+"""The roles the user has."""
+type FieldUserRoles {
+  targetId: String
+
+  """The referenced entity"""
+  entity: Entity
+}
+
+type FieldUserUserPicture {
+  targetId: Int
+
+  """The referenced entity"""
+  entity: File
+
+  """Alternative image text, for the image's 'alt' attribute."""
+  alt: String
+
+  """Image title text, for the image's 'title' attribute."""
+  title: String
+  width: Int
+  height: Int
+  derivative(style: ImageStyleId!): ImageResource
+  url: String
+}
+
+"""The 'File' entity type."""
+type File implements EntityRevisionable & EntityOwnable & Entity {
+  entityRevisions(filter: EntityQueryFilterInput = null, sort: [EntityQuerySortInput] = null, offset: Int = 0, limit: Int = 10): EntityQueryResult!
+  entityOwner: User
+  entityLabel: String
+  entityUuid: String
+  entityType: String
+  entityTranslation(language: LanguageId!): Entity
+  entityLanguage: Language
+  entityBundle: String
+  entityTranslations: [Entity]
+  entityChanged(format: String = null): String
+  entityQueryExclusive(filter: EntityQueryFilterInput = null, sort: [EntityQuerySortInput] = null, offset: Int = 0, limit: Int = 10, revisions: EntityQueryRevisionMode = DEFAULT, bundles: EntityQueryBundleMode = SAME): EntityQueryResult!
+  entityId: String
+  entityUrl: Url
+  entityCreated(format: String = null): String
+  entityAccess(operation: String!): Boolean
+
+  """The file ID."""
+  fid: Int
+
+  """The file UUID."""
+  uuid: String
+
+  """The file language code."""
+  langcode: FieldFileLangcode
+
+  """The user ID of the file."""
+  uid: FieldFileUid
+
+  """Name of the file with no path components."""
+  filename: String
+
+  """The URI to access the file (either local or remote)."""
+  uri: FieldFileUri
+
+  """The file's MIME type."""
+  filemime: String
+
+  """The size of the file in bytes."""
+  filesize: Int
+
+  """The status of the file, temporary (FALSE) and permanent (TRUE)."""
+  status: Boolean
+
+  """The timestamp that the file was created."""
+  created: Timestamp
+
+  """The timestamp that the file was last changed."""
+  changed: Timestamp
+
+  """Renders 'File' entities in the given view mode."""
+  entityRendered: String
+
+  """Query reference: The user ID of the file."""
+  queryUid(filter: EntityQueryFilterInput = null, sort: [EntityQuerySortInput] = null, offset: Int = 0, limit: Int = 10, revisions: EntityQueryRevisionMode = DEFAULT): EntityQueryResult!
+  url: String
+}
+
+type ImageResource {
+  url: String
+  height: Int
+  width: Int
+}
+
+enum ImageStyleId {
+  """Large (480×480)"""
+  LARGE
+
+  """Medium (220×220)"""
+  MEDIUM
+
+  """Thumbnail (100×100)"""
+  THUMBNAIL
+}
+
+scalar Integer
+
+type InternalResponse {
+  code: Int
+  content: String
+  header(key: String = null): String
+}
+
+"""Common interface for internal urls."""
+interface InternalUrl {
+  """The translated url object."""
+  translate(language: LanguageId!): Url
+
+  """Boolean indicating whether this is a routed (internal) path."""
+  routed: Boolean
+
+  """The processed url path."""
+  path: String
+  breadcrumb: [Link]
+  blocksByRegion(region: String!): [Entity]
+  languageSwitchLinks(language: LanguageId = null): [LanguageSwitchLink]
+
+  """The url's path alias if any."""
+  pathAlias: String
+
+  """The route's internal path."""
+  pathInternal: String
+  request: InternalResponse
+  languageInterfaceContext: Language
+  languageContentContext: Language
+  nodeContext: Node
+  currentUserContext: User
+}
+
+type Language {
+  """Boolean indicating if this language is locked."""
+  isLocked: Boolean
+
+  """Boolean indicating if this is the configured default language."""
+  isDefault: Boolean
+
+  """The human-readable name of the language."""
+  name: String
+
+  """The language direction (rtl or ltr)."""
+  direction: String
+
+  """The language id prepared as a language enum value."""
+  argument: String
+
+  """The language id."""
+  id: String
+
+  """The weight of the language."""
+  weight: Int
+}
+
+enum LanguageId {
+  """English"""
+  EN
+}
+
+type LanguageSwitchLink {
+  url: InternalUrl
+  title: String
+  active: Boolean
+  language: Language
+}
+
+type Link {
+  """The label of a link."""
+  text: String
+
+  """The url of a link."""
+  url: Url
+}
+
+scalar Map
+
+type Menu {
+  """The menu's name."""
+  name: String
+
+  """The menu's description."""
+  description: String
+  links: [MenuLink]
+}
+
+type MenuLink {
+  label: String
+  expanded: Boolean
+  links: [MenuLink]
+  attribute(key: String!): String
+  description: String
+  url: Url
+}
+
+"""The 'Custom menu link' entity type."""
+interface MenuLinkContent {
+  entityLabel: String
+  entityUuid: String
+  entityType: String
+  entityTranslation(language: LanguageId!): Entity
+  entityLanguage: Language
+  entityBundle: String
+  entityTranslations: [Entity]
+  entityChanged(format: String = null): String
+  entityQueryExclusive(filter: EntityQueryFilterInput = null, sort: [EntityQuerySortInput] = null, offset: Int = 0, limit: Int = 10, revisions: EntityQueryRevisionMode = DEFAULT, bundles: EntityQueryBundleMode = SAME): EntityQueryResult!
+  entityId: String
+  entityUrl: Url
+  entityCreated(format: String = null): String
+  entityAccess(operation: String!): Boolean
+  entityPublished: Boolean
+  entityRevisions(filter: EntityQueryFilterInput = null, sort: [EntityQuerySortInput] = null, offset: Int = 0, limit: Int = 10): EntityQueryResult!
+
+  """The entity ID for this menu link content entity."""
+  id: Int
+
+  """The content menu link UUID."""
+  uuid: String
+
+  """The menu link language code."""
+  langcode: FieldMenuLinkContentLangcode
+
+  """The content menu link bundle."""
+  bundle: String
+
+  """A flag for whether the link should be enabled in menus or hidden."""
+  enabled: Boolean
+
+  """The text to be used for this link in the menu."""
+  title: String
+
+  """Shown when hovering over the menu link."""
+  description: String
+
+  """
+  The menu name. All links with the same menu name (such as "tools") are part of the same menu.
+  """
+  menuName: String
+
+  """The location this menu link points to."""
+  link: FieldMenuLinkContentLink
+
+  """
+  A flag to indicate if the link points to a full URL starting with a protocol, like http:// (1 = external, 0 = internal).
+  """
+  external: Boolean
+  rediscover: Boolean
+
+  """
+  Link weight among links in the same menu at the same depth. In the menu, the
+  links with high weight will sink and links with a low weight will be
+  positioned nearer the top.
+  """
+  weight: Int
+
+  """
+  If selected and this menu link has children, the menu will always appear expanded.
+  """
+  expanded: Boolean
+
+  """
+  The ID of the parent menu link plugin, or empty string when at the top level of the hierarchy.
+  """
+  parent: String
+
+  """The time that the menu link was last edited."""
+  changed: Timestamp
+
+  """A flag indicating whether this is the default translation."""
+  defaultLangcode: Boolean
+
+  """Renders 'Custom menu link' entities in the given view mode."""
+  entityRendered: String
+}
+
+"""The 'Custom menu link' bundle of the 'Custom menu link' entity type."""
+type MenuLinkContentMenuLinkContent implements MenuLinkContent & Entity & EntityPublishable & EntityRevisionable {
+  """The entity ID for this menu link content entity."""
+  id: Int
+
+  """The content menu link UUID."""
+  uuid: String
+
+  """The menu link language code."""
+  langcode: FieldMenuLinkContentLangcode
+
+  """The content menu link bundle."""
+  bundle: String
+
+  """A flag for whether the link should be enabled in menus or hidden."""
+  enabled: Boolean
+
+  """The text to be used for this link in the menu."""
+  title: String
+
+  """Shown when hovering over the menu link."""
+  description: String
+
+  """
+  The menu name. All links with the same menu name (such as "tools") are part of the same menu.
+  """
+  menuName: String
+
+  """The location this menu link points to."""
+  link: FieldMenuLinkContentLink
+
+  """
+  A flag to indicate if the link points to a full URL starting with a protocol, like http:// (1 = external, 0 = internal).
+  """
+  external: Boolean
+  rediscover: Boolean
+
+  """
+  Link weight among links in the same menu at the same depth. In the menu, the
+  links with high weight will sink and links with a low weight will be
+  positioned nearer the top.
+  """
+  weight: Int
+
+  """
+  If selected and this menu link has children, the menu will always appear expanded.
+  """
+  expanded: Boolean
+
+  """
+  The ID of the parent menu link plugin, or empty string when at the top level of the hierarchy.
+  """
+  parent: String
+
+  """The time that the menu link was last edited."""
+  changed: Timestamp
+
+  """A flag indicating whether this is the default translation."""
+  defaultLangcode: Boolean
+
+  """Renders 'Custom menu link' entities in the given view mode."""
+  entityRendered: String
+  entityLabel: String
+  entityUuid: String
+  entityType: String
+  entityTranslation(language: LanguageId!): Entity
+  entityLanguage: Language
+  entityBundle: String
+  entityTranslations: [Entity]
+  entityChanged(format: String = null): String
+  entityQueryExclusive(filter: EntityQueryFilterInput = null, sort: [EntityQuerySortInput] = null, offset: Int = 0, limit: Int = 10, revisions: EntityQueryRevisionMode = DEFAULT, bundles: EntityQueryBundleMode = SAME): EntityQueryResult!
+  entityId: String
+  entityUrl: Url
+  entityCreated(format: String = null): String
+  entityAccess(operation: String!): Boolean
+  entityPublished: Boolean
+  entityRevisions(filter: EntityQueryFilterInput = null, sort: [EntityQuerySortInput] = null, offset: Int = 0, limit: Int = 10): EntityQueryResult!
+}
+
+"""The 'Content' entity type."""
+interface Node {
+  entityLabel: String
+  entityUuid: String
+  entityType: String
+  entityTranslation(language: LanguageId!): Entity
+  entityLanguage: Language
+  entityBundle: String
+  entityTranslations: [Entity]
+  entityChanged(format: String = null): String
+  entityQueryExclusive(filter: EntityQueryFilterInput = null, sort: [EntityQuerySortInput] = null, offset: Int = 0, limit: Int = 10, revisions: EntityQueryRevisionMode = DEFAULT, bundles: EntityQueryBundleMode = SAME): EntityQueryResult!
+  entityId: String
+  entityUrl: Url
+  entityCreated(format: String = null): String
+  entityAccess(operation: String!): Boolean
+  entityPublished: Boolean
+  entityRevisions(filter: EntityQueryFilterInput = null, sort: [EntityQuerySortInput] = null, offset: Int = 0, limit: Int = 10): EntityQueryResult!
+  entityOwner: User
+  nid: Int
+  uuid: String
+  vid: Int
+  langcode: FieldNodeLangcode
+  type: FieldNodeType
+
+  """The time that the current revision was created."""
+  revisionTimestamp: Timestamp
+
+  """The user ID of the author of the current revision."""
+  revisionUid: FieldNodeRevisionUid
+
+  """Briefly describe the changes you have made."""
+  revisionLog: String
+  status: Boolean
+  title: String
+
+  """The username of the content author."""
+  uid: FieldNodeUid
+
+  """The time that the node was created."""
+  created: Timestamp
+
+  """The time that the node was last edited."""
+  changed: Timestamp
+  promote: Boolean
+  sticky: Boolean
+
+  """A flag indicating whether this is the default translation."""
+  defaultLangcode: Boolean
+
+  """
+  A flag indicating whether this was a default revision when it was saved.
+  """
+  revisionDefault: Boolean
+
+  """
+  Indicates if the last edit of a translation belongs to current revision.
+  """
+  revisionTranslationAffected: Boolean
+
+  """Renders 'Content' entities in the given view mode."""
+  entityRendered(mode: NodeDisplayModeId = null): String
+
+  """
+  Reverse reference: The ID of the entity of which this comment is a reply.
+  """
+  reverseEntityIdComment(filter: EntityQueryFilterInput = null, sort: [EntityQuerySortInput] = null, offset: Int = 0, limit: Int = 10, revisions: EntityQueryRevisionMode = DEFAULT): EntityQueryResult!
+
+  """Query reference: """
+  queryType(filter: EntityQueryFilterInput = null, sort: [EntityQuerySortInput] = null, offset: Int = 0, limit: Int = 10, revisions: EntityQueryRevisionMode = DEFAULT): EntityQueryResult!
+
+  """Query reference: The user ID of the author of the current revision."""
+  queryRevisionUid(filter: EntityQueryFilterInput = null, sort: [EntityQuerySortInput] = null, offset: Int = 0, limit: Int = 10, revisions: EntityQueryRevisionMode = DEFAULT): EntityQueryResult!
+
+  """Query reference: The username of the content author."""
+  queryUid(filter: EntityQueryFilterInput = null, sort: [EntityQuerySortInput] = null, offset: Int = 0, limit: Int = 10, revisions: EntityQueryRevisionMode = DEFAULT): EntityQueryResult!
+
+  """Query reference: """
+  queryFieldTags(filter: EntityQueryFilterInput = null, sort: [EntityQuerySortInput] = null, offset: Int = 0, limit: Int = 10, revisions: EntityQueryRevisionMode = DEFAULT): EntityQueryResult!
+}
+
+"""The 'Article' bundle of the 'Content' entity type."""
+type NodeArticle implements Node & Entity & EntityPublishable & EntityRevisionable & EntityOwnable {
+  nid: Int
+  uuid: String
+  vid: Int
+  langcode: FieldNodeLangcode
+  type: FieldNodeType
+
+  """The time that the current revision was created."""
+  revisionTimestamp: Timestamp
+
+  """The user ID of the author of the current revision."""
+  revisionUid: FieldNodeRevisionUid
+
+  """Briefly describe the changes you have made."""
+  revisionLog: String
+  status: Boolean
+  title: String
+
+  """The username of the content author."""
+  uid: FieldNodeUid
+
+  """The time that the node was created."""
+  created: Timestamp
+
+  """The time that the node was last edited."""
+  changed: Timestamp
+  promote: Boolean
+  sticky: Boolean
+
+  """A flag indicating whether this is the default translation."""
+  defaultLangcode: Boolean
+
+  """
+  A flag indicating whether this was a default revision when it was saved.
+  """
+  revisionDefault: Boolean
+
+  """
+  Indicates if the last edit of a translation belongs to current revision.
+  """
+  revisionTranslationAffected: Boolean
+
+  """Renders 'Content' entities in the given view mode."""
+  entityRendered(mode: NodeDisplayModeId = null): String
+
+  """
+  Reverse reference: The ID of the entity of which this comment is a reply.
+  """
+  reverseEntityIdComment(filter: EntityQueryFilterInput = null, sort: [EntityQuerySortInput] = null, offset: Int = 0, limit: Int = 10, revisions: EntityQueryRevisionMode = DEFAULT): EntityQueryResult!
+
+  """Query reference: """
+  queryType(filter: EntityQueryFilterInput = null, sort: [EntityQuerySortInput] = null, offset: Int = 0, limit: Int = 10, revisions: EntityQueryRevisionMode = DEFAULT): EntityQueryResult!
+
+  """Query reference: The user ID of the author of the current revision."""
+  queryRevisionUid(filter: EntityQueryFilterInput = null, sort: [EntityQuerySortInput] = null, offset: Int = 0, limit: Int = 10, revisions: EntityQueryRevisionMode = DEFAULT): EntityQueryResult!
+
+  """Query reference: The username of the content author."""
+  queryUid(filter: EntityQueryFilterInput = null, sort: [EntityQuerySortInput] = null, offset: Int = 0, limit: Int = 10, revisions: EntityQueryRevisionMode = DEFAULT): EntityQueryResult!
+
+  """Query reference: """
+  queryFieldTags(filter: EntityQueryFilterInput = null, sort: [EntityQuerySortInput] = null, offset: Int = 0, limit: Int = 10, revisions: EntityQueryRevisionMode = DEFAULT): EntityQueryResult!
+  entityLabel: String
+  entityUuid: String
+  entityType: String
+  entityTranslation(language: LanguageId!): Entity
+  entityLanguage: Language
+  entityBundle: String
+  entityTranslations: [Entity]
+  entityChanged(format: String = null): String
+  entityQueryExclusive(filter: EntityQueryFilterInput = null, sort: [EntityQuerySortInput] = null, offset: Int = 0, limit: Int = 10, revisions: EntityQueryRevisionMode = DEFAULT, bundles: EntityQueryBundleMode = SAME): EntityQueryResult!
+  entityId: String
+  entityUrl: Url
+  entityCreated(format: String = null): String
+  entityAccess(operation: String!): Boolean
+  entityPublished: Boolean
+  entityRevisions(filter: EntityQueryFilterInput = null, sort: [EntityQuerySortInput] = null, offset: Int = 0, limit: Int = 10): EntityQueryResult!
+  entityOwner: User
+  body: FieldNodeBody
+  comment: FieldNodeComment
+  fieldImage: FieldNodeFieldImage
+  fieldTags: [FieldNodeFieldTags]
+}
+
+"""The available display modes for 'Content' entities."""
+enum NodeDisplayModeId {
+  """The 'Full content' display mode for 'Content' entities."""
+  FULL
+
+  """The 'RSS' display mode for 'Content' entities."""
+  RSS
+
+  """The 'Search index' display mode for 'Content' entities."""
+  SEARCH_INDEX
+
+  """
+  The 'Search result highlighting input' display mode for 'Content' entities.
+  """
+  SEARCH_RESULT
+
+  """The 'Teaser' display mode for 'Content' entities."""
+  TEASER
+}
+
+"""The 'Basic page' bundle of the 'Content' entity type."""
+type NodePage implements Node & Entity & EntityPublishable & EntityRevisionable & EntityOwnable {
+  nid: Int
+  uuid: String
+  vid: Int
+  langcode: FieldNodeLangcode
+  type: FieldNodeType
+
+  """The time that the current revision was created."""
+  revisionTimestamp: Timestamp
+
+  """The user ID of the author of the current revision."""
+  revisionUid: FieldNodeRevisionUid
+
+  """Briefly describe the changes you have made."""
+  revisionLog: String
+  status: Boolean
+  title: String
+
+  """The username of the content author."""
+  uid: FieldNodeUid
+
+  """The time that the node was created."""
+  created: Timestamp
+
+  """The time that the node was last edited."""
+  changed: Timestamp
+  promote: Boolean
+  sticky: Boolean
+
+  """A flag indicating whether this is the default translation."""
+  defaultLangcode: Boolean
+
+  """
+  A flag indicating whether this was a default revision when it was saved.
+  """
+  revisionDefault: Boolean
+
+  """
+  Indicates if the last edit of a translation belongs to current revision.
+  """
+  revisionTranslationAffected: Boolean
+
+  """Renders 'Content' entities in the given view mode."""
+  entityRendered(mode: NodeDisplayModeId = null): String
+
+  """
+  Reverse reference: The ID of the entity of which this comment is a reply.
+  """
+  reverseEntityIdComment(filter: EntityQueryFilterInput = null, sort: [EntityQuerySortInput] = null, offset: Int = 0, limit: Int = 10, revisions: EntityQueryRevisionMode = DEFAULT): EntityQueryResult!
+
+  """Query reference: """
+  queryType(filter: EntityQueryFilterInput = null, sort: [EntityQuerySortInput] = null, offset: Int = 0, limit: Int = 10, revisions: EntityQueryRevisionMode = DEFAULT): EntityQueryResult!
+
+  """Query reference: The user ID of the author of the current revision."""
+  queryRevisionUid(filter: EntityQueryFilterInput = null, sort: [EntityQuerySortInput] = null, offset: Int = 0, limit: Int = 10, revisions: EntityQueryRevisionMode = DEFAULT): EntityQueryResult!
+
+  """Query reference: The username of the content author."""
+  queryUid(filter: EntityQueryFilterInput = null, sort: [EntityQuerySortInput] = null, offset: Int = 0, limit: Int = 10, revisions: EntityQueryRevisionMode = DEFAULT): EntityQueryResult!
+
+  """Query reference: """
+  queryFieldTags(filter: EntityQueryFilterInput = null, sort: [EntityQuerySortInput] = null, offset: Int = 0, limit: Int = 10, revisions: EntityQueryRevisionMode = DEFAULT): EntityQueryResult!
+  entityLabel: String
+  entityUuid: String
+  entityType: String
+  entityTranslation(language: LanguageId!): Entity
+  entityLanguage: Language
+  entityBundle: String
+  entityTranslations: [Entity]
+  entityChanged(format: String = null): String
+  entityQueryExclusive(filter: EntityQueryFilterInput = null, sort: [EntityQuerySortInput] = null, offset: Int = 0, limit: Int = 10, revisions: EntityQueryRevisionMode = DEFAULT, bundles: EntityQueryBundleMode = SAME): EntityQueryResult!
+  entityId: String
+  entityUrl: Url
+  entityCreated(format: String = null): String
+  entityAccess(operation: String!): Boolean
+  entityPublished: Boolean
+  entityRevisions(filter: EntityQueryFilterInput = null, sort: [EntityQuerySortInput] = null, offset: Int = 0, limit: Int = 10): EntityQueryResult!
+  entityOwner: User
+  body: FieldNodeBody
+}
+
+type Query {
+  """Loads 'Custom block' entities."""
+  blockContentQuery(filter: EntityQueryFilterInput = null, sort: [EntityQuerySortInput] = null, offset: Int = 0, limit: Int = 10, revisions: EntityQueryRevisionMode = DEFAULT): EntityQueryResult
+
+  """Loads 'Comment' entities."""
+  commentQuery(filter: EntityQueryFilterInput = null, sort: [EntityQuerySortInput] = null, offset: Int = 0, limit: Int = 10, revisions: EntityQueryRevisionMode = DEFAULT): EntityQueryResult
+
+  """Loads 'Contact message' entities."""
+  contactMessageQuery(filter: EntityQueryFilterInput = null, sort: [EntityQuerySortInput] = null, offset: Int = 0, limit: Int = 10, revisions: EntityQueryRevisionMode = DEFAULT): EntityQueryResult
+
+  """Loads 'File' entities."""
+  fileQuery(filter: EntityQueryFilterInput = null, sort: [EntityQuerySortInput] = null, offset: Int = 0, limit: Int = 10, revisions: EntityQueryRevisionMode = DEFAULT): EntityQueryResult
+
+  """Loads 'Content' entities."""
+  nodeQuery(filter: EntityQueryFilterInput = null, sort: [EntityQuerySortInput] = null, offset: Int = 0, limit: Int = 10, revisions: EntityQueryRevisionMode = DEFAULT): EntityQueryResult
+
+  """Loads 'Shortcut link' entities."""
+  shortcutQuery(filter: EntityQueryFilterInput = null, sort: [EntityQuerySortInput] = null, offset: Int = 0, limit: Int = 10, revisions: EntityQueryRevisionMode = DEFAULT): EntityQueryResult
+
+  """Loads 'Taxonomy term' entities."""
+  taxonomyTermQuery(filter: EntityQueryFilterInput = null, sort: [EntityQuerySortInput] = null, offset: Int = 0, limit: Int = 10, revisions: EntityQueryRevisionMode = DEFAULT): EntityQueryResult
+
+  """Loads 'User' entities."""
+  userQuery(filter: EntityQueryFilterInput = null, sort: [EntityQuerySortInput] = null, offset: Int = 0, limit: Int = 10, revisions: EntityQueryRevisionMode = DEFAULT): EntityQueryResult
+
+  """Loads 'Custom menu link' entities."""
+  menuLinkContentQuery(filter: EntityQueryFilterInput = null, sort: [EntityQuerySortInput] = null, offset: Int = 0, limit: Int = 10, revisions: EntityQueryRevisionMode = DEFAULT): EntityQueryResult
+
+  """Loads 'Custom block' entities by their id."""
+  blockContentById(id: String!, language: LanguageId = null): BlockContent
+
+  """Loads 'Comment' entities by their id."""
+  commentById(id: String!, language: LanguageId = null): Comment
+
+  """Loads 'Contact message' entities by their id."""
+  contactMessageById(id: String!): ContactMessage
+
+  """Loads 'File' entities by their id."""
+  fileById(id: String!): File
+
+  """Loads 'Content' entities by their id."""
+  nodeById(id: String!, language: LanguageId = null): Node
+
+  """Loads 'Shortcut link' entities by their id."""
+  shortcutById(id: String!, language: LanguageId = null): Shortcut
+
+  """Loads 'Taxonomy term' entities by their id."""
+  taxonomyTermById(id: String!, language: LanguageId = null): TaxonomyTerm
+
+  """Loads 'User' entities by their id."""
+  userById(id: String!, language: LanguageId = null): User
+
+  """Loads 'Custom menu link' entities by their id."""
+  menuLinkContentById(id: String!, language: LanguageId = null): MenuLinkContent
+
+  """Loads 'Custom block' entity revision by their revision id."""
+  blockContentRevisionById(id: String!, language: LanguageId = null): BlockContent
+
+  """Loads 'Content' entity revision by their revision id."""
+  nodeRevisionById(id: String!, language: LanguageId = null): Node
+
+  """Loads a route by its path."""
+  route(path: String!): Url
+  languageInterfaceContext: Language
+  languageContentContext: Language
+  nodeContext: Node
+  currentUserContext: User
+
+  """Loads a menu by its machine-readable name."""
+  menuByName(name: String!, language: LanguageId = null): Menu
+
+  """Loads the list of available languages."""
+  availableLanguages: [Language]
+}
+
+enum QueryConjunction {
+  AND
+  OR
+}
+
+enum QueryOperator {
+  EQUAL
+  NOT_EQUAL
+  SMALLER_THAN
+  SMALLER_THAN_OR_EQUAL
+  GREATER_THAN
+  GREATER_THAN_OR_EQUAL
+  IN
+  NOT_IN
+  LIKE
+  NOT_LIKE
+  BETWEEN
+  NOT_BETWEEN
+  IS_NULL
+  IS_NOT_NULL
+}
+
+"""The 'Shortcut link' entity type."""
+interface Shortcut {
+  entityLabel: String
+  entityUuid: String
+  entityType: String
+  entityTranslation(language: LanguageId!): Entity
+  entityLanguage: Language
+  entityBundle: String
+  entityTranslations: [Entity]
+  entityChanged(format: String = null): String
+  entityQueryExclusive(filter: EntityQueryFilterInput = null, sort: [EntityQuerySortInput] = null, offset: Int = 0, limit: Int = 10, revisions: EntityQueryRevisionMode = DEFAULT, bundles: EntityQueryBundleMode = SAME): EntityQueryResult!
+  entityId: String
+  entityUrl: Url
+  entityCreated(format: String = null): String
+  entityAccess(operation: String!): Boolean
+  entityRevisions(filter: EntityQueryFilterInput = null, sort: [EntityQuerySortInput] = null, offset: Int = 0, limit: Int = 10): EntityQueryResult!
+
+  """The ID of the shortcut."""
+  id: Int
+
+  """The UUID of the shortcut."""
+  uuid: String
+
+  """The language code of the shortcut."""
+  langcode: FieldShortcutLangcode
+
+  """The bundle of the shortcut."""
+  shortcutSet: FieldShortcutShortcutSet
+
+  """The name of the shortcut."""
+  title: String
+
+  """Weight among shortcuts in the same shortcut set."""
+  weight: Int
+
+  """The location this shortcut points to."""
+  link: FieldShortcutLink
+
+  """A flag indicating whether this is the default translation."""
+  defaultLangcode: Boolean
+
+  """Renders 'Shortcut link' entities in the given view mode."""
+  entityRendered: String
+
+  """Query reference: The bundle of the shortcut."""
+  queryShortcutSet(filter: EntityQueryFilterInput = null, sort: [EntityQuerySortInput] = null, offset: Int = 0, limit: Int = 10, revisions: EntityQueryRevisionMode = DEFAULT): EntityQueryResult!
+}
+
+"""The 'Default' bundle of the 'Shortcut link' entity type."""
+type ShortcutDefault implements Shortcut & Entity & EntityRevisionable {
+  """The ID of the shortcut."""
+  id: Int
+
+  """The UUID of the shortcut."""
+  uuid: String
+
+  """The language code of the shortcut."""
+  langcode: FieldShortcutLangcode
+
+  """The bundle of the shortcut."""
+  shortcutSet: FieldShortcutShortcutSet
+
+  """The name of the shortcut."""
+  title: String
+
+  """Weight among shortcuts in the same shortcut set."""
+  weight: Int
+
+  """The location this shortcut points to."""
+  link: FieldShortcutLink
+
+  """A flag indicating whether this is the default translation."""
+  defaultLangcode: Boolean
+
+  """Renders 'Shortcut link' entities in the given view mode."""
+  entityRendered: String
+
+  """Query reference: The bundle of the shortcut."""
+  queryShortcutSet(filter: EntityQueryFilterInput = null, sort: [EntityQuerySortInput] = null, offset: Int = 0, limit: Int = 10, revisions: EntityQueryRevisionMode = DEFAULT): EntityQueryResult!
+  entityLabel: String
+  entityUuid: String
+  entityType: String
+  entityTranslation(language: LanguageId!): Entity
+  entityLanguage: Language
+  entityBundle: String
+  entityTranslations: [Entity]
+  entityChanged(format: String = null): String
+  entityQueryExclusive(filter: EntityQueryFilterInput = null, sort: [EntityQuerySortInput] = null, offset: Int = 0, limit: Int = 10, revisions: EntityQueryRevisionMode = DEFAULT, bundles: EntityQueryBundleMode = SAME): EntityQueryResult!
+  entityId: String
+  entityUrl: Url
+  entityCreated(format: String = null): String
+  entityAccess(operation: String!): Boolean
+  entityRevisions(filter: EntityQueryFilterInput = null, sort: [EntityQuerySortInput] = null, offset: Int = 0, limit: Int = 10): EntityQueryResult!
+}
+
+enum SortOrder {
+  ASC
+  DESC
+}
+
+"""The 'Taxonomy term' entity type."""
+interface TaxonomyTerm {
+  entityLabel: String
+  entityUuid: String
+  entityType: String
+  entityTranslation(language: LanguageId!): Entity
+  entityLanguage: Language
+  entityBundle: String
+  entityTranslations: [Entity]
+  entityChanged(format: String = null): String
+  entityQueryExclusive(filter: EntityQueryFilterInput = null, sort: [EntityQuerySortInput] = null, offset: Int = 0, limit: Int = 10, revisions: EntityQueryRevisionMode = DEFAULT, bundles: EntityQueryBundleMode = SAME): EntityQueryResult!
+  entityId: String
+  entityUrl: Url
+  entityCreated(format: String = null): String
+  entityAccess(operation: String!): Boolean
+  entityPublished: Boolean
+  entityRevisions(filter: EntityQueryFilterInput = null, sort: [EntityQuerySortInput] = null, offset: Int = 0, limit: Int = 10): EntityQueryResult!
+
+  """The term ID."""
+  tid: Int
+
+  """The term UUID."""
+  uuid: String
+
+  """The term language code."""
+  langcode: FieldTaxonomyTermLangcode
+
+  """The vocabulary to which the term is assigned."""
+  vid: FieldTaxonomyTermVid
+  status: Boolean
+  name: String
+  description: FieldTaxonomyTermDescription
+
+  """The weight of this term in relation to other terms."""
+  weight: Int
+
+  """The parents of this term."""
+  parent: [FieldTaxonomyTermParent]
+
+  """The time that the term was last edited."""
+  changed: Timestamp
+
+  """A flag indicating whether this is the default translation."""
+  defaultLangcode: Boolean
+
+  """Renders 'Taxonomy term' entities in the given view mode."""
+  entityRendered(mode: TaxonomyTermDisplayModeId = null): String
+
+  """Reverse reference: """
+  reverseFieldTagsNode(filter: EntityQueryFilterInput = null, sort: [EntityQuerySortInput] = null, offset: Int = 0, limit: Int = 10, revisions: EntityQueryRevisionMode = DEFAULT): EntityQueryResult!
+
+  """Reverse reference: The parents of this term."""
+  reverseParentTaxonomyTerm(filter: EntityQueryFilterInput = null, sort: [EntityQuerySortInput] = null, offset: Int = 0, limit: Int = 10, revisions: EntityQueryRevisionMode = DEFAULT): EntityQueryResult!
+
+  """Query reference: The vocabulary to which the term is assigned."""
+  queryVid(filter: EntityQueryFilterInput = null, sort: [EntityQuerySortInput] = null, offset: Int = 0, limit: Int = 10, revisions: EntityQueryRevisionMode = DEFAULT): EntityQueryResult!
+
+  """Query reference: The parents of this term."""
+  queryParent(filter: EntityQueryFilterInput = null, sort: [EntityQuerySortInput] = null, offset: Int = 0, limit: Int = 10, revisions: EntityQueryRevisionMode = DEFAULT): EntityQueryResult!
+}
+
+"""The available display modes for 'Taxonomy term' entities."""
+enum TaxonomyTermDisplayModeId {
+  """The 'Taxonomy term page' display mode for 'Taxonomy term' entities."""
+  FULL
+}
+
+"""The 'Tags' bundle of the 'Taxonomy term' entity type."""
+type TaxonomyTermTags implements TaxonomyTerm & Entity & EntityPublishable & EntityRevisionable {
+  """The term ID."""
+  tid: Int
+
+  """The term UUID."""
+  uuid: String
+
+  """The term language code."""
+  langcode: FieldTaxonomyTermLangcode
+
+  """The vocabulary to which the term is assigned."""
+  vid: FieldTaxonomyTermVid
+  status: Boolean
+  name: String
+  description: FieldTaxonomyTermDescription
+
+  """The weight of this term in relation to other terms."""
+  weight: Int
+
+  """The parents of this term."""
+  parent: [FieldTaxonomyTermParent]
+
+  """The time that the term was last edited."""
+  changed: Timestamp
+
+  """A flag indicating whether this is the default translation."""
+  defaultLangcode: Boolean
+
+  """Renders 'Taxonomy term' entities in the given view mode."""
+  entityRendered(mode: TaxonomyTermDisplayModeId = null): String
+
+  """Reverse reference: """
+  reverseFieldTagsNode(filter: EntityQueryFilterInput = null, sort: [EntityQuerySortInput] = null, offset: Int = 0, limit: Int = 10, revisions: EntityQueryRevisionMode = DEFAULT): EntityQueryResult!
+
+  """Reverse reference: The parents of this term."""
+  reverseParentTaxonomyTerm(filter: EntityQueryFilterInput = null, sort: [EntityQuerySortInput] = null, offset: Int = 0, limit: Int = 10, revisions: EntityQueryRevisionMode = DEFAULT): EntityQueryResult!
+
+  """Query reference: The vocabulary to which the term is assigned."""
+  queryVid(filter: EntityQueryFilterInput = null, sort: [EntityQuerySortInput] = null, offset: Int = 0, limit: Int = 10, revisions: EntityQueryRevisionMode = DEFAULT): EntityQueryResult!
+
+  """Query reference: The parents of this term."""
+  queryParent(filter: EntityQueryFilterInput = null, sort: [EntityQuerySortInput] = null, offset: Int = 0, limit: Int = 10, revisions: EntityQueryRevisionMode = DEFAULT): EntityQueryResult!
+  entityLabel: String
+  entityUuid: String
+  entityType: String
+  entityTranslation(language: LanguageId!): Entity
+  entityLanguage: Language
+  entityBundle: String
+  entityTranslations: [Entity]
+  entityChanged(format: String = null): String
+  entityQueryExclusive(filter: EntityQueryFilterInput = null, sort: [EntityQuerySortInput] = null, offset: Int = 0, limit: Int = 10, revisions: EntityQueryRevisionMode = DEFAULT, bundles: EntityQueryBundleMode = SAME): EntityQueryResult!
+  entityId: String
+  entityUrl: Url
+  entityCreated(format: String = null): String
+  entityAccess(operation: String!): Boolean
+  entityPublished: Boolean
+  entityRevisions(filter: EntityQueryFilterInput = null, sort: [EntityQuerySortInput] = null, offset: Int = 0, limit: Int = 10): EntityQueryResult!
+}
+
+scalar Timespan
+
+"""
+The `Int` scalar type represents non-fractional signed whole numeric
+values. Int can represent values between -(2^31) and 2^31 - 1. 
+"""
+scalar Timestamp
+
+"""Fallback type for otherwise unexposed entities."""
+type UnexposedEntity implements Entity {
+  entityLabel: String
+  entityUuid: String
+  entityType: String
+  entityTranslation(language: LanguageId!): Entity
+  entityLanguage: Language
+  entityBundle: String
+  entityTranslations: [Entity]
+  entityChanged(format: String = null): String
+  entityQueryExclusive(filter: EntityQueryFilterInput = null, sort: [EntityQuerySortInput] = null, offset: Int = 0, limit: Int = 10, revisions: EntityQueryRevisionMode = DEFAULT, bundles: EntityQueryBundleMode = SAME): EntityQueryResult!
+  entityId: String
+  entityUrl: Url
+  entityCreated(format: String = null): String
+  entityAccess(operation: String!): Boolean
+}
+
+scalar Upload
+
+"""Common interface for internal and external urls."""
+interface Url {
+  """The translated url object."""
+  translate(language: LanguageId!): Url
+
+  """Boolean indicating whether this is a routed (internal) path."""
+  routed: Boolean
+
+  """The processed url path."""
+  path: String
+}
+
+"""The 'User' entity type."""
+type User implements EntityRevisionable & Entity {
+  entityRevisions(filter: EntityQueryFilterInput = null, sort: [EntityQuerySortInput] = null, offset: Int = 0, limit: Int = 10): EntityQueryResult!
+  entityLabel: String
+  entityUuid: String
+  entityType: String
+  entityTranslation(language: LanguageId!): Entity
+  entityLanguage: Language
+  entityBundle: String
+  entityTranslations: [Entity]
+  entityChanged(format: String = null): String
+  entityQueryExclusive(filter: EntityQueryFilterInput = null, sort: [EntityQuerySortInput] = null, offset: Int = 0, limit: Int = 10, revisions: EntityQueryRevisionMode = DEFAULT, bundles: EntityQueryBundleMode = SAME): EntityQueryResult!
+  entityId: String
+  entityUrl: Url
+  entityCreated(format: String = null): String
+  entityAccess(operation: String!): Boolean
+
+  """The user ID."""
+  uid: Int
+
+  """The user UUID."""
+  uuid: String
+
+  """The user language code."""
+  langcode: FieldUserLangcode
+
+  """
+  The user's preferred language code for receiving emails and viewing the site.
+  """
+  preferredLangcode: FieldUserPreferredLangcode
+
+  """The user's preferred language code for viewing administration pages."""
+  preferredAdminLangcode: FieldUserPreferredAdminLangcode
+
+  """The name of this user."""
+  name: String
+
+  """The password of this user (hashed)."""
+  pass: FieldUserPass
+
+  """The email of this user."""
+  mail: String
+
+  """The timezone of this user."""
+  timezone: String
+
+  """Whether the user is active or blocked."""
+  status: Boolean
+
+  """The time that the user was created."""
+  created: Timestamp
+
+  """The time that the user was last edited."""
+  changed: Timestamp
+
+  """The time that the user last accessed the site."""
+  access: Timestamp
+
+  """The time that the user last logged in."""
+  login: Timestamp
+
+  """The email address used for initial account creation."""
+  init: String
+
+  """The roles the user has."""
+  roles: [FieldUserRoles]
+
+  """A flag indicating whether this is the default translation."""
+  defaultLangcode: Boolean
+  userPicture: FieldUserUserPicture
+
+  """Renders 'User' entities in the given view mode."""
+  entityRendered(mode: UserDisplayModeId = null): String
+
+  """Reverse reference: The user ID of the author of the current revision."""
+  reverseRevisionUserBlockContent(filter: EntityQueryFilterInput = null, sort: [EntityQuerySortInput] = null, offset: Int = 0, limit: Int = 10, revisions: EntityQueryRevisionMode = DEFAULT): EntityQueryResult!
+
+  """Reverse reference: The user ID of the comment author."""
+  reverseUidComment(filter: EntityQueryFilterInput = null, sort: [EntityQuerySortInput] = null, offset: Int = 0, limit: Int = 10, revisions: EntityQueryRevisionMode = DEFAULT): EntityQueryResult!
+
+  """
+  Reverse reference: The ID of the recipient user for personal contact messages.
+  """
+  reverseRecipientContactMessage(filter: EntityQueryFilterInput = null, sort: [EntityQuerySortInput] = null, offset: Int = 0, limit: Int = 10, revisions: EntityQueryRevisionMode = DEFAULT): EntityQueryResult!
+
+  """Reverse reference: The user ID of the file."""
+  reverseUidFile(filter: EntityQueryFilterInput = null, sort: [EntityQuerySortInput] = null, offset: Int = 0, limit: Int = 10, revisions: EntityQueryRevisionMode = DEFAULT): EntityQueryResult!
+
+  """Reverse reference: The user ID of the author of the current revision."""
+  reverseRevisionUidNode(filter: EntityQueryFilterInput = null, sort: [EntityQuerySortInput] = null, offset: Int = 0, limit: Int = 10, revisions: EntityQueryRevisionMode = DEFAULT): EntityQueryResult!
+
+  """Reverse reference: The username of the content author."""
+  reverseUidNode(filter: EntityQueryFilterInput = null, sort: [EntityQuerySortInput] = null, offset: Int = 0, limit: Int = 10, revisions: EntityQueryRevisionMode = DEFAULT): EntityQueryResult!
+
+  """Query reference: The roles the user has."""
+  queryRoles(filter: EntityQueryFilterInput = null, sort: [EntityQuerySortInput] = null, offset: Int = 0, limit: Int = 10, revisions: EntityQueryRevisionMode = DEFAULT): EntityQueryResult!
+}
+
+"""The available display modes for 'User' entities."""
+enum UserDisplayModeId {
+  """The 'Compact' display mode for 'User' entities."""
+  COMPACT
+
+  """The 'User account' display mode for 'User' entities."""
+  FULL
+}
+
