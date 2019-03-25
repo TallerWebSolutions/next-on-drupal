@@ -27,6 +27,7 @@ On [the documentation](https://next-on-drupal.surge.sh) you find explanation on 
   - [x] Single source-code dir
   - [x] Client/server specific dev scripts
   - [x] Storybook
+  - [x] GraphQL mocking
 
 - **Documentation**
 
