@@ -26,7 +26,7 @@ On [the documentation](https://next-on-drupal.surge.sh) you find explanation on 
   - [x] Integrated debugging
   - [x] Single source-code dir
   - [x] Client/server specific dev scripts
-  - [ ] Storybook
+  - [x] Storybook
 
 - **Documentation**
 
@@ -45,7 +45,7 @@ On [the documentation](https://next-on-drupal.surge.sh) you find explanation on 
 
   - [x] Bundle analyzer
   - Unit tests
-    - [ ] Configure Jest
+    - [x] Configure Jest
     - [ ] Add coverage threshold
     - [ ] Test boilerplate code
   - [ ] E2E tests
