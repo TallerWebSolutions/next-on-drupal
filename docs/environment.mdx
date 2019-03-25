@@ -21,23 +21,27 @@ make run
 
 Besides the basic scripts shown in the [Getting Started](/getting-started), there are a bunch of task-specific or context-specific commands you can use as fit:
 
-| Command          | Description                                                                          | Options  |
-| ---------------- | ------------------------------------------------------------------------------------ | -------- |
-| `analyze`        | Webpack bundle analyzer                                                              |          |
-| `build`          | Build both client & server codes                                                     |          |
-| `build:next`     | Build only the client code (Next.js pages)                                           |          |
-| `build:server`   | Build only the server code (express)                                                 |          |
-| `clean`          | Clean any building generated files                                                   |          |
-| `dev`            | Starts development of both client & server with proper watchers                      |          |
-| `dev:next`       | Starts development of only the client (must have server built)                       |          |
-| `dev:server`     | Starts development of only the server (must have client built)                       |          |
-| `docs:build`     | Build the docs                                                                       | `--help` |
-| `docs:deploy`    | Deploy the docs, using surge (see `./config/webpack/webpack.docz` for CNAME configs) |          |
-| `docs:dev`       | Starts development of the docs                                                       | `--help` |
-| `format`         | Format source code using prettier                                                    | `--help` |
-| `format:package` | Format the `package.json`                                                            |          |
-| `lint`           | Verifies code style complience                                                       | `--help` |
-| `qa`             | Run quality assurance scripts                                                        |          |
-| `start`          | Start the application on production (must have server & client built)                |          |
-| `test`           | Run unit tests                                                                       | `--help` |
-| `test:e2e`       | Run E2E tests (cypress)                                                              | `--help` |
+| Command              | Description                                                                                     | Options  |
+| -------------------- | ----------------------------------------------------------------------------------------------- | -------- |
+| `analyze`            | Webpack bundle analyzer                                                                         |          |
+| `build`              | Build both client & server codes                                                                |          |
+| `build:next`         | Build only the client code (Next.js pages)                                                      |          |
+| `build:server`       | Build only the server code (express)                                                            |          |
+| `clean`              | Clean any building generated files                                                              |          |
+| `dev`                | Starts development of both client & server with proper watchers                                 |          |
+| `dev:next`           | Starts development of only the client (must have server built)                                  |          |
+| `dev:server`         | Starts development of only the server (must have client built)                                  |          |
+| `docs:build`         | Build the docs                                                                                  | `--help` |
+| `docs:deploy`        | Deploy the docs, using surge (see `./config/webpack/webpack.docz` for CNAME configs)            |          |
+| `docs:dev`           | Starts development of the docs                                                                  | `--help` |
+| `format`             | Format source code using prettier                                                               | `--help` |
+| `format:package`     | Format the `package.json`                                                                       |          |
+| `lint`               | Verifies code style complience                                                                  | `--help` |
+| `qa`                 | Run quality assurance scripts                                                                   |          |
+| `start`              | Start the application on production (must have server & client built)                           |          |
+| `storybook`          | Starts the Storybook development environment                                                    |          |
+| `storybook:build`    | Build the Storybook for static deployment                                                       |          |
+| `storybook:deploy`   | Deploy the styleguide, using surge (see `./config/webpack/webpack.storybook` for CNAME configs) |          |
+| `test`               | Run unit tests                                                                                  | `--help` |
+| `test:e2e`           | Run E2E tests (cypress)                                                                         | `--help` |
+| `update-mock-schema` | Renew the mocked schema GraphQL                                                                 |          |

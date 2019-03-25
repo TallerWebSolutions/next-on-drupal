@@ -29,7 +29,8 @@
     "qa": "yarn lint && yarn test",
     "start": "NODE_ENV=production node ./build/server.js",
     "storybook": "start-storybook -p 6006 -c ./config/storybook/",
-    "storybook:build": "build-storybook",
+    "storybook:build": "build-storybook --output-dir=./build/storybook -c ./config/storybook/",
+    "storybook:deploy": "DEPLOYING=1 yarn build-storybook && mv ./build/storybook/index.html ./build/storybook/200.html && surge build/storybook",
     "test": "jest",
     "update-mock-schema": "get-graphql-schema http://localhost/graphql > src/client/api/link/mocked-link/schema.gql"
   },
