@@ -40,4 +40,9 @@ const config = {
   resolvePath: resolveComponentPath
 }
 
-module.exports = () => ({ plugins: [['module-resolver', config]] })
+module.exports = () => ({
+  plugins: [
+    ['module-resolver', config],
+    ['@babel/plugin-proposal-export-namespace-from']
+  ]
+})
