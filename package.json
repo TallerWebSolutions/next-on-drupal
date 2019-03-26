@@ -6,6 +6,7 @@
   "repository": "git@github.com:TallerWebSolutions/next-on-drupal.git",
   "license": "UNLINCENSED",
   "author": "Lucas Constantino Silva <lucasconstantinosilva@gmail.com>",
+  "sideEffects": false,
   "main": "next.config.js",
   "scripts": {
     "analyze": "BUNDLE_ANALYZE=both yarn build:next",
