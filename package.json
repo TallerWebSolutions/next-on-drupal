@@ -32,6 +32,7 @@
     "precommit": "lint-staged",
     "prepush": "yarn qa",
     "qa": "yarn lint && yarn test",
+    "release": "standard-version",
     "start": "NODE_ENV=production node ./build/server.js",
     "storybook": "start-storybook -p 6006 -c ./config/storybook/",
     "storybook:build": "build-storybook --output-dir=./build/storybook -c ./config/storybook/",
@@ -130,6 +131,7 @@
     "prettier-eslint-cli": "^4.7.1",
     "raw-loader": "^1.0.0",
     "sort-package-json": "^1.17.1",
+    "standard-version": "^5.0.2",
     "surge": "^0.20.3",
     "webpack-cli": "^3.2.3",
     "webpack-node-externals": "^1.7.2"
