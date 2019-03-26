@@ -33,7 +33,7 @@ const Component = () => (
   </Query>
 )
 
-storiesOf('GraphQL Mocking', module)
+storiesOf('Storybook examples/GraphQL Mocking', module)
   .add('success', () => (
     <MockedProvider
       addTypename={ false }
