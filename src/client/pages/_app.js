@@ -2,7 +2,7 @@ import App from 'next/app'
 import { compose } from 'ramda'
 
 import connectGraphQL from '~client/api/provider'
-import connectGlobalStyles from '~styleguide/provider'
+import { withGlobalStyles } from '~styleguide'
 
 const hoistInitialProps = (...hocs) => Component => {
   const composed = compose(...hocs)(Component)
@@ -12,5 +12,5 @@ const hoistInitialProps = (...hocs) => Component => {
 
 export default compose(
   connectGraphQL,
-  hoistInitialProps(connectGlobalStyles)
+  hoistInitialProps(withGlobalStyles)
 )(App)

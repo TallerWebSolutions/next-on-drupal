@@ -3,7 +3,7 @@ import { createGlobalStyle } from 'styled-components'
 
 import * as colors from './colors'
 
-const GlobalStyle = createGlobalStyle`
+export const GlobalStyle = createGlobalStyle`
   @import url('https://fonts.googleapis.com/css?family=Open+Sans:300,400,400i,700');
 
   html, body, div#__next {
