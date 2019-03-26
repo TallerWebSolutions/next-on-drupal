@@ -49,7 +49,7 @@ module.exports = (phase, info) => {
       }
     ]
 
-    plugins.unshift(analyzer, builder)
+    plugins.unshift(builder, analyzer)
   }
 
   return withPlugins(plugins)(phase, info)
