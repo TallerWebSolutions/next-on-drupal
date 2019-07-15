@@ -12,3 +12,4 @@ coverage
 bundles
 .docz
 storybook-static
+yarn-error.log
