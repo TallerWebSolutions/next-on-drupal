@@ -47,5 +47,7 @@ module.exports = (config, options) => {
     )
   }
 
+  config.mode = !options.dev ? 'production' : 'development'
+
   return config
 }
