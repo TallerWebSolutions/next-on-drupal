@@ -11,8 +11,7 @@ module.exports = (phase, info) => {
     target: 'server',
     distDir: 'build/client',
     serverRuntimeConfig: {},
-    // available to both client and server-side.
-    env: {
+    publicRuntimeConfig: {
       GRAPHQL_HOST: process.env.GRAPHQL_HOST
     }
   }
