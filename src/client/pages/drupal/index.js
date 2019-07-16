@@ -9,8 +9,10 @@ class DrupalPage extends PureComponent {
     route: object.isRequired
   }
 
-  static async getInitialProps ({ asPath, query }) {
-    const route = query.route || (await resolve(asPath))
+  static async getInitialProps ({ asPath, query, res }) {
+    const route =
+      query.route || (await resolve({ location: asPath, ctx: { res } }))
+
     return { route }
   }
 

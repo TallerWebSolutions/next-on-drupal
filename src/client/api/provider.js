@@ -4,7 +4,7 @@ import Head from 'next/head'
 import { ApolloProvider, getDataFromTree } from 'react-apollo'
 import config from '~source/env'
 
-import { link } from './link'
+import { createLink } from './link'
 import { initialize } from './client'
 import { introspectLink } from './lib/introspection'
 
@@ -33,22 +33,27 @@ export default App =>
      * Keep in mind that for client-side routing this method WILL execute,
      * meaning you have to account for it running on two varying situations.
      *
-     * @param {Object} ctx NextJS request context
-     * @param {String} ctx.pathname Path section of URL
-     * @param {Object} ctx.query Query string section of URL parsed as an object
-     * @param {String} ctx.asPath String of the actual path (including the query)
-     *  as shown in the browser
-     * @param {Object} ctx.req HTTP request object (server only)
-     * @param {Object} ctx.res HTTP response object (server only)
-     * @param {Object} ctx.jsonPageRes Fetch Response object (client only)
-     * @param {Object} ctx.err Error object if any error is encountered during the rendering
+     * @param {Object} context.ctx NextJS request context
+     * @param {String} context.ctx.pathname Path section of URL
+     * @param {Object} context.ctx.query Query string section of URL parsed as an object
+     * @param {String} context.ctx.asPath String of the actual path (including the query)
+     *  as shown in the browse.ctxr
+     * @param {Object} context.ctx.req HTTP request object (server only)
+     * @param {Object} context.ctx.res HTTP response object (server only)
+     * @param {Object} context.ctx.jsonPageRes Fetch Response object (client only)
+     * @param {Object} context.ctx.err Error object if any error is encountered during the rendering
      *
      * @return {Object} initial props.
      */
-    static async getInitialProps (ctx) {
-      const props = App.getInitialProps ? await App.getInitialProps(ctx) : {}
+    static async getInitialProps (context) {
+      const props = App.getInitialProps
+        ? await App.getInitialProps(context)
+        : {}
 
       let introspection = null
+
+      // Set Apollo Link into props for later use at render.
+      const link = createLink(context.ctx)
 
       try {
         // instrospect link for the fragment-matcher needs.
@@ -72,7 +77,11 @@ export default App =>
         // Mount ComposedComponent element tree.
         const tree = (
           <ApolloProvider client={ apolloClient }>
-            <App { ...props } Component={ ctx.Component } router={ ctx.router } />
+            <App
+              { ...props }
+              Component={ context.Component }
+              router={ context.router }
+            />
           </ApolloProvider>
         )
 
@@ -105,7 +114,11 @@ export default App =>
         __APOLLO_INTROSPECTION__: introspection
       } = this.props
 
-      this.apolloClient = initialize({ link, introspection, initialState })
+      this.apolloClient = initialize({
+        link: createLink(),
+        introspection,
+        initialState
+      })
     }
 
     render () {

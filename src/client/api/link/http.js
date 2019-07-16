@@ -1,6 +1,7 @@
-import fetch from 'isomorphic-fetch'
+import fetchDefault from 'isomorphic-fetch'
 import { createHttpLink } from 'apollo-link-http'
 import config from '~source/env'
+import { extractCacheTags } from '../lib/extractCacheTags'
 
 const local = `http://localhost/graphql`
 const fallback = config('NODE_ENV') !== 'production' ? local : null
@@ -12,10 +13,15 @@ if (!GRAPHQL_HOST) {
   )
 }
 
-const link = createHttpLink({
-  uri: GRAPHQL_HOST,
-  fetch,
-  includeExtensions: true
-})
+const createLink = context => {
+  const withCacheTags = extractCacheTags(context)
 
-export { link }
+  return createHttpLink({
+    uri: GRAPHQL_HOST,
+    fetch: withCacheTags(fetchDefault),
+    includeExtensions: true,
+    useGETForQueries: true
+  })
+}
+
+export { createLink }

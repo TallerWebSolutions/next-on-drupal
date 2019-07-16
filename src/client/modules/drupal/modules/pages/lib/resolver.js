@@ -4,7 +4,7 @@
  */
 
 import { makePromise, execute } from 'apollo-link'
-import { link } from '~client/api/link'
+import { createLink } from '~client/api/link'
 
 import { isKnownDrupalRoute } from './routes'
 import query from './route-query.gql'
@@ -18,7 +18,8 @@ const ignored = [
 /**
  * Takes a location and resolves it based in a Drupal path.
  */
-export const resolve = async location => {
+export const resolve = async ({ location, ctx }) => {
+  const link = createLink(ctx)
   const path = (typeof location === 'object' ? location.path : location) || ''
 
   // abort, if path should be ignored.

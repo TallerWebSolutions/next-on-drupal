@@ -23,7 +23,7 @@ const initializeServer = () => {
 
     if (!isNextRoute) {
       try {
-        const route = await resolve(req)
+        const route = await resolve({ location: req, ctx: { res } })
 
         if (route) return app.render(req, res, '/drupal', { route })
       } catch (error) {

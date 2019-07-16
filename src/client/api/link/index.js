@@ -1,12 +1,9 @@
 import { ApolloLink } from 'apollo-link'
 
-import { link as httpLink } from './http'
-
+import { createLink as createHttpLink } from './http'
 // prettier-ignore
-const links = [
-  httpLink
-]
+const createLink = (context = {}) => ApolloLink.from([
+  createHttpLink(context)
+])
 
-const link = ApolloLink.from(links)
-
-export { link }
+export { createLink }
