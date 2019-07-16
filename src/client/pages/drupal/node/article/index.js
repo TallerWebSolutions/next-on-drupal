@@ -8,6 +8,7 @@ import ErrorPage404 from '~client/components/ErrorPage404'
 import ErrorPage500 from '~client/components/ErrorPage500'
 
 import BlockRegionContainer from '~drupal/modules/layout/containers/BlockRegionContainer'
+import HtmlText from '~drupal/modules/content/components/HtmlText'
 
 import query from './query.gql'
 
@@ -23,9 +24,7 @@ const NodeArticlePage = ({ route: { entity } }) => (
           <h1>{ node.title }</h1>
           <BlockRegionContainer region='header' />
           <main>
-            <div
-              dangerouslySetInnerHTML={ { __html: node.body && node.body.value } }
-            />
+            <HtmlText html={ node.body && node.body.value } />
           </main>
         </PublicPage>
       )
