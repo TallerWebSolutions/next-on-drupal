@@ -35,6 +35,6 @@ BlockSiteBranding.propTypes = {
   block: object.isRequired
 }
 
-BlockSiteBranding.is = ({ entityId }) => entityId === 'sitebranding'
+BlockSiteBranding.is = ({ entityId }) => !!entityId.match(/branding$/)
 
 export default BlockSiteBranding
