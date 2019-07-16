@@ -20,22 +20,24 @@ const DefinitionList = styled.dl`
 export default () => (
   <Query query={ SAMPLE_QUERY }>
     { ({ data, error, loading }) => (
-      <DefinitionList>
-        <dt>loading</dt>
-        <dd>
-          <pre>{ JSON.stringify(loading, null, 2) }</pre>
-        </dd>
+      <div>
+        <DefinitionList>
+          <dt>loading</dt>
+          <dd>
+            <pre>{ JSON.stringify(loading, null, 2) }</pre>
+          </dd>
 
-        <dt>data</dt>
-        <dd>
-          <pre>{ JSON.stringify(data, null, 2) }</pre>
-        </dd>
+          <dt>data</dt>
+          <dd>
+            <pre>{ JSON.stringify(data, null, 2) }</pre>
+          </dd>
 
-        <dt>error</dt>
-        <dd>
-          <pre>{ JSON.stringify(error, null, 2) }</pre>
-        </dd>
-      </DefinitionList>
+          <dt>error</dt>
+          <dd>
+            <pre>{ JSON.stringify(error, null, 2) }</pre>
+          </dd>
+        </DefinitionList>
+      </div>
     ) }
   </Query>
 )
