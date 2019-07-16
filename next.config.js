@@ -12,7 +12,8 @@ module.exports = (phase, info) => {
     distDir: 'build/client',
     serverRuntimeConfig: {},
     publicRuntimeConfig: {
-      GRAPHQL_HOST: process.env.GRAPHQL_HOST
+      GRAPHQL_HOST: process.env.GRAPHQL_HOST,
+      APP_HOST: process.env.APP_HOST
     }
   }
 

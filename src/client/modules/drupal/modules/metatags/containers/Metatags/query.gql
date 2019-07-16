@@ -1,0 +1,12 @@
+query CurrentPageMetatags($path: String!) {
+  route(path: $path) {
+    ... on EntityCanonicalUrl {
+      entity {
+        entityMetatags {
+          key
+          value
+        }
+      }
+    }
+  }
+}

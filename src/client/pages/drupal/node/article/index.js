@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { Fragment } from 'react'
 import { shape, string } from 'prop-types'
 import { Query } from 'react-apollo'
 
@@ -11,25 +11,29 @@ import BlockRegionContainer from '~drupal/modules/layout/containers/BlockRegionC
 import HtmlText from '~drupal/modules/content/components/HtmlText'
 
 import query from './query.gql'
+import MetatagsContainer from 'client/modules/drupal/modules/metatags/containers/Metatags'
 
-const NodeArticlePage = ({ route: { entity } }) => (
-  <Query query={ query } variables={ entity }>
-    { ({ data: { node }, loading, error }) => {
-      if (loading) return <LoadingPublicPage />
-      if (error) return <ErrorPage500 />
-      if (!node) return <ErrorPage404 />
+const NodeArticlePage = ({ route: { entity, path } }) => (
+  <Fragment>
+    <MetatagsContainer path={ path } />
+    <Query query={ query } variables={ entity }>
+      { ({ data: { node }, loading, error }) => {
+        if (loading) return <LoadingPublicPage />
+        if (error) return <ErrorPage500 />
+        if (!node) return <ErrorPage404 />
 
-      return (
-        <PublicPage title={ `%base | ${node.title}` }>
-          <h1>{ node.title }</h1>
-          <BlockRegionContainer region='header' />
-          <main>
-            <HtmlText html={ node.body && node.body.value } />
-          </main>
-        </PublicPage>
-      )
-    } }
-  </Query>
+        return (
+          <PublicPage title={ `%base | ${node.title}` }>
+            <h1>{ node.title }</h1>
+            <BlockRegionContainer region='header' />
+            <main>
+              <HtmlText html={ node.body && node.body.value } />
+            </main>
+          </PublicPage>
+        )
+      } }
+    </Query>
+  </Fragment>
 )
 
 NodeArticlePage.propTypes = {
