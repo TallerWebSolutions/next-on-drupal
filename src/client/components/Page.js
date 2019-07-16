@@ -8,13 +8,15 @@ import React, { Fragment } from 'react'
 import { string, node } from 'prop-types'
 import Head from 'next/head'
 
-const baseTitle = 'Drupal Next'
+const baseTitle = 'Next on Drupal'
 
 const Page = ({ title, children }) => (
   <Fragment>
-    <Head>
-      <title>{ title.replace('%base', baseTitle) }</title>
-    </Head>
+    { title && (
+      <Head>
+        <title>{ title.replace('%base', baseTitle) }</title>
+      </Head>
+    ) }
 
     { children }
   </Fragment>
@@ -23,10 +25,6 @@ const Page = ({ title, children }) => (
 Page.propTypes = {
   children: node.isRequired,
   title: string
-}
-
-Page.defaultProps = {
-  title: '%base'
 }
 
 export default Page
