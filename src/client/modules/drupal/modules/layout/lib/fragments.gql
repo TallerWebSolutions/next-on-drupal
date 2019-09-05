@@ -18,4 +18,6 @@ fragment BlockContentFragment on BlockContent {
 fragment BlockFragment on Entity {
   ...BlockBaseFragment
   ...BlockContentFragment
+
+  # ADD YOUR BLOCK FRAGMENT HERE
 }

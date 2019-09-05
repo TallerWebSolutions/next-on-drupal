@@ -12,6 +12,7 @@ const blocks = [
   BlockSiteBranding,
   BlockContentBasic,
   BlockNotFound
+  // ADD YOUR BLOCK HERE
 ]
 
 export default blocks
