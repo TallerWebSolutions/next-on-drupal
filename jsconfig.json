@@ -3,12 +3,11 @@
   "compilerOptions": {
     "baseUrl": ".",
     "paths": {
-      "*": ["src/*"],
-      "~source/*": ["src/*"],
-      "~client/*": ["src/client/*"],
       "~server/*": ["src/server/*"],
       "~styleguide/*": ["src/client/styleguide/*"],
-      "~drupal/*": ["src/client/modules/drupal/*"]
+      "~drupal/*": ["src/client/modules/drupal/*"],
+      "~client/*": ["src/client/*"],
+      "~source/*": ["src/*"]
     }
   }
 }
