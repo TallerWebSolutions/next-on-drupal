@@ -9,9 +9,9 @@ import ErrorPage500 from '~client/components/ErrorPage500'
 
 import BlockRegionContainer from '~drupal/modules/layout/containers/BlockRegionContainer'
 import HtmlText from '~drupal/modules/content/components/HtmlText'
+import MetatagsContainer from '~drupal/modules/metatags/containers/Metatags'
 
 import query from './query.gql'
-import MetatagsContainer from 'client/modules/drupal/modules/metatags/containers/Metatags'
 
 const NodeArticlePage = ({ route: { entity, path } }) => (
   <Fragment>
