@@ -81,7 +81,7 @@
     "graphql": "^14.0.2",
     "graphql-tag": "^2.10.1",
     "isomorphic-fetch": "^2.2.1",
-    "next": "^8.0.0-canary.2",
+    "next": "^9.3.2",
     "next-compose-plugins": "^2.1.1",
     "prop-types": "^15.6.2",
     "ramda": "^0.26.1",
