@@ -131,7 +131,7 @@
     "prettier-eslint-cli": "^4.7.1",
     "raw-loader": "^1.0.0",
     "sort-package-json": "^1.17.1",
-    "standard-version": "^5.0.2",
+    "standard-version": "^8.0.1",
     "surge": "^0.20.3",
     "webpack-cli": "^3.2.3",
     "webpack-node-externals": "^1.7.2"
